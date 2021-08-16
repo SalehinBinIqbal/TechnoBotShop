@@ -29,7 +29,9 @@ public class AllProducts extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         backBTN = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        name = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        AllProductsTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setLocation(new java.awt.Point(150, 100));
@@ -52,10 +54,38 @@ public class AllProducts extends javax.swing.JFrame {
         });
         jPanel1.add(backBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("All Products");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(569, 10, -1, -1));
+        name.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        name.setForeground(new java.awt.Color(255, 255, 255));
+        name.setText("All Products");
+        jPanel1.add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(569, 10, -1, -1));
+
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(910, 658));
+
+        AllProductsTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Product ID", "Product Name", "Category", "Brand", "Type", "Quantity", "Warranty", "Price"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        AllProductsTable.setName(""); // NOI18N
+        AllProductsTable.setOpaque(false);
+        AllProductsTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(AllProductsTable);
+        if (AllProductsTable.getColumnModel().getColumnCount() > 0) {
+            AllProductsTable.getColumnModel().getColumn(1).setPreferredWidth(250);
+        }
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 52, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -118,8 +148,10 @@ public class AllProducts extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable AllProductsTable;
     private javax.swing.JButton backBTN;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel name;
     // End of variables declaration//GEN-END:variables
 }
