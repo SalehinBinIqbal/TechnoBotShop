@@ -189,11 +189,6 @@ public class Index extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(360, 720));
-        jPanel1.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jPanel1FocusGained(evt);
-            }
-        });
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         shopName.setForeground(new java.awt.Color(0, 0, 0));
@@ -377,10 +372,6 @@ public class Index extends javax.swing.JFrame {
             passWord.setEchoChar((char)0);
         }
     }//GEN-LAST:event_passWordFocusLost
-
-    private void jPanel1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPanel1FocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jPanel1FocusGained
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
         // TODO add your handling code here:
