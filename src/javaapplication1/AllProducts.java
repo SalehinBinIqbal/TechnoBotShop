@@ -57,9 +57,9 @@ public class AllProducts extends javax.swing.JFrame {
         name.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         name.setForeground(new java.awt.Color(255, 255, 255));
         name.setText("All Products");
-        jPanel1.add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(569, 10, -1, -1));
+        jPanel1.add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(138, 10, -1, -1));
 
-        jScrollPane1.setPreferredSize(new java.awt.Dimension(910, 658));
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(910, 700));
 
         AllProductsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -85,7 +85,7 @@ public class AllProducts extends javax.swing.JFrame {
             AllProductsTable.getColumnModel().getColumn(1).setPreferredWidth(250);
         }
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 52, -1, -1));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
