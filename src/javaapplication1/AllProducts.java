@@ -5,6 +5,8 @@
  */
 package javaapplication1;
 
+import java.awt.Color;
+
 /**
  *
  * @author saleh
@@ -32,7 +34,19 @@ public class AllProducts extends javax.swing.JFrame {
         name = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         AllProductsTable = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
+        SearchBox = new javax.swing.JTextField();
+        SearchBtn = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox3 = new javax.swing.JComboBox<>();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jRadioButton3 = new javax.swing.JRadioButton();
+        jRadioButton4 = new javax.swing.JRadioButton();
+        jRadioButton5 = new javax.swing.JRadioButton();
+        jRadioButton6 = new javax.swing.JRadioButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setLocation(new java.awt.Point(150, 100));
@@ -47,6 +61,8 @@ public class AllProducts extends javax.swing.JFrame {
 
         backBTN.setBackground(new java.awt.Color(29, 31, 47));
         backBTN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/undo.png"))); // NOI18N
+        backBTN.setMaximumSize(new java.awt.Dimension(58, 32));
+        backBTN.setMinimumSize(new java.awt.Dimension(58, 32));
         backBTN.setPreferredSize(new java.awt.Dimension(58, 32));
         backBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -88,9 +104,77 @@ public class AllProducts extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, -1, -1));
 
-        jTextField1.setText("jTextField1");
-        jTextField1.setPreferredSize(new java.awt.Dimension(340, 45));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
+        SearchBox.setBackground(new java.awt.Color(255, 255, 255));
+        SearchBox.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        SearchBox.setForeground(new java.awt.Color(102, 102, 102));
+        SearchBox.setText("Search here...");
+        SearchBox.setPreferredSize(new java.awt.Dimension(300, 45));
+        SearchBox.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                SearchBoxFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                SearchBoxFocusLost(evt);
+            }
+        });
+        jPanel1.add(SearchBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
+
+        SearchBtn.setBackground(new java.awt.Color(29, 31, 47));
+        SearchBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/magnifying-glass.png"))); // NOI18N
+        SearchBtn.setPreferredSize(new java.awt.Dimension(40, 45));
+        jPanel1.add(SearchBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 100, -1, -1));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setPreferredSize(new java.awt.Dimension(340, 24));
+        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, -1, -1));
+
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 550, -1, -1));
+
+        jRadioButton1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jRadioButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jRadioButton1.setText("Laptop");
+        jPanel1.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, -1, -1));
+
+        jRadioButton2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jRadioButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jRadioButton2.setText("PC Components");
+        jPanel1.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, -1, -1));
+
+        jRadioButton3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jRadioButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jRadioButton3.setText("Accessories");
+        jPanel1.add(jRadioButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, -1, -1));
+
+        jRadioButton4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jRadioButton4.setForeground(new java.awt.Color(255, 255, 255));
+        jRadioButton4.setText("Monitor");
+        jPanel1.add(jRadioButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 250, -1, -1));
+
+        jRadioButton5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jRadioButton5.setForeground(new java.awt.Color(255, 255, 255));
+        jRadioButton5.setText("TV & Speaker");
+        jPanel1.add(jRadioButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, -1, -1));
+
+        jRadioButton6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jRadioButton6.setForeground(new java.awt.Color(255, 255, 255));
+        jRadioButton6.setText("Router & Network");
+        jPanel1.add(jRadioButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, -1, -1));
+
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("All Category");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Category");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Brand");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -116,6 +200,23 @@ public class AllProducts extends javax.swing.JFrame {
         hp.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backBTNMouseClicked
+
+    private void SearchBoxFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_SearchBoxFocusGained
+        // TODO add your handling code here:
+        if(SearchBox.getText().equals("Search here...")){
+            SearchBox.setText("");
+            SearchBox.requestFocus();
+            SearchBox.setForeground(new Color(0,0,0));
+        }
+    }//GEN-LAST:event_SearchBoxFocusGained
+
+    private void SearchBoxFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_SearchBoxFocusLost
+        // TODO add your handling code here:
+        if(SearchBox.getText().length()== 0){
+            SearchBox.setText("Search here...");
+            SearchBox.setForeground(new Color(102,102,102));
+        }
+    }//GEN-LAST:event_SearchBoxFocusLost
 
     /**
      * @param args the command line arguments
@@ -154,10 +255,22 @@ public class AllProducts extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable AllProductsTable;
+    private javax.swing.JTextField SearchBox;
+    private javax.swing.JButton SearchBtn;
     private javax.swing.JButton backBTN;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButton3;
+    private javax.swing.JRadioButton jRadioButton4;
+    private javax.swing.JRadioButton jRadioButton5;
+    private javax.swing.JRadioButton jRadioButton6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel name;
     // End of variables declaration//GEN-END:variables
 }
