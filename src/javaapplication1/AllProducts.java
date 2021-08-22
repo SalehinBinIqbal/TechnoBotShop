@@ -32,6 +32,7 @@ public class AllProducts extends javax.swing.JFrame {
         name = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         AllProductsTable = new javax.swing.JTable();
+        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setLocation(new java.awt.Point(150, 100));
@@ -86,6 +87,10 @@ public class AllProducts extends javax.swing.JFrame {
         }
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, -1, -1));
+
+        jTextField1.setText("jTextField1");
+        jTextField1.setPreferredSize(new java.awt.Dimension(340, 45));
+        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -152,6 +157,7 @@ public class AllProducts extends javax.swing.JFrame {
     private javax.swing.JButton backBTN;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel name;
     // End of variables declaration//GEN-END:variables
 }
