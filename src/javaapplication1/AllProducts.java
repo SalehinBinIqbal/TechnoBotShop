@@ -16,38 +16,50 @@ public class AllProducts extends javax.swing.JFrame {
     /**
      * Creates new form AllProducts
      */
-    String[] laptopcat ={"...","Laptop","Gaming Laptop", "Tablet"};
+    String[] laptopcat ={"...","Laptop","Gaming Laptop","Tablet","Laptop Ram","Laptop Adapter","Laptop Battery","Laptop Cooler"};
     
     String[] laptopbrand ={"...","Acer","Apple","Asus","Dell","Gigabyte","HP","Huawei","Lenovo","MSI","Razer","Walton"};
     String[] gaminglaptopbrand ={"...","Acer Gaming Laptop","Asus Gaming Laptop","Dell Gaming Laptop","Gigabyte Gaming Laptop","HP Gaming Laptop","Lenovo Gaming Laptop","MSI Gaming Laptop","Walton Gaming Laptop"};
     String[] tabletbrand ={"...","Apple","Huawei","Lenovo","Walton"};
+    String[] lrambrand ={"...","Adata","Crucial","G.Skill","HP","Patriot","Team","Transcend","Walton"};
+    String[] adapterbrand ={"...","Acer","Apple","Asus","Dell","HP","Lenovo","Samsung"};
+    String[] batterybrand ={"...","Acer","Apple","Asus","Dell","HP","Lenovo"};
+    String[] coolerbrand={"...","Cooler Master","DeepCool","Thermaltake"};
     
     
-    String[] pccat ={"...","Casing","Processor","Motherboard","Graphics Card","Desktop Ram","Laptop Ram","Internal SSD","Internal Hard-Disk","Power Supply","CPU Cooler","Casing Fan"};
+    String[] pccat ={"...","Casing","Processor","Motherboard","Graphics Card","Desktop Ram","Internal SSD","Internal Hard-Disk","Power Supply","CPU Cooler","Casing Fan","UPS"};
     
     String[] casingbrand ={"...","Aigo","Antec","Asus","CoolerMaster","Corsair","Cougar","DeepCool","Fantech","Gamdias","Gigabyte","Lian Li","MSI","MonTech","NZXT","Phanteks","Thermaltake","Xigmatek"};
-    String[] cpubrand ={"...","Intel","AMD"};
-    String[] mobobrand ={"...","Asrock(Intel)","Asrock(Ryzen)","Asus(Intel)","Asus(Ryzen)","Biostar(Intel)","Biostar(Ryzen)","Colorful(Intel)","Gigabyte(Intel)","Gigabyte(Ryzen)","MSI(Intel)","MSI(Ryzen)","NZXT(Intel)","NZXT(Ryzen)"};
-    String[] gpubrand ={"...","Asrock","Asus","Biostar","Colorful","Gigabyte","Galax","MSI","Sapphire","XFX","ZOTAC"};
-    String[] drambrand ={"...","Adata","Antec","Corsair","G.Skill","Gigabyte","Kingston","Patriot","PNY","Team","Thermaltake","Transcend","TwinMos","Walton"};
-    String[] lrambrand ={"...","Adata","Crucial","G.Skill","HP","Patriot","Team","Transcend","TwinMOS","Walton"};
+    String[] cpubrand ={"...","Intel","AMD Ryzen"};
+    String[] mobobrand ={"...","Asrock(Intel)","Asrock(Ryzen)","Asus(Intel)","Asus(Ryzen)","Gigabyte(Intel)","Gigabyte(Ryzen)","MSI(Intel)","MSI(Ryzen)","NZXT(Intel)","NZXT(Ryzen)"};
+    String[] gpubrand ={"...","Asrock","Asus","Colorful","EVGA","Gigabyte","Galax","MSI","Sapphire","XFX","ZOTAC"};
+    String[] drambrand ={"...","Adata","Antec","Corsair","G.Skill","Gigabyte","Kingston","Patriot","PNY","Team","Thermaltake","Transcend","Walton"};
     String[] ssdbrand ={"...","Adata","Colorful","Corsair","Gigabyte","HP","Intel","PNY","Patriot","Samsung","Seagate","Team","Transcend","Walton","Western Digital"};
     String[] hddbrand ={"...","Seagate","Toshiba","Transcend","Western Digital"};
     String[] psubrand ={"...","Antec","Asus","Cooler Master","Corsair","Gamdias","Gigabyte","MSI","Seasonic","Thermaltake"};
     String[] cpucoolerbrand ={"...","Antec","Asus","Bykski","Cooler Master","Corsair","DeepCool","EKWB","Gamdias","Gigabyte","Lian Li","MSI","NZXT","Noctua","Thermaltake"};
     String[] casingfanbrand ={"...","Antec","Asus","CoolerMaster","Corsair","Cougar","DeepCool","EKWB","Fantech","Gamdias","Lian Li","Montech","NZXT","Noctua","Thermaltake"};
+    String[] upsbrand ={"...","Apollo","Power Guard","Prolink","Santak","Technoware","Walton"};
     
     
-    String[] acccat={};
+    String[] acccat={"...","Webcam","Keyboard","Mouse","Mousepad","Headphone","Earphone","Microphone","Gamepad","Pendrive","Memory Card","Portable Hard-Disk","Portable SSD","Capture Card","USB HUB","Power Strip","LED Strip","Chair","Table"};
     
     
-    String[] routcat={};
+    String[] routcat={"...","Router","Network Switch","Network Extender"};
+    
+    String[] routerbrand ={"...","Asus","DLink","Huawei","Netgear","Tenda","Tp-Link","Xiaomi"};
+    String[] ntwrkswitchbrand ={"...","DLink","Netgear","Tp-Link"};
+    String[] ntwrkextndrbrand ={"...","DLink","Netgear","Tp-Link","Xiaomi"};
     
     
     String[] moncat ={};
     
     
-    String[] tvcat ={};
+    String[] tvcat ={"...","Television","Speaker","Portable Speaker"};
+    
+    String[] tvbrand ={"...","LG","Samsung","Sony","Xiaomi"};
+    String[] speakerbrand ={"...",""};
+    String[] portablespeakerbrand ={"...",""};
     
     
     public AllProducts() {
@@ -455,6 +467,22 @@ public class AllProducts extends javax.swing.JFrame {
             {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(tabletbrand));
             }
+            else if(catDDBox.getSelectedItem().equals("Laptop Ram"))
+            {
+                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(lrambrand));
+            }
+            else if(catDDBox.getSelectedItem().equals("Laptop Adapter"))
+            {
+                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(adapterbrand));
+            }
+            else if(catDDBox.getSelectedItem().equals("Laptop Battery"))
+            {
+                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(batterybrand));
+            }
+            else if(catDDBox.getSelectedItem().equals("Laptop Cooler"))
+            {
+                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(coolerbrand));
+            }
             else
             {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
@@ -482,10 +510,6 @@ public class AllProducts extends javax.swing.JFrame {
             {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(drambrand));
             }
-            else if(catDDBox.getSelectedItem().equals("Laptop Ram"))
-            {
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(lrambrand));
-            }
             else if(catDDBox.getSelectedItem().equals("Internal SSD"))
             {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(ssdbrand));
@@ -505,6 +529,70 @@ public class AllProducts extends javax.swing.JFrame {
             else if(catDDBox.getSelectedItem().equals("Casing Fan"))
             {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(casingfanbrand));
+            }
+            else if(catDDBox.getSelectedItem().equals("UPS"))
+            {
+                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(upsbrand));
+            }
+            else
+            {
+                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
+            }
+        }
+        else if(accRad.isSelected())
+        {
+            if(catDDBox.getSelectedItem().equals("Webcam"))
+            {
+                
+            }
+            else
+            {
+                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
+            }
+        }
+        else if(routRad.isSelected())
+        {
+            if(catDDBox.getSelectedItem().equals("Router"))
+            {
+                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(routerbrand));
+            }
+            else if(catDDBox.getSelectedItem().equals("Network Switch"))
+            {
+                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(ntwrkswitchbrand));
+            }
+            else if(catDDBox.getSelectedItem().equals("Network Extender"))
+            {
+                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(ntwrkextndrbrand));
+            }
+            else
+            {
+                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
+            }
+        }
+        else if(monRad.isSelected())
+        {
+            if(catDDBox.getSelectedItem().equals("Webcam"))
+            {
+                
+            }
+            else
+            {
+                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
+            }
+        }
+        else if(tvRad.isSelected())
+        {
+            if(catDDBox.getSelectedItem().equals("Television"))
+            {
+                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(tvbrand));
+            }
+            else if(catDDBox.getSelectedItem().equals("Speaker"))
+            {
+                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(speakerbrand));
+            }
+            else if(catDDBox.getSelectedItem().equals("Portable Speaker"))
+            {
+                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(portablespeakerbrand));
             }
             else
             {
