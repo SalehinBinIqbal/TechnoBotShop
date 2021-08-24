@@ -6,6 +6,7 @@
 package javaapplication1;
 
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,6 +28,7 @@ public class AllProducts extends javax.swing.JFrame {
     String[] coolerbrand={"...","Cooler Master","DeepCool","Thermaltake"};
     
     
+    
     String[] pccat ={"...","Casing","Processor","Motherboard","Graphics Card","Desktop Ram","Internal SSD","Internal Hard-Disk","Power Supply","CPU Cooler","Casing Fan","UPS"};
     
     String[] casingbrand ={"...","Aigo","Antec","Asus","CoolerMaster","Corsair","Cougar","DeepCool","Fantech","Gamdias","Gigabyte","Lian Li","MSI","MonTech","NZXT","Phanteks","Thermaltake","Xigmatek"};
@@ -42,7 +44,28 @@ public class AllProducts extends javax.swing.JFrame {
     String[] upsbrand ={"...","Apollo","Power Guard","Prolink","Santak","Technoware","Walton"};
     
     
+    
     String[] acccat={"...","Webcam","Keyboard","Mouse","Mousepad","Headphone","Earphone","Microphone","Gamepad","Pendrive","Memory Card","Portable Hard-Disk","Portable SSD","Capture Card","USB HUB","Power Strip","LED Strip","Chair","Table"};
+    
+    String[] webcambrand ={"..."};
+    String[] keyboardbrand ={"..."};
+    String[] mousebrand ={"..."};
+    String[] mousepadbrand ={"..."};
+    String[] headphonebrand ={"..."};
+    String[] earphonebrand ={"..."};
+    String[] microphonebrand ={"..."};
+    String[] gamepadbrand ={"..."};
+    String[] pendrivebrand ={"..."};
+    String[] memorycardbrand ={"..."};
+    String[] phddbrand ={"..."};
+    String[] pssdbrand ={"..."};
+    String[] ccbrand ={"..."};
+    String[] usbhubbrand ={"..."};
+    String[] pstripbrand ={"..."};
+    String[] lstripbrand ={"..."};
+    String[] chairbrand ={"..."};
+    String[] tablebrand ={"..."};
+    
     
     
     String[] routcat={"...","Router","Network Switch","Network Extender"};
@@ -52,14 +75,19 @@ public class AllProducts extends javax.swing.JFrame {
     String[] ntwrkextndrbrand ={"...","DLink","Netgear","Tp-Link","Xiaomi"};
     
     
-    String[] moncat ={};
+    
+    String[] moncat ={"...","UHD(4K)","Ultra Wide","QHD(2K)","FHD(1080p)"};
+    
+    String[] monbrand ={"...","AOC","Acer","Asus","Benq","Dell","Gigabyte","HP","LG","MSI","Philips","Samsung","ViewSonic","Walton","Xiaomi"};
+    
     
     
     String[] tvcat ={"...","Television","Speaker","Portable Speaker"};
     
     String[] tvbrand ={"...","LG","Samsung","Sony","Xiaomi"};
-    String[] speakerbrand ={"...",""};
-    String[] portablespeakerbrand ={"...",""};
+    String[] speakerbrand ={"...","Creative","Edifier","F&D","JBL","Logitech","Microlab"};
+    String[] portablespeakerbrand ={"...","Beats","Creative","F&D","JBL"};
+    
     
     
     public AllProducts() {
@@ -93,7 +121,7 @@ public class AllProducts extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        sortBtn = new javax.swing.JButton();
         copyright = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -265,9 +293,14 @@ public class AllProducts extends javax.swing.JFrame {
         jLabel3.setText("Brand");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, -1, -1));
 
-        jButton1.setBackground(new java.awt.Color(29, 31, 47));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/right-arrow.png"))); // NOI18N
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(147, 580, -1, -1));
+        sortBtn.setBackground(new java.awt.Color(29, 31, 47));
+        sortBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/right-arrow.png"))); // NOI18N
+        sortBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sortBtnMouseClicked(evt);
+            }
+        });
+        jPanel1.add(sortBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(147, 580, -1, -1));
 
         copyright.setForeground(new java.awt.Color(255, 255, 255));
         copyright.setText("Copyright © 2021, TechnoBot BD");
@@ -408,7 +441,7 @@ public class AllProducts extends javax.swing.JFrame {
             
             
             catDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(moncat));
-            braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
+            braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(monbrand));
         }
         else{
             catDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
@@ -569,7 +602,7 @@ public class AllProducts extends javax.swing.JFrame {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
             }
         }
-        else if(monRad.isSelected())
+        /*else if(monRad.isSelected())
         {
             if(catDDBox.getSelectedItem().equals("Webcam"))
             {
@@ -579,7 +612,7 @@ public class AllProducts extends javax.swing.JFrame {
             {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
             }
-        }
+        }*/
         else if(tvRad.isSelected())
         {
             if(catDDBox.getSelectedItem().equals("Television"))
@@ -600,6 +633,17 @@ public class AllProducts extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_catDDBoxActionPerformed
+
+    private void sortBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sortBtnMouseClicked
+        // TODO add your handling code here:
+        if(laptopRad.isSelected() || pcRad.isSelected() || accRad.isSelected() || routRad.isSelected() || monRad.isSelected() || tvRad.isSelected())
+        {
+            
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "No catagory was selected\nPlease select one", "Caution", JOptionPane.OK_OPTION);
+        }
+    }//GEN-LAST:event_sortBtnMouseClicked
 
     /**
      * @param args the command line arguments
@@ -645,7 +689,6 @@ public class AllProducts extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> braDDBox;
     private javax.swing.JComboBox<String> catDDBox;
     private javax.swing.JLabel copyright;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -656,6 +699,7 @@ public class AllProducts extends javax.swing.JFrame {
     private javax.swing.JLabel name;
     private javax.swing.JRadioButton pcRad;
     private javax.swing.JRadioButton routRad;
+    private javax.swing.JButton sortBtn;
     private javax.swing.JRadioButton tvRad;
     // End of variables declaration//GEN-END:variables
 }
