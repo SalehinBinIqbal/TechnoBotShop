@@ -5,6 +5,8 @@
  */
 package javaapplication1;
 
+import java.awt.Color;
+
 /**
  *
  * @author saleh
@@ -30,6 +32,10 @@ public class SellHistory extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         backBTN = new javax.swing.JButton();
         name = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        SearchBox = new javax.swing.JTextField();
+        SearchBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setLocation(new java.awt.Point(150, 100));
@@ -55,6 +61,54 @@ public class SellHistory extends javax.swing.JFrame {
         name.setText("Sell History");
         jPanel1.add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(574, 10, -1, -1));
 
+        jScrollPane2.setPreferredSize(new java.awt.Dimension(1260, 540));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable1.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(jTable1);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, -1));
+
+        SearchBox.setBackground(new java.awt.Color(255, 255, 255));
+        SearchBox.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        SearchBox.setForeground(new java.awt.Color(102, 102, 102));
+        SearchBox.setText("Search here...");
+        SearchBox.setPreferredSize(new java.awt.Dimension(300, 45));
+        SearchBox.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                SearchBoxFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                SearchBoxFocusLost(evt);
+            }
+        });
+        jPanel1.add(SearchBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 100, -1, -1));
+
+        SearchBtn.setBackground(new java.awt.Color(29, 31, 47));
+        SearchBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/magnifying-glass.png"))); // NOI18N
+        SearchBtn.setPreferredSize(new java.awt.Dimension(40, 45));
+        SearchBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SearchBtnMouseClicked(evt);
+            }
+        });
+        jPanel1.add(SearchBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 100, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -79,6 +133,27 @@ public class SellHistory extends javax.swing.JFrame {
         hp.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backBTNMouseClicked
+
+    private void SearchBoxFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_SearchBoxFocusGained
+        // TODO add your handling code here:
+        if(SearchBox.getText().equals("Search here...")){
+            SearchBox.setText("");
+            SearchBox.requestFocus();
+            SearchBox.setForeground(new Color(0,0,0));
+        }
+    }//GEN-LAST:event_SearchBoxFocusGained
+
+    private void SearchBoxFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_SearchBoxFocusLost
+        // TODO add your handling code here:
+        if(SearchBox.getText().length()== 0){
+            SearchBox.setText("Search here...");
+            SearchBox.setForeground(new Color(102,102,102));
+        }
+    }//GEN-LAST:event_SearchBoxFocusLost
+
+    private void SearchBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SearchBtnMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SearchBtnMouseClicked
 
     /**
      * @param args the command line arguments
@@ -116,8 +191,12 @@ public class SellHistory extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField SearchBox;
+    private javax.swing.JButton SearchBtn;
     private javax.swing.JButton backBTN;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel name;
     // End of variables declaration//GEN-END:variables
 }
