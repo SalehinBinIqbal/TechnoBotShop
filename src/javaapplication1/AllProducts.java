@@ -45,26 +45,26 @@ public class AllProducts extends javax.swing.JFrame {
     
     
     
-    String[] acccat={"...","Webcam","Keyboard","Mouse","Mousepad","Headphone","Earphone","Microphone","Gamepad","Pendrive","Memory Card","Portable Hard-Disk","Portable SSD","Capture Card","USB HUB","Power Strip","LED Strip","Chair","Table"};
+    String[] acccat={"...","Webcam","Keyboard","Mouse","Mousepad","Headphone","Earphone","Microphone","Gamepad","Pendrive","Memory Card","Portable Hard-Disk","Portable SSD","Capture Card","USB Hub","Power Strip","LED Strip","Chair","Table"};
     
-    String[] webcambrand ={"..."};
-    String[] keyboardbrand ={"..."};
-    String[] mousebrand ={"..."};
-    String[] mousepadbrand ={"..."};
-    String[] headphonebrand ={"..."};
-    String[] earphonebrand ={"..."};
-    String[] microphonebrand ={"..."};
-    String[] gamepadbrand ={"..."};
-    String[] pendrivebrand ={"..."};
-    String[] memorycardbrand ={"..."};
-    String[] phddbrand ={"..."};
-    String[] pssdbrand ={"..."};
-    String[] ccbrand ={"..."};
-    String[] usbhubbrand ={"..."};
-    String[] pstripbrand ={"..."};
-    String[] lstripbrand ={"..."};
-    String[] chairbrand ={"..."};
-    String[] tablebrand ={"..."};
+    String[] webcambrand ={"...","A4Tech","Asus","Benq","Logitech","Xiaomi"};
+    String[] keyboardbrand ={"...","A4tech","Apple","Asus","Cooler Master","Corsair","Fantech","Gigabyte","HyperX","Keychron","Logitech","MSI","Razer","Redragon","Steel Series"};
+    String[] mousebrand ={"...","A4tech","Asus","Cooler Master","Corsair","Fantech","Gigabyte","HyperX","Logitech","MSI","Razer","Redragon","Steel Series"};
+    String[] mousepadbrand ={"...","A4tech","Asus","Corsair","Fantech","HyperX","Logitech","Razer","Redragon","Steel Series"};
+    String[] headphonebrand ={"...","A4tech","Asus","Beats","Cooler Master","Corsair","Edifier","Fantech","Gigabyte","HyperX","JBL","Logitech","MSI","Razer","Steel Series"};
+    String[] earphonebrand ={"...","A4tech","Beats","Edifier","JBL","Razer","RealMe","Remax","UiiSii"};
+    String[] microphonebrand ={"...","Elgato","Fantech","Fifine","Logitech","Razer"};
+    String[] gamepadbrand ={"...","Fantech","Logitech","MSI","Razer","Redragon","SteelSeries"};
+    String[] pendrivebrand ={"...","Adata","Corsair","PNY","Team","Transcend"};
+    String[] memorycardbrand ={"...","SanDisk","Transcend"};
+    String[] phddbrand ={"...","Adata","Asus","Seagate","Transcend","Western Digital"};
+    String[] pssdbrand ={"...","Adata","PNY","Samsung","Transcend","Western Digital"};
+    String[] ccbrand ={"...","Elgato"};
+    String[] usbhubbrand ={"...","Belkin","Orico","Wavlink"};
+    String[] pstripbrand ={"...","Belkin","Huntkey"};
+    String[] lstripbrand ={"...","Asus","Corsair","Deepcool","Lian Li","Phanteks"};
+    String[] chairbrand ={"...","Cooler Master","Fantech","Gigabyte","MSI","Razer","Thermaltake"};
+    String[] tablebrand ={"...","Fantech","Thermaltake"};
     
     
     
@@ -576,7 +576,75 @@ public class AllProducts extends javax.swing.JFrame {
         {
             if(catDDBox.getSelectedItem().equals("Webcam"))
             {
-                
+                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(webcambrand));
+            }
+            else if(catDDBox.getSelectedItem().equals("Keyboard"))
+            {
+                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(keyboardbrand));
+            }
+            else if(catDDBox.getSelectedItem().equals("Mouse"))
+            {
+                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(mousebrand));
+            }
+            else if(catDDBox.getSelectedItem().equals("Mousepad"))
+            {
+                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(mousepadbrand));
+            }
+            else if(catDDBox.getSelectedItem().equals("Headphone"))
+            {
+                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(headphonebrand));
+            }
+            else if(catDDBox.getSelectedItem().equals("Earphone"))
+            {
+                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(earphonebrand));
+            }
+            else if(catDDBox.getSelectedItem().equals("Microphone"))
+            {
+                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(microphonebrand));
+            }
+            else if(catDDBox.getSelectedItem().equals("Gamepad"))
+            {
+                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(gamepadbrand));
+            }
+            else if(catDDBox.getSelectedItem().equals("Pendrive"))
+            {
+                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(pendrivebrand));
+            }
+            else if(catDDBox.getSelectedItem().equals("Memory Card"))
+            {
+                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(memorycardbrand));
+            }
+            else if(catDDBox.getSelectedItem().equals("Portable Hard-Disk"))
+            {
+                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(phddbrand));
+            }
+            else if(catDDBox.getSelectedItem().equals("Portable SSD"))
+            {
+                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(pssdbrand));
+            }
+            else if(catDDBox.getSelectedItem().equals("Capture Card"))
+            {
+                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(ccbrand));
+            }
+            else if(catDDBox.getSelectedItem().equals("USB Hub"))
+            {
+                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(usbhubbrand));
+            }
+            else if(catDDBox.getSelectedItem().equals("Power Strip"))
+            {
+                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(pstripbrand));
+            }
+            else if(catDDBox.getSelectedItem().equals("LED Strip"))
+            {
+                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(lstripbrand));
+            }
+            else if(catDDBox.getSelectedItem().equals("Chair"))
+            {
+                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(chairbrand));
+            }
+            else if(catDDBox.getSelectedItem().equals("Table"))
+            {
+                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(tablebrand));
             }
             else
             {
