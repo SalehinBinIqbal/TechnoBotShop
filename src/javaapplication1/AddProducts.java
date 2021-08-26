@@ -54,9 +54,17 @@ public class AddProducts extends javax.swing.JFrame {
         brandBox = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         pNameBox = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        addBTN = new javax.swing.JButton();
         copyright = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        clearBTN = new javax.swing.JButton();
+        quantity = new javax.swing.JSpinner();
+        jLabel10 = new javax.swing.JLabel();
+        typeBox = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        warranty = new javax.swing.JSpinner();
+        price = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setLocation(new java.awt.Point(150, 100));
@@ -107,7 +115,7 @@ public class AddProducts extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Select Sub-Category");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 340, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 290, -1, -1));
 
         monRad.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         monRad.setForeground(new java.awt.Color(255, 255, 255));
@@ -141,7 +149,7 @@ public class AddProducts extends javax.swing.JFrame {
 
         braDDBox.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         braDDBox.setPreferredSize(new java.awt.Dimension(340, 24));
-        jPanel1.add(braDDBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 480, -1, -1));
+        jPanel1.add(braDDBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 430, -1, -1));
 
         laptopRad.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         laptopRad.setForeground(new java.awt.Color(255, 255, 255));
@@ -166,7 +174,7 @@ public class AddProducts extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Select a Brand");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 440, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 390, -1, -1));
 
         catDDBox.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         catDDBox.setPreferredSize(new java.awt.Dimension(340, 24));
@@ -175,7 +183,7 @@ public class AddProducts extends javax.swing.JFrame {
                 catDDBoxActionPerformed(evt);
             }
         });
-        jPanel1.add(catDDBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 380, -1, -1));
+        jPanel1.add(catDDBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 330, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -185,34 +193,34 @@ public class AddProducts extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("For Existing Sub-Category/Brand:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("For New Sub-Category/Brand:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 280, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 250, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Enter Sub-Category");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 340, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 290, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Enter a Brand");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 440, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 390, -1, -1));
 
         subCatBox.setBackground(new java.awt.Color(255, 255, 255));
         subCatBox.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         subCatBox.setForeground(new java.awt.Color(0, 0, 0));
         subCatBox.setPreferredSize(new java.awt.Dimension(340, 45));
-        jPanel1.add(subCatBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 380, -1, -1));
+        jPanel1.add(subCatBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 330, -1, -1));
 
         brandBox.setBackground(new java.awt.Color(255, 255, 255));
         brandBox.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         brandBox.setForeground(new java.awt.Color(0, 0, 0));
         brandBox.setPreferredSize(new java.awt.Dimension(340, 45));
-        jPanel1.add(brandBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 480, -1, -1));
+        jPanel1.add(brandBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 430, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -225,29 +233,69 @@ public class AddProducts extends javax.swing.JFrame {
         pNameBox.setPreferredSize(new java.awt.Dimension(400, 45));
         jPanel1.add(pNameBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(843, 100, -1, -1));
 
-        jButton2.setBackground(new java.awt.Color(29, 31, 47));
-        jButton2.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/plus.png"))); // NOI18N
-        jButton2.setText(" Add");
-        jButton2.setPreferredSize(new java.awt.Dimension(118, 42));
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(502, 585, -1, -1));
+        addBTN.setBackground(new java.awt.Color(29, 31, 47));
+        addBTN.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        addBTN.setForeground(new java.awt.Color(255, 255, 255));
+        addBTN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/plus.png"))); // NOI18N
+        addBTN.setText(" Add");
+        addBTN.setMaximumSize(new java.awt.Dimension(118, 42));
+        addBTN.setMinimumSize(new java.awt.Dimension(118, 42));
+        addBTN.setPreferredSize(new java.awt.Dimension(118, 42));
+        jPanel1.add(addBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 560, -1, -1));
 
         copyright.setForeground(new java.awt.Color(255, 255, 255));
         copyright.setText("Copyright © 2021, TechnoBot BD");
         jPanel1.add(copyright, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 700, -1, -1));
 
-        jButton1.setBackground(new java.awt.Color(29, 31, 47));
-        jButton1.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/rubber.png"))); // NOI18N
-        jButton1.setText(" Clear");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        clearBTN.setBackground(new java.awt.Color(29, 31, 47));
+        clearBTN.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        clearBTN.setForeground(new java.awt.Color(255, 255, 255));
+        clearBTN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/rubber.png"))); // NOI18N
+        clearBTN.setText("  Clear");
+        clearBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                clearBTNMouseClicked(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 585, -1, -1));
+        jPanel1.add(clearBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(972, 560, -1, -1));
+
+        quantity.setMinimumSize(new java.awt.Dimension(26, 24));
+        quantity.setPreferredSize(new java.awt.Dimension(96, 24));
+        jPanel1.add(quantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(111, 580, -1, -1));
+
+        jLabel10.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("Type:");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 525, -1, -1));
+
+        typeBox.setBackground(new java.awt.Color(255, 255, 255));
+        typeBox.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        typeBox.setForeground(new java.awt.Color(0, 0, 0));
+        typeBox.setPreferredSize(new java.awt.Dimension(340, 45));
+        jPanel1.add(typeBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 514, -1, -1));
+
+        jLabel11.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("Quantity:");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 580, -1, -1));
+
+        jLabel12.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setText("Warranty:");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(237, 580, -1, -1));
+
+        jLabel13.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setText("Price:");
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(112, 630, -1, -1));
+
+        warranty.setMinimumSize(new java.awt.Dimension(26, 24));
+        warranty.setPreferredSize(new java.awt.Dimension(72, 24));
+        jPanel1.add(warranty, new org.netbeans.lib.awtextra.AbsoluteConstraints(333, 580, -1, -1));
+
+        price.setMinimumSize(new java.awt.Dimension(26, 24));
+        price.setPreferredSize(new java.awt.Dimension(120, 24));
+        jPanel1.add(price, new org.netbeans.lib.awtextra.AbsoluteConstraints(174, 630, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -626,8 +674,16 @@ public class AddProducts extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_catDDBoxActionPerformed
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void clearBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clearBTNMouseClicked
         // TODO add your handling code here:
+        clear();
+    }//GEN-LAST:event_clearBTNMouseClicked
+
+    /**
+     * @param args the command line arguments
+     */
+    
+    public void clear(){
         pIDBox.setText(null);
         pNameBox.setText(null);
         
@@ -643,11 +699,13 @@ public class AddProducts extends javax.swing.JFrame {
         
         subCatBox.setText(null);
         brandBox.setText(null);
-    }//GEN-LAST:event_jButton1MouseClicked
-
-    /**
-     * @param args the command line arguments
-     */
+        
+        typeBox.setText(null);
+        
+        quantity.setValue(0);
+        warranty.setValue(0);
+        price.setValue(0);
+    }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -682,14 +740,18 @@ public class AddProducts extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton accRad;
+    private javax.swing.JButton addBTN;
     private javax.swing.JButton backBTN;
     private javax.swing.JComboBox<String> braDDBox;
     private javax.swing.JTextField brandBox;
     private javax.swing.JComboBox<String> catDDBox;
+    private javax.swing.JButton clearBTN;
     private javax.swing.JLabel copyright;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -705,8 +767,12 @@ public class AddProducts extends javax.swing.JFrame {
     private javax.swing.JTextField pIDBox;
     private javax.swing.JTextField pNameBox;
     private javax.swing.JRadioButton pcRad;
+    private javax.swing.JSpinner price;
+    private javax.swing.JSpinner quantity;
     private javax.swing.JRadioButton routRad;
     private javax.swing.JTextField subCatBox;
     private javax.swing.JRadioButton tvRad;
+    private javax.swing.JTextField typeBox;
+    private javax.swing.JSpinner warranty;
     // End of variables declaration//GEN-END:variables
 }
