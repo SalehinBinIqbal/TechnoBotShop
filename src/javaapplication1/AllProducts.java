@@ -89,7 +89,7 @@ public class AllProducts extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Product ID", "Product Name", "Category", "Brand", "Type", "Quantity", "Warranty", "Price"
+                "Product ID", "Product Name", "Category", "Brand", "Type", "Quantity", "Warranty(Years)", "Price(BDT)"
             }
         ) {
             boolean[] canEdit = new boolean [] {

@@ -65,6 +65,8 @@ public class AddProducts extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         warranty = new javax.swing.JSpinner();
         price = new javax.swing.JSpinner();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setLocation(new java.awt.Point(150, 100));
@@ -259,6 +261,8 @@ public class AddProducts extends javax.swing.JFrame {
         });
         jPanel1.add(clearBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(972, 560, -1, -1));
 
+        quantity.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        quantity.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         quantity.setMinimumSize(new java.awt.Dimension(26, 24));
         quantity.setPreferredSize(new java.awt.Dimension(96, 24));
         jPanel1.add(quantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(111, 580, -1, -1));
@@ -289,13 +293,25 @@ public class AddProducts extends javax.swing.JFrame {
         jLabel13.setText("Price:");
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(112, 630, -1, -1));
 
+        warranty.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
         warranty.setMinimumSize(new java.awt.Dimension(26, 24));
         warranty.setPreferredSize(new java.awt.Dimension(72, 24));
         jPanel1.add(warranty, new org.netbeans.lib.awtextra.AbsoluteConstraints(333, 580, -1, -1));
 
+        price.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
         price.setMinimumSize(new java.awt.Dimension(26, 24));
         price.setPreferredSize(new java.awt.Dimension(120, 24));
         jPanel1.add(price, new org.netbeans.lib.awtextra.AbsoluteConstraints(174, 630, -1, -1));
+
+        jLabel14.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setText("Years");
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 583, -1, -1));
+
+        jLabel15.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel15.setText("BDT");
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(299, 633, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -752,6 +768,8 @@ public class AddProducts extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
