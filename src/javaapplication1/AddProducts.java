@@ -5,6 +5,8 @@
  */
 package javaapplication1;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author saleh
@@ -212,12 +214,14 @@ public class AddProducts extends javax.swing.JFrame {
         jLabel8.setText("Enter a Brand");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 390, -1, -1));
 
+        subCatBox.setEditable(false);
         subCatBox.setBackground(new java.awt.Color(255, 255, 255));
         subCatBox.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         subCatBox.setForeground(new java.awt.Color(0, 0, 0));
         subCatBox.setPreferredSize(new java.awt.Dimension(340, 45));
         jPanel1.add(subCatBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 330, -1, -1));
 
+        brandBox.setEditable(false);
         brandBox.setBackground(new java.awt.Color(255, 255, 255));
         brandBox.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         brandBox.setForeground(new java.awt.Color(0, 0, 0));
@@ -243,6 +247,11 @@ public class AddProducts extends javax.swing.JFrame {
         addBTN.setMaximumSize(new java.awt.Dimension(118, 42));
         addBTN.setMinimumSize(new java.awt.Dimension(118, 42));
         addBTN.setPreferredSize(new java.awt.Dimension(118, 42));
+        addBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addBTNMouseClicked(evt);
+            }
+        });
         jPanel1.add(addBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 560, -1, -1));
 
         copyright.setForeground(new java.awt.Color(255, 255, 255));
@@ -348,6 +357,7 @@ public class AddProducts extends javax.swing.JFrame {
             monRad.setSelected(false);
             tvRad.setSelected(false);
             
+            subCatBox.setEditable(true);
             
             catDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.routcat));
             braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
@@ -368,6 +378,7 @@ public class AddProducts extends javax.swing.JFrame {
             laptopRad.setSelected(false);
             tvRad.setSelected(false);
             
+            subCatBox.setEditable(true);
             
             catDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.moncat));
             braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
@@ -388,6 +399,7 @@ public class AddProducts extends javax.swing.JFrame {
             monRad.setSelected(false);
             tvRad.setSelected(false);
             
+            subCatBox.setEditable(true);
             
             catDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.pccat));
             braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
@@ -409,6 +421,7 @@ public class AddProducts extends javax.swing.JFrame {
             monRad.setSelected(false);
             laptopRad.setSelected(false);
             
+            subCatBox.setEditable(true);
             
             catDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.tvcat));
             braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
@@ -429,6 +442,8 @@ public class AddProducts extends javax.swing.JFrame {
             monRad.setSelected(false);
             tvRad.setSelected(false);
             
+            subCatBox.setEditable(true);
+            
             catDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.laptopcat));
             braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
 
@@ -448,7 +463,8 @@ public class AddProducts extends javax.swing.JFrame {
             routRad.setSelected(false);
             monRad.setSelected(false);
             tvRad.setSelected(false);
-            
+           
+            subCatBox.setEditable(true);
             
             catDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.acccat));
             braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
@@ -466,34 +482,50 @@ public class AddProducts extends javax.swing.JFrame {
             
             if(catDDBox.getSelectedItem().equals("Laptop"))
             {
+                subCatBox.setEditable(false);
+                brandBox.setEditable(true);
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.laptopbrand)); 
             }
             else if(catDDBox.getSelectedItem().equals("Gaming Laptop"))
             {
+                subCatBox.setEditable(false);
+                brandBox.setEditable(true);
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.gaminglaptopbrand));
             }
             else if(catDDBox.getSelectedItem().equals("Tablet"))
             {
+                subCatBox.setEditable(false);
+                brandBox.setEditable(true);
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.tabletbrand));
             }
             else if(catDDBox.getSelectedItem().equals("Laptop Ram"))
             {
+                subCatBox.setEditable(false);
+                brandBox.setEditable(true);
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.lrambrand));
             }
             else if(catDDBox.getSelectedItem().equals("Laptop Adapter"))
             {
+                subCatBox.setEditable(false);
+                brandBox.setEditable(true);
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.adapterbrand));
             }
             else if(catDDBox.getSelectedItem().equals("Laptop Battery"))
             {
+                subCatBox.setEditable(false);
+                brandBox.setEditable(true);
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.batterybrand));
             }
             else if(catDDBox.getSelectedItem().equals("Laptop Cooler"))
             {
+                subCatBox.setEditable(false);
+                brandBox.setEditable(true);
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.coolerbrand));
             }
             else
             {
+                subCatBox.setEditable(true);
+                brandBox.setEditable(false);
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
             }
         }
@@ -501,50 +533,74 @@ public class AddProducts extends javax.swing.JFrame {
         {
             if(catDDBox.getSelectedItem().equals("Casing"))
             {
+                subCatBox.setEditable(false);
+                brandBox.setEditable(true);
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.casingbrand)); 
             }
             else if(catDDBox.getSelectedItem().equals("Processor"))
             {
+                subCatBox.setEditable(false);
+                brandBox.setEditable(true);
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.cpubrand));
             }
             else if(catDDBox.getSelectedItem().equals("Motherboard"))
             {
+                subCatBox.setEditable(false);
+                brandBox.setEditable(true);
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.mobobrand));
             }
             else if(catDDBox.getSelectedItem().equals("Graphics Card"))
             {
+                subCatBox.setEditable(false);
+                brandBox.setEditable(true);
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.gpubrand));
             }
             else if(catDDBox.getSelectedItem().equals("Desktop Ram"))
             {
+                subCatBox.setEditable(false);
+                brandBox.setEditable(true);
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.drambrand));
             }
             else if(catDDBox.getSelectedItem().equals("Internal SSD"))
             {
+                subCatBox.setEditable(false);
+                brandBox.setEditable(true);
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.ssdbrand));
             }
             else if(catDDBox.getSelectedItem().equals("Internal Hard-Disk"))
             {
+                subCatBox.setEditable(false);
+                brandBox.setEditable(true);
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.hddbrand));
             }
             else if(catDDBox.getSelectedItem().equals("Power Supply"))
             {
+                subCatBox.setEditable(false);
+                brandBox.setEditable(true);
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.psubrand));
             }
             else if(catDDBox.getSelectedItem().equals("CPU Cooler"))
             {
+                subCatBox.setEditable(false);
+                brandBox.setEditable(true);
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.cpucoolerbrand));
             }
             else if(catDDBox.getSelectedItem().equals("Casing Fan"))
             {
+                subCatBox.setEditable(false);
+                brandBox.setEditable(true);
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.casingfanbrand));
             }
             else if(catDDBox.getSelectedItem().equals("UPS"))
             {
+                subCatBox.setEditable(false);
+                brandBox.setEditable(true);
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.upsbrand));
             }
             else
             {
+                subCatBox.setEditable(true);
+                brandBox.setEditable(false);
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
             }
         }
@@ -552,78 +608,116 @@ public class AddProducts extends javax.swing.JFrame {
         {
             if(catDDBox.getSelectedItem().equals("Webcam"))
             {
+                subCatBox.setEditable(false);
+                brandBox.setEditable(true);
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.webcambrand));
             }
             else if(catDDBox.getSelectedItem().equals("Keyboard"))
             {
+                subCatBox.setEditable(false);
+                brandBox.setEditable(true);
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.keyboardbrand));
             }
             else if(catDDBox.getSelectedItem().equals("Mouse"))
             {
+                subCatBox.setEditable(false);
+                brandBox.setEditable(true);
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.mousebrand));
             }
             else if(catDDBox.getSelectedItem().equals("Mousepad"))
             {
+                subCatBox.setEditable(false);
+                brandBox.setEditable(true);
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.mousepadbrand));
             }
             else if(catDDBox.getSelectedItem().equals("Headphone"))
             {
+                subCatBox.setEditable(false);
+                brandBox.setEditable(true);
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.headphonebrand));
             }
             else if(catDDBox.getSelectedItem().equals("Earphone"))
             {
+                subCatBox.setEditable(false);
+                brandBox.setEditable(true);
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.earphonebrand));
             }
             else if(catDDBox.getSelectedItem().equals("Microphone"))
             {
+                subCatBox.setEditable(false);
+                brandBox.setEditable(true);
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.microphonebrand));
             }
             else if(catDDBox.getSelectedItem().equals("Gamepad"))
             {
+                subCatBox.setEditable(false);
+                brandBox.setEditable(true);
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.gamepadbrand));
             }
             else if(catDDBox.getSelectedItem().equals("Pendrive"))
             {
+                subCatBox.setEditable(false);
+                brandBox.setEditable(true);
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.pendrivebrand));
             }
             else if(catDDBox.getSelectedItem().equals("Memory Card"))
             {
+                subCatBox.setEditable(false);
+                brandBox.setEditable(true);
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.memorycardbrand));
             }
             else if(catDDBox.getSelectedItem().equals("Portable Hard-Disk"))
             {
+                subCatBox.setEditable(false);
+                brandBox.setEditable(true);
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.phddbrand));
             }
             else if(catDDBox.getSelectedItem().equals("Portable SSD"))
             {
+                subCatBox.setEditable(false);
+                brandBox.setEditable(true);
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.pssdbrand));
             }
             else if(catDDBox.getSelectedItem().equals("Capture Card"))
             {
+                subCatBox.setEditable(false);
+                brandBox.setEditable(true);
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.ccbrand));
             }
             else if(catDDBox.getSelectedItem().equals("USB Hub"))
             {
+                subCatBox.setEditable(false);
+                brandBox.setEditable(true);
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.usbhubbrand));
             }
             else if(catDDBox.getSelectedItem().equals("Power Strip"))
             {
+                subCatBox.setEditable(false);
+                brandBox.setEditable(true);
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.pstripbrand));
             }
             else if(catDDBox.getSelectedItem().equals("LED Strip"))
             {
+                subCatBox.setEditable(false);
+                brandBox.setEditable(true);
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.lstripbrand));
             }
             else if(catDDBox.getSelectedItem().equals("Chair"))
             {
+                subCatBox.setEditable(false);
+                brandBox.setEditable(true);
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.chairbrand));
             }
             else if(catDDBox.getSelectedItem().equals("Table"))
             {
+                subCatBox.setEditable(false);
+                brandBox.setEditable(true);
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.tablebrand));
             }
             else
             {
+                subCatBox.setEditable(true);
+                brandBox.setEditable(false);
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
             }
         }
@@ -631,18 +725,26 @@ public class AddProducts extends javax.swing.JFrame {
         {
             if(catDDBox.getSelectedItem().equals("Router"))
             {
+                subCatBox.setEditable(false);
+                brandBox.setEditable(true);
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.routerbrand));
             }
             else if(catDDBox.getSelectedItem().equals("Network Switch"))
             {
+                subCatBox.setEditable(false);
+                brandBox.setEditable(true);
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.ntwrkswitchbrand));
             }
             else if(catDDBox.getSelectedItem().equals("Network Extender"))
             {
+                subCatBox.setEditable(false);
+                brandBox.setEditable(true);
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.ntwrkextndrbrand));
             }
             else
             {
+                subCatBox.setEditable(true);
+                brandBox.setEditable(false);
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
             }
         }
@@ -650,22 +752,32 @@ public class AddProducts extends javax.swing.JFrame {
         {
             if(catDDBox.getSelectedItem().equals("UHD(4K)"))
             {
+                subCatBox.setEditable(false);
+                brandBox.setEditable(true);
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.monbrand));
             }
             else if(catDDBox.getSelectedItem().equals("Ultra Wide"))
             {
+                subCatBox.setEditable(false);
+                brandBox.setEditable(true);
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.monbrand));
             }
             else if(catDDBox.getSelectedItem().equals("QHD(2K)"))
             {
+                subCatBox.setEditable(false);
+                brandBox.setEditable(true);
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.monbrand));
             }
             else if(catDDBox.getSelectedItem().equals("FHD(1080p)"))
             {
+                subCatBox.setEditable(false);
+                brandBox.setEditable(true);
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.monbrand));
             }
             else
             {
+                subCatBox.setEditable(true);
+                brandBox.setEditable(false);
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
             }
         }
@@ -673,18 +785,26 @@ public class AddProducts extends javax.swing.JFrame {
         {
             if(catDDBox.getSelectedItem().equals("Television"))
             {
+                subCatBox.setEditable(false);
+                brandBox.setEditable(true);
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.tvbrand));
             }
             else if(catDDBox.getSelectedItem().equals("Speaker"))
             {
+                subCatBox.setEditable(false);
+                brandBox.setEditable(true);
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.speakerbrand));
             }
             else if(catDDBox.getSelectedItem().equals("Portable Speaker"))
             {
+                subCatBox.setEditable(false);
+                brandBox.setEditable(true);
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.portablespeakerbrand));
             }
             else
             {
+                subCatBox.setEditable(true);
+                brandBox.setEditable(false);
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
             }
         }
@@ -695,10 +815,78 @@ public class AddProducts extends javax.swing.JFrame {
         clear();
     }//GEN-LAST:event_clearBTNMouseClicked
 
+    private void addBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addBTNMouseClicked
+        // TODO add your handling code here:
+        checkcommoninput();
+        if(vr.checkcommoninput == true)
+        {
+            
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "One or more inputs are invalid\nPlease enter proper input", "Caution", JOptionPane.OK_OPTION);
+        }
+    }//GEN-LAST:event_addBTNMouseClicked
+
     /**
      * @param args the command line arguments
      */
-    
+    public void checkcommoninput(){
+        
+        if(pIDBox.getText().length() != 0)
+        {
+            if(pIDBox.getText().length()>=12 && pIDBox.getText().length()<=13)
+            {
+                if(pNameBox.getText().length() != 0 && typeBox.getText().length() != 0 && (routRad.isSelected() || monRad.isSelected() || pcRad.isSelected() || tvRad.isSelected() || laptopRad.isSelected() || accRad.isSelected())){
+                    if(catDDBox.getSelectedItem().equals("..."))
+                    {
+                        vr.checkcommoninput = false; 
+                    }
+                    else{
+                        if(braDDBox.getSelectedItem().equals("..."))
+                        {
+                            if(brandBox.getText().length() == 0)
+                            {
+                                vr.checkcommoninput = false;
+                            }
+                            else{
+                                if(quantity.getValue().equals(0) || warranty.getValue().equals(0) || price.getValue().equals(0)){
+                                    vr.checkcommoninput = false; 
+                                }
+                                else{
+                                    vr.checkcommoninput = true;
+                                }
+                            }
+                        }
+                        else{
+//                            brandBox.setEditable(false);
+                            if(quantity.getValue().equals(0) || warranty.getValue().equals(0) || price.getValue().equals(0)){
+                                vr.checkcommoninput = false; 
+                            }
+                            else{
+                                vr.checkcommoninput = true;
+                            }
+                        }
+                    }
+                }
+            }
+            else{
+                vr.checkcommoninput = false;
+                JOptionPane.showMessageDialog(null, "Product ID is invalid\nPlease enter proper Product ID", "Caution", JOptionPane.OK_OPTION);
+            }    
+        }
+        else{
+            vr.checkcommoninput = false;
+        }
+    }
+    public void checkdiffinput(){
+        if(catDDBox.getSelectedItem().equals("..."))
+        {
+            if(subCatBox.getText().length() != 0)
+            {
+                
+            }
+        }
+    }
     public void clear(){
         pIDBox.setText(null);
         pNameBox.setText(null);

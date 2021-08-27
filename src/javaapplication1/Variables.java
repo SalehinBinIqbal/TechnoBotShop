@@ -85,4 +85,12 @@ public class Variables {
     String[] speakerbrand ={"...","Creative","Edifier","F&D","JBL","Logitech","Microlab"};
     String[] portablespeakerbrand ={"...","Beats","Creative","F&D","JBL"};
     
+    
+    
+    
+    
+    
+    
+    boolean checkcommoninput = false;
+    
 }
