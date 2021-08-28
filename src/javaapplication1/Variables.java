@@ -14,6 +14,8 @@ package javaapplication1;
 
 public class Variables {
     
+    String[] cat ={"...","Laptop & Tablet","PC Components","Accessories","Router & Network","Monitor","TV & Speaker"};
+    
     String[] laptopcat ={"...","Laptop","Gaming Laptop","Tablet","Laptop Ram","Laptop Adapter","Laptop Battery","Laptop Cooler"};
     
     String[] laptopbrand ={"...","Acer","Apple","Asus","Dell","Gigabyte","HP","Huawei","Lenovo","MSI","Razer","Walton"};

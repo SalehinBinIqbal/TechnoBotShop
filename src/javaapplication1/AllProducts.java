@@ -22,6 +22,7 @@ public class AllProducts extends javax.swing.JFrame {
     
     public AllProducts() {
         initComponents();
+        catDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.cat));
     }
 
     /**
@@ -40,19 +41,14 @@ public class AllProducts extends javax.swing.JFrame {
         AllProductsTable = new javax.swing.JTable();
         SearchBox = new javax.swing.JTextField();
         SearchBtn = new javax.swing.JButton();
-        catDDBox = new javax.swing.JComboBox<>();
+        subCatDDBox = new javax.swing.JComboBox<>();
         braDDBox = new javax.swing.JComboBox<>();
-        laptopRad = new javax.swing.JRadioButton();
-        pcRad = new javax.swing.JRadioButton();
-        accRad = new javax.swing.JRadioButton();
-        monRad = new javax.swing.JRadioButton();
-        tvRad = new javax.swing.JRadioButton();
-        routRad = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         sortBtn = new javax.swing.JButton();
         copyright = new javax.swing.JLabel();
+        catDDBox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setLocation(new java.awt.Point(150, 100));
@@ -89,11 +85,11 @@ public class AllProducts extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Product ID", "Product Name", "Category", "Brand", "Type", "Quantity", "Warranty(Years)", "Price(BDT)"
+                "Product ID", "Product Name", "Category", "Sub-Category", "Brand", "Type", "Quantity", "Warranty(Years)", "Price(BDT)"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -104,9 +100,6 @@ public class AllProducts extends javax.swing.JFrame {
         AllProductsTable.setOpaque(false);
         AllProductsTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(AllProductsTable);
-        if (AllProductsTable.getColumnModel().getColumnCount() > 0) {
-            AllProductsTable.getColumnModel().getColumn(1).setPreferredWidth(250);
-        }
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, -1, -1));
 
@@ -135,87 +128,27 @@ public class AllProducts extends javax.swing.JFrame {
         });
         jPanel1.add(SearchBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 100, -1, -1));
 
-        catDDBox.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        catDDBox.setPreferredSize(new java.awt.Dimension(340, 24));
-        catDDBox.addActionListener(new java.awt.event.ActionListener() {
+        subCatDDBox.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        subCatDDBox.setPreferredSize(new java.awt.Dimension(340, 24));
+        subCatDDBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                catDDBoxActionPerformed(evt);
+                subCatDDBoxActionPerformed(evt);
             }
         });
-        jPanel1.add(catDDBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, -1, -1));
+        jPanel1.add(subCatDDBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, -1, -1));
 
         braDDBox.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         braDDBox.setPreferredSize(new java.awt.Dimension(340, 24));
         jPanel1.add(braDDBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 480, -1, -1));
 
-        laptopRad.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        laptopRad.setForeground(new java.awt.Color(255, 255, 255));
-        laptopRad.setText("Laptop & Tablet");
-        laptopRad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                laptopRadActionPerformed(evt);
-            }
-        });
-        jPanel1.add(laptopRad, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, -1, -1));
-
-        pcRad.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        pcRad.setForeground(new java.awt.Color(255, 255, 255));
-        pcRad.setText("PC Components");
-        pcRad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pcRadActionPerformed(evt);
-            }
-        });
-        jPanel1.add(pcRad, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, -1, -1));
-
-        accRad.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        accRad.setForeground(new java.awt.Color(255, 255, 255));
-        accRad.setText("Accessories");
-        accRad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                accRadActionPerformed(evt);
-            }
-        });
-        jPanel1.add(accRad, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, -1, -1));
-
-        monRad.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        monRad.setForeground(new java.awt.Color(255, 255, 255));
-        monRad.setText("Monitor");
-        monRad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                monRadActionPerformed(evt);
-            }
-        });
-        jPanel1.add(monRad, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 250, -1, -1));
-
-        tvRad.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        tvRad.setForeground(new java.awt.Color(255, 255, 255));
-        tvRad.setText("TV & Speaker");
-        tvRad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tvRadActionPerformed(evt);
-            }
-        });
-        jPanel1.add(tvRad, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, -1, -1));
-
-        routRad.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        routRad.setForeground(new java.awt.Color(255, 255, 255));
-        routRad.setText("Router & Network");
-        routRad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                routRadActionPerformed(evt);
-            }
-        });
-        jPanel1.add(routRad, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, -1, -1));
-
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("All Category");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, -1));
+        jLabel1.setText("Category");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Category");
+        jLabel2.setText("Sub-Category");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -235,6 +168,15 @@ public class AllProducts extends javax.swing.JFrame {
         copyright.setForeground(new java.awt.Color(255, 255, 255));
         copyright.setText("Copyright © 2021, TechnoBot BD");
         jPanel1.add(copyright, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 700, -1, -1));
+
+        catDDBox.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        catDDBox.setPreferredSize(new java.awt.Dimension(340, 24));
+        catDDBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                catDDBoxActionPerformed(evt);
+            }
+        });
+        jPanel1.add(catDDBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -278,171 +220,46 @@ public class AllProducts extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_SearchBoxFocusLost
 
-    private void laptopRadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_laptopRadActionPerformed
-        // TODO add your handling code here:
-        if(laptopRad.isSelected())
-        {
-            pcRad.setSelected(false);
-            accRad.setSelected(false);
-            routRad.setSelected(false);
-            monRad.setSelected(false);
-            tvRad.setSelected(false);
-            
-            catDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.laptopcat));
-            braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
-
-        }
-        else{
-            catDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
-            braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
-        }
-    }//GEN-LAST:event_laptopRadActionPerformed
-
-    private void pcRadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pcRadActionPerformed
-        // TODO add your handling code here:
-        if(pcRad.isSelected())
-        {
-            laptopRad.setSelected(false);
-            accRad.setSelected(false);
-            routRad.setSelected(false);
-            monRad.setSelected(false);
-            tvRad.setSelected(false);
-            
-            
-            catDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.pccat));
-            braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
-
-        }
-        else{
-            catDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
-            braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
-        }
-    }//GEN-LAST:event_pcRadActionPerformed
-
-    private void accRadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accRadActionPerformed
-        // TODO add your handling code here:
-        if(accRad.isSelected())
-        {
-            pcRad.setSelected(false);
-            laptopRad.setSelected(false);
-            routRad.setSelected(false);
-            monRad.setSelected(false);
-            tvRad.setSelected(false);
-            
-            
-            catDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.acccat));
-            braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
-        }
-        else{
-            catDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
-            braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
-        }
-    }//GEN-LAST:event_accRadActionPerformed
-
-    private void routRadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_routRadActionPerformed
-        // TODO add your handling code here:
-        if(routRad.isSelected())
-        {
-            pcRad.setSelected(false);
-            accRad.setSelected(false);
-            laptopRad.setSelected(false);
-            monRad.setSelected(false);
-            tvRad.setSelected(false);
-            
-            
-            catDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.routcat));
-            braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
-        }
-        else{
-            catDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
-            braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
-        }
-    }//GEN-LAST:event_routRadActionPerformed
-
-    private void monRadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monRadActionPerformed
-        // TODO add your handling code here:
-        if(monRad.isSelected())
-        {
-            pcRad.setSelected(false);
-            accRad.setSelected(false);
-            routRad.setSelected(false);
-            laptopRad.setSelected(false);
-            tvRad.setSelected(false);
-            
-            
-            catDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.moncat));
-            braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.monbrand));
-        }
-        else{
-            catDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
-            braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
-        }
-    }//GEN-LAST:event_monRadActionPerformed
-
-    private void tvRadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tvRadActionPerformed
-        // TODO add your handling code here:
-        if(tvRad.isSelected())
-        {
-            pcRad.setSelected(false);
-            accRad.setSelected(false);
-            routRad.setSelected(false);
-            monRad.setSelected(false);
-            laptopRad.setSelected(false);
-            
-            
-            catDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.tvcat));
-            braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
-        }
-        else{
-            catDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
-            braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
-        }
-    }//GEN-LAST:event_tvRadActionPerformed
-
     private void SearchBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SearchBtnMouseClicked
         // TODO add your handling code here:
-        laptopRad.setSelected(false);
-        pcRad.setSelected(false);
-        accRad.setSelected(false);
-        routRad.setSelected(false);
-        monRad.setSelected(false);
-        tvRad.setSelected(false);
-        
-        
-        catDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
+        catDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.cat));
+        subCatDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
         braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
+        
+        
+        
     }//GEN-LAST:event_SearchBtnMouseClicked
 
-    private void catDDBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_catDDBoxActionPerformed
+    private void subCatDDBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subCatDDBoxActionPerformed
         // TODO add your handling code here:
-        if(laptopRad.isSelected())
+        if(catDDBox.getSelectedItem().equals("Laptop & Tablet"))
         {
             
-            if(catDDBox.getSelectedItem().equals("Laptop"))
+            if(subCatDDBox.getSelectedItem().equals("Laptop"))
             {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.laptopbrand)); 
             }
-            else if(catDDBox.getSelectedItem().equals("Gaming Laptop"))
+            else if(subCatDDBox.getSelectedItem().equals("Gaming Laptop"))
             {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.gaminglaptopbrand));
             }
-            else if(catDDBox.getSelectedItem().equals("Tablet"))
+            else if(subCatDDBox.getSelectedItem().equals("Tablet"))
             {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.tabletbrand));
             }
-            else if(catDDBox.getSelectedItem().equals("Laptop Ram"))
+            else if(subCatDDBox.getSelectedItem().equals("Laptop Ram"))
             {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.lrambrand));
             }
-            else if(catDDBox.getSelectedItem().equals("Laptop Adapter"))
+            else if(subCatDDBox.getSelectedItem().equals("Laptop Adapter"))
             {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.adapterbrand));
             }
-            else if(catDDBox.getSelectedItem().equals("Laptop Battery"))
+            else if(subCatDDBox.getSelectedItem().equals("Laptop Battery"))
             {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.batterybrand));
             }
-            else if(catDDBox.getSelectedItem().equals("Laptop Cooler"))
+            else if(subCatDDBox.getSelectedItem().equals("Laptop Cooler"))
             {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.coolerbrand));
             }
@@ -451,49 +268,49 @@ public class AllProducts extends javax.swing.JFrame {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
             }
         }
-        else if(pcRad.isSelected())
+        else if(catDDBox.getSelectedItem().equals("PC Components"))
         {
-            if(catDDBox.getSelectedItem().equals("Casing"))
+            if(subCatDDBox.getSelectedItem().equals("Casing"))
             {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.casingbrand)); 
             }
-            else if(catDDBox.getSelectedItem().equals("Processor"))
+            else if(subCatDDBox.getSelectedItem().equals("Processor"))
             {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.cpubrand));
             }
-            else if(catDDBox.getSelectedItem().equals("Motherboard"))
+            else if(subCatDDBox.getSelectedItem().equals("Motherboard"))
             {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.mobobrand));
             }
-            else if(catDDBox.getSelectedItem().equals("Graphics Card"))
+            else if(subCatDDBox.getSelectedItem().equals("Graphics Card"))
             {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.gpubrand));
             }
-            else if(catDDBox.getSelectedItem().equals("Desktop Ram"))
+            else if(subCatDDBox.getSelectedItem().equals("Desktop Ram"))
             {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.drambrand));
             }
-            else if(catDDBox.getSelectedItem().equals("Internal SSD"))
+            else if(subCatDDBox.getSelectedItem().equals("Internal SSD"))
             {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.ssdbrand));
             }
-            else if(catDDBox.getSelectedItem().equals("Internal Hard-Disk"))
+            else if(subCatDDBox.getSelectedItem().equals("Internal Hard-Disk"))
             {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.hddbrand));
             }
-            else if(catDDBox.getSelectedItem().equals("Power Supply"))
+            else if(subCatDDBox.getSelectedItem().equals("Power Supply"))
             {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.psubrand));
             }
-            else if(catDDBox.getSelectedItem().equals("CPU Cooler"))
+            else if(subCatDDBox.getSelectedItem().equals("CPU Cooler"))
             {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.cpucoolerbrand));
             }
-            else if(catDDBox.getSelectedItem().equals("Casing Fan"))
+            else if(subCatDDBox.getSelectedItem().equals("Casing Fan"))
             {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.casingfanbrand));
             }
-            else if(catDDBox.getSelectedItem().equals("UPS"))
+            else if(subCatDDBox.getSelectedItem().equals("UPS"))
             {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.upsbrand));
             }
@@ -502,77 +319,77 @@ public class AllProducts extends javax.swing.JFrame {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
             }
         }
-        else if(accRad.isSelected())
+        else if(catDDBox.getSelectedItem().equals("Accessories"))
         {
-            if(catDDBox.getSelectedItem().equals("Webcam"))
+            if(subCatDDBox.getSelectedItem().equals("Webcam"))
             {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.webcambrand));
             }
-            else if(catDDBox.getSelectedItem().equals("Keyboard"))
+            else if(subCatDDBox.getSelectedItem().equals("Keyboard"))
             {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.keyboardbrand));
             }
-            else if(catDDBox.getSelectedItem().equals("Mouse"))
+            else if(subCatDDBox.getSelectedItem().equals("Mouse"))
             {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.mousebrand));
             }
-            else if(catDDBox.getSelectedItem().equals("Mousepad"))
+            else if(subCatDDBox.getSelectedItem().equals("Mousepad"))
             {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.mousepadbrand));
             }
-            else if(catDDBox.getSelectedItem().equals("Headphone"))
+            else if(subCatDDBox.getSelectedItem().equals("Headphone"))
             {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.headphonebrand));
             }
-            else if(catDDBox.getSelectedItem().equals("Earphone"))
+            else if(subCatDDBox.getSelectedItem().equals("Earphone"))
             {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.earphonebrand));
             }
-            else if(catDDBox.getSelectedItem().equals("Microphone"))
+            else if(subCatDDBox.getSelectedItem().equals("Microphone"))
             {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.microphonebrand));
             }
-            else if(catDDBox.getSelectedItem().equals("Gamepad"))
+            else if(subCatDDBox.getSelectedItem().equals("Gamepad"))
             {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.gamepadbrand));
             }
-            else if(catDDBox.getSelectedItem().equals("Pendrive"))
+            else if(subCatDDBox.getSelectedItem().equals("Pendrive"))
             {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.pendrivebrand));
             }
-            else if(catDDBox.getSelectedItem().equals("Memory Card"))
+            else if(subCatDDBox.getSelectedItem().equals("Memory Card"))
             {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.memorycardbrand));
             }
-            else if(catDDBox.getSelectedItem().equals("Portable Hard-Disk"))
+            else if(subCatDDBox.getSelectedItem().equals("Portable Hard-Disk"))
             {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.phddbrand));
             }
-            else if(catDDBox.getSelectedItem().equals("Portable SSD"))
+            else if(subCatDDBox.getSelectedItem().equals("Portable SSD"))
             {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.pssdbrand));
             }
-            else if(catDDBox.getSelectedItem().equals("Capture Card"))
+            else if(subCatDDBox.getSelectedItem().equals("Capture Card"))
             {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.ccbrand));
             }
-            else if(catDDBox.getSelectedItem().equals("USB Hub"))
+            else if(subCatDDBox.getSelectedItem().equals("USB Hub"))
             {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.usbhubbrand));
             }
-            else if(catDDBox.getSelectedItem().equals("Power Strip"))
+            else if(subCatDDBox.getSelectedItem().equals("Power Strip"))
             {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.pstripbrand));
             }
-            else if(catDDBox.getSelectedItem().equals("LED Strip"))
+            else if(subCatDDBox.getSelectedItem().equals("LED Strip"))
             {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.lstripbrand));
             }
-            else if(catDDBox.getSelectedItem().equals("Chair"))
+            else if(subCatDDBox.getSelectedItem().equals("Chair"))
             {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.chairbrand));
             }
-            else if(catDDBox.getSelectedItem().equals("Table"))
+            else if(subCatDDBox.getSelectedItem().equals("Table"))
             {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.tablebrand));
             }
@@ -581,17 +398,17 @@ public class AllProducts extends javax.swing.JFrame {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
             }
         }
-        else if(routRad.isSelected())
+        else if(catDDBox.getSelectedItem().equals("Router & Network"))
         {
-            if(catDDBox.getSelectedItem().equals("Router"))
+            if(subCatDDBox.getSelectedItem().equals("Router"))
             {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.routerbrand));
             }
-            else if(catDDBox.getSelectedItem().equals("Network Switch"))
+            else if(subCatDDBox.getSelectedItem().equals("Network Switch"))
             {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.ntwrkswitchbrand));
             }
-            else if(catDDBox.getSelectedItem().equals("Network Extender"))
+            else if(subCatDDBox.getSelectedItem().equals("Network Extender"))
             {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.ntwrkextndrbrand));
             }
@@ -600,28 +417,28 @@ public class AllProducts extends javax.swing.JFrame {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
             }
         }
-        /*else if(monRad.isSelected())
+//        else if(catDDBox.getSelectedItem().equals("Monitor"))
+//        {
+//            if(catDDBox.getSelectedItem().equals("Webcam"))
+//            {
+//                
+//            }
+//            else
+//            {
+//                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
+//            }
+//        }
+        else if(catDDBox.getSelectedItem().equals("TV & Speaker"))
         {
-            if(catDDBox.getSelectedItem().equals("Webcam"))
-            {
-                
-            }
-            else
-            {
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
-            }
-        }*/
-        else if(tvRad.isSelected())
-        {
-            if(catDDBox.getSelectedItem().equals("Television"))
+            if(subCatDDBox.getSelectedItem().equals("Television"))
             {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.tvbrand));
             }
-            else if(catDDBox.getSelectedItem().equals("Speaker"))
+            else if(subCatDDBox.getSelectedItem().equals("Speaker"))
             {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.speakerbrand));
             }
-            else if(catDDBox.getSelectedItem().equals("Portable Speaker"))
+            else if(subCatDDBox.getSelectedItem().equals("Portable Speaker"))
             {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.portablespeakerbrand));
             }
@@ -630,18 +447,59 @@ public class AllProducts extends javax.swing.JFrame {
                 braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
             }
         }
-    }//GEN-LAST:event_catDDBoxActionPerformed
+        else{
+            
+        }
+    }//GEN-LAST:event_subCatDDBoxActionPerformed
 
     private void sortBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sortBtnMouseClicked
         // TODO add your handling code here:
-        if(laptopRad.isSelected() || pcRad.isSelected() || accRad.isSelected() || routRad.isSelected() || monRad.isSelected() || tvRad.isSelected())
+        if(catDDBox.getSelectedItem().equals("..."))
         {
-            
-        }
-        else{
             JOptionPane.showMessageDialog(null, "No catagory was selected\nPlease select one", "Caution", JOptionPane.OK_OPTION);
         }
+        else{
+
+        }
     }//GEN-LAST:event_sortBtnMouseClicked
+
+    private void catDDBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_catDDBoxActionPerformed
+        // TODO add your handling code here:
+        if(catDDBox.getSelectedItem().equals("Laptop & Tablet"))
+        {
+            subCatDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.laptopcat));
+            braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
+        }
+        else if(catDDBox.getSelectedItem().equals("PC Components"))
+        {
+            subCatDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.pccat));
+            braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
+        }
+        else if(catDDBox.getSelectedItem().equals("Accessories"))
+        {
+            subCatDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.acccat));
+            braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
+        }
+        else if(catDDBox.getSelectedItem().equals("Router & Network"))
+        {
+            subCatDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.routcat));
+            braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
+        }
+        else if(catDDBox.getSelectedItem().equals("Monitor"))
+        {
+            subCatDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.moncat));
+            braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.monbrand));
+        }
+        else if(catDDBox.getSelectedItem().equals("TV & Speaker"))
+        {
+            subCatDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.tvcat));
+            braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
+        }
+        else{
+            subCatDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
+            braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
+        }
+    }//GEN-LAST:event_catDDBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -682,7 +540,6 @@ public class AllProducts extends javax.swing.JFrame {
     private javax.swing.JTable AllProductsTable;
     private javax.swing.JTextField SearchBox;
     private javax.swing.JButton SearchBtn;
-    private javax.swing.JRadioButton accRad;
     private javax.swing.JButton backBTN;
     private javax.swing.JComboBox<String> braDDBox;
     private javax.swing.JComboBox<String> catDDBox;
@@ -692,12 +549,8 @@ public class AllProducts extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JRadioButton laptopRad;
-    private javax.swing.JRadioButton monRad;
     private javax.swing.JLabel name;
-    private javax.swing.JRadioButton pcRad;
-    private javax.swing.JRadioButton routRad;
     private javax.swing.JButton sortBtn;
-    private javax.swing.JRadioButton tvRad;
+    private javax.swing.JComboBox<String> subCatDDBox;
     // End of variables declaration//GEN-END:variables
 }

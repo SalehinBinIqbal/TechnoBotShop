@@ -84,8 +84,8 @@ public class HomePage extends javax.swing.JFrame {
         AddProductsBtn.setBackground(new java.awt.Color(29, 31, 47));
         AddProductsBtn.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
         AddProductsBtn.setForeground(new java.awt.Color(255, 255, 255));
-        AddProductsBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/AddProducts.png"))); // NOI18N
-        AddProductsBtn.setText("Add Products");
+        AddProductsBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/edit.png"))); // NOI18N
+        AddProductsBtn.setText("Modify Products");
         AddProductsBtn.setPreferredSize(new java.awt.Dimension(300, 125));
         AddProductsBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
