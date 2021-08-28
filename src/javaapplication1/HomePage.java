@@ -17,7 +17,7 @@ public class HomePage extends javax.swing.JFrame {
     
     AllProducts alp = new AllProducts();
     SellHistory sh = new SellHistory();
-    AddProducts adp = new AddProducts();
+    ModifyProducts mp = new ModifyProducts();
     SellProducts sp = new SellProducts();
     
     public HomePage() {
@@ -179,7 +179,7 @@ public class HomePage extends javax.swing.JFrame {
 
     private void AddProductsBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddProductsBtnMouseClicked
         // TODO add your handling code here:
-        adp.setVisible(true);
+        mp.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_AddProductsBtnMouseClicked
 
