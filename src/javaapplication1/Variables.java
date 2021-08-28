@@ -93,6 +93,8 @@ public class Variables {
     
     
     
-    boolean checkcommoninput = false;
+    boolean checkallinput = false;
+    
+    int selectionCase = 0;
     
 }

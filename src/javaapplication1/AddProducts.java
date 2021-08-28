@@ -382,6 +382,8 @@ public class AddProducts extends javax.swing.JFrame {
                 
                 subCatDDBox.setVisible(false);
                 braDDBox.setVisible(false);
+                
+                vr.selectionCase = 2;
             
             }
             else{
@@ -391,6 +393,8 @@ public class AddProducts extends javax.swing.JFrame {
                 
                 subCatBox.setVisible(false);     
                 brandBox.setVisible(false);
+                
+                vr.selectionCase = 0;
             }
         } 
         else if(newCatRad.isSelected()){
@@ -426,6 +430,8 @@ public class AddProducts extends javax.swing.JFrame {
             catDDBox.setVisible(false);
             subCatDDBox.setVisible(false);
             braDDBox.setVisible(false);
+            
+            vr.selectionCase = 1;
 
         }
         else{
@@ -441,6 +447,7 @@ public class AddProducts extends javax.swing.JFrame {
             catBox.setVisible(false);       
             subCatBox.setVisible(false);     
             brandBox.setVisible(false);
+            vr.selectionCase = 0;
         }
     }//GEN-LAST:event_newCatRadActionPerformed
 
@@ -504,6 +511,8 @@ public class AddProducts extends javax.swing.JFrame {
                 
                 subCatBox.setVisible(false);     
                 brandBox.setVisible(false);
+                
+                vr.selectionCase = 3;
             }
             else{
                 jLabel2.setVisible(false);
@@ -511,6 +520,8 @@ public class AddProducts extends javax.swing.JFrame {
                 
                 subCatDDBox.setVisible(false);
                 braDDBox.setVisible(false);
+                
+                vr.selectionCase = 0;
             } 
         }
         else{
@@ -841,8 +852,8 @@ public class AddProducts extends javax.swing.JFrame {
 
     private void addBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addBTNMouseClicked
         // TODO add your handling code here:
-        checkcommoninput();
-        if(vr.checkcommoninput == true)
+        checkinput();
+        if(vr.checkallinput == true)
         {
             
         }
@@ -892,61 +903,65 @@ public class AddProducts extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public void checkcommoninput(){
-        
-        if(pIDBox.getText().length() != 0)
-        {
-            if(pIDBox.getText().length()>=12 && pIDBox.getText().length()<=13)
-            {
-//                if(pNameBox.getText().length() != 0 && typeBox.getText().length() != 0 && (newSBRad.isSelected() || monRad.isSelected() || newCatRad.isSelected() || tvRad.isSelected() || exCatRad.isSelected() || exSBRad.isSelected())){
-//                    if(subCatDDBox.getSelectedItem().equals("..."))
-//                    {
-//                        vr.checkcommoninput = false; 
-//                    }
-//                    else{
-//                        if(braDDBox.getSelectedItem().equals("..."))
-//                        {
-//                            if(brandBox.getText().length() == 0)
-//                            {
-//                                vr.checkcommoninput = false;
-//                            }
-//                            else{
-//                                if(quantity.getValue().equals(0) || warranty.getValue().equals(0) || price.getValue().equals(0)){
-//                                    vr.checkcommoninput = false; 
-//                                }
-//                                else{
-//                                    vr.checkcommoninput = true;
-//                                }
-//                            }
-//                        }
-//                        else{
-////                            brandBox.setEditable(false);
-//                            if(quantity.getValue().equals(0) || warranty.getValue().equals(0) || price.getValue().equals(0)){
-//                                vr.checkcommoninput = false; 
-//                            }
-//                            else{
-//                                vr.checkcommoninput = true;
-//                            }
-//                        }
-//                    }
-//                }
+    public void checkinput(){
+
+        if (pIDBox.getText().length() != 0) {
+            if (pIDBox.getText().length() >= 12 && pIDBox.getText().length() <= 13) {
+                if (pNameBox.getText().length() != 0 && typeBox.getText().length() != 0 && vr.selectionCase != 0) {
+                    if (vr.selectionCase == 1) {
+                        if (catBox.getText().length() != 0 && subCatBox.getText().length() != 0 && brandBox.getText().length() != 0) {
+                            if (quantity.getValue().equals(0) || warranty.getValue().equals(0) || price.getValue().equals(0)) {
+                                vr.checkallinput = false;
+                            } else {
+                                vr.checkallinput = true;
+                            }
+                        } else {
+                            vr.checkallinput = false;
+                        }
+                    }
+                    else if (vr.selectionCase == 2 || vr.selectionCase == 3) {
+                        if (catDDBox.getSelectedItem().equals("...")) {
+                            vr.checkallinput = false;
+                        } else {
+                            if (vr.selectionCase == 2) {
+                                if (subCatBox.getText().length() != 0 && brandBox.getText().length() != 0) {
+                                    vr.checkallinput = true;
+                                } else {
+                                    vr.checkallinput = false;
+                                }
+                            }
+                            if (vr.selectionCase == 3) {
+                                if (subCatDDBox.getSelectedItem().equals("...")) {
+                                    vr.checkallinput = false;
+                                } else {
+                                    if (braDDBox.getSelectedItem().equals("...")) {
+                                        vr.checkallinput = false;
+                                    } else {
+                                        if (quantity.getValue().equals(0) || warranty.getValue().equals(0) || price.getValue().equals(0)) {
+                                            vr.checkallinput = false;
+                                        } else {
+                                            vr.checkallinput = true;
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+                    }
+                    else{
+                        System.out.println("ERROR");
+                        vr.checkallinput = false;
+                    }
+
+                } else {
+                    vr.checkallinput = false;
+                }
+            } else {
+                vr.checkallinput = false;
+                JOptionPane.showMessageDialog(null, "Invalid Product ID\nPlease enter proper Product ID", "Caution", JOptionPane.OK_OPTION);
             }
-            else{
-                vr.checkcommoninput = false;
-                JOptionPane.showMessageDialog(null, "Product ID is invalid\nPlease enter proper Product ID", "Caution", JOptionPane.OK_OPTION);
-            }    
-        }
-        else{
-            vr.checkcommoninput = false;
-        }
-    }
-    public void checkdiffinput(){
-        if(subCatDDBox.getSelectedItem().equals("..."))
-        {
-            if(subCatBox.getText().length() != 0)
-            {
-                
-            }
+        } else {
+            vr.checkallinput = false;
         }
     }
     public void clear(){
@@ -970,6 +985,10 @@ public class AddProducts extends javax.swing.JFrame {
         quantity.setValue(0);
         warranty.setValue(0);
         price.setValue(0);
+        
+        catBox.setText(null);       
+        subCatBox.setText(null);    
+        brandBox.setText(null);
         
         jLabel2.setVisible(false);
         jLabel3.setVisible(false);
