@@ -15,6 +15,7 @@ public class ModifyProducts extends javax.swing.JFrame {
      * Creates new form ModifyProducts
      */
     AddProducts adp = new AddProducts();
+    UpdateProducts up = new UpdateProducts();
     
     public ModifyProducts() {
         initComponents();
@@ -64,6 +65,11 @@ public class ModifyProducts extends javax.swing.JFrame {
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/update.png"))); // NOI18N
         jButton2.setText(" Update Products");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 159, -1, -1));
 
         jButton3.setBackground(new java.awt.Color(29, 31, 47));
@@ -115,6 +121,12 @@ public class ModifyProducts extends javax.swing.JFrame {
         hp.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backBTNMouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+        up.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton2MouseClicked
 
     /**
      * @param args the command line arguments
