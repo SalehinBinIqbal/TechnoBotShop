@@ -16,6 +16,7 @@ public class ModifyProducts extends javax.swing.JFrame {
      */
     AddProducts adp = new AddProducts();
     UpdateProducts up = new UpdateProducts();
+    DeleteProducts dp = new DeleteProducts();
     
     public ModifyProducts() {
         initComponents();
@@ -77,6 +78,11 @@ public class ModifyProducts extends javax.swing.JFrame {
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/delete-file.png"))); // NOI18N
         jButton3.setText(" Delete Products");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 268, -1, -1));
 
         backBTN.setBackground(new java.awt.Color(29, 31, 47));
@@ -127,6 +133,12 @@ public class ModifyProducts extends javax.swing.JFrame {
         up.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        // TODO add your handling code here:
+        dp.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton3MouseClicked
 
     /**
      * @param args the command line arguments
