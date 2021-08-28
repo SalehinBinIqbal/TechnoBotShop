@@ -7,6 +7,7 @@ package javaapplication1;
 
 import AppPackage.AnimationClass;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -328,8 +329,14 @@ public class Index extends javax.swing.JFrame {
 
     private void advanceIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_advanceIconMouseClicked
         // TODO add your handling code here:
-        hp.setVisible(true);
-        this.dispose();
+        if(userID.getText().equals("admin") && passWord.getText().equals("admin1234")){
+            hp.setVisible(true);
+            this.dispose();
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Incorrect Username or Password", "Caution", JOptionPane.OK_OPTION);
+        }
+        
     }//GEN-LAST:event_advanceIconMouseClicked
 
     private void ShowPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowPassActionPerformed
