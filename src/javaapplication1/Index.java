@@ -7,6 +7,7 @@ package javaapplication1;
 
 import AppPackage.AnimationClass;
 import java.awt.Color;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,6 +17,7 @@ import javax.swing.JOptionPane;
 public class Index extends javax.swing.JFrame {
 
     AnimationClass ac = new AnimationClass();
+    Queries qr = new Queries();
     HomePage hp = new HomePage();
     /**
      * Creates new form Index
@@ -328,15 +330,19 @@ public class Index extends javax.swing.JFrame {
     }//GEN-LAST:event_advanceIconMouseExited
 
     private void advanceIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_advanceIconMouseClicked
-        // TODO add your handling code here:
-        if(userID.getText().equals("admin") && passWord.getText().equals("admin1234")){
-            hp.setVisible(true);
-            this.dispose();
+        try {
+            // TODO add your handling code here:
+            qr.login();
+            if(userID.getText().equals(qr.UserID) && passWord.getText().equals(qr.UserPassword)){
+                hp.setVisible(true);
+                this.dispose();
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Incorrect Username or Password", "Caution", JOptionPane.OK_OPTION);
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error");
         }
-        else{
-            JOptionPane.showMessageDialog(null, "Incorrect Username or Password", "Caution", JOptionPane.OK_OPTION);
-        }
-        
     }//GEN-LAST:event_advanceIconMouseClicked
 
     private void ShowPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowPassActionPerformed
