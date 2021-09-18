@@ -5,6 +5,14 @@
  */
 package javaapplication1;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,6 +26,89 @@ public class AddProducts extends javax.swing.JFrame {
      */
     
     Variables vr = new Variables();
+    
+    
+    public void categories()throws SQLException{
+        String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+        String user = "sa";
+        String password = "123456789";
+        try{
+            Connection conn = DriverManager.getConnection(url, user, password);
+            
+            String sql = "Select * From CATEGORY Order By CAT_ID";
+            
+            Statement st = conn.createStatement();
+            
+            ResultSet rs = st.executeQuery(sql);
+            
+            while(rs.next()){
+                String temp = rs.getString("CAT_NAME");
+                catDDBox.addItem(temp);   
+            }
+            conn.close();
+        }catch(SQLException e){
+            System.out.println("ERROR");
+        }
+    }
+    
+    public void subcategories()throws SQLException{
+        String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+        String user = "sa";
+        String password = "123456789";
+        try{
+            Connection conn = DriverManager.getConnection(url, user, password);
+            
+            String cat = (String) catDDBox.getSelectedItem();
+            
+            //String sql = "Select * From SUBCATEGORY Where CAT_NAME = " " Order By SUB_CAT_ID";
+            
+            PreparedStatement pst = conn.prepareStatement("Select * From SUBCATEGORY Where CAT_NAME = ? Order By ID");
+            pst.setString(1, cat);
+            
+            //Statement st = conn.createStatement();
+            
+            ResultSet rs = pst.executeQuery();
+            subCatDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
+            while(rs.next()){
+                String temp = rs.getString("SUB_CAT_NAME");
+                subCatDDBox.addItem(temp);   
+            }
+            conn.close();
+        }catch(SQLException e){
+            System.out.println("ERROR");
+        }
+    }
+    
+    public void brands()throws SQLException{
+        String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+        String user = "sa";
+        String password = "123456789";
+        try{
+            Connection conn = DriverManager.getConnection(url, user, password);
+            
+            String cat = (String) catDDBox.getSelectedItem();
+            String subcat = (String) subCatDDBox.getSelectedItem();
+            
+            //String sql = "Select * From SUBCATEGORY Where CAT_NAME = " " Order By SUB_CAT_ID";
+            
+            PreparedStatement pst = conn.prepareStatement("Select * From BRAND Where CAT_NAME = ? AND SUB_CAT_NAME = ? Order By ID");
+            pst.setString(1, cat);
+            pst.setString(2, subcat);
+            
+            //Statement st = conn.createStatement();
+            
+            ResultSet rs = pst.executeQuery();
+            braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
+            
+            while(rs.next()){
+                String temp = rs.getString("BRAND_NAME");
+                braDDBox.addItem(temp);   
+            }
+            conn.close();
+        }catch(SQLException e){
+            System.out.println("ERROR");
+        }
+    }
     
     public AddProducts() {
         initComponents();
@@ -506,7 +597,11 @@ public class AddProducts extends javax.swing.JFrame {
             jLabel16.setVisible(false);
             catBox.setVisible(false);
             
-            catDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.cat));
+            try {
+                categories();
+            } catch (SQLException ex) {
+                Logger.getLogger(AddProducts.class.getName()).log(Level.SEVERE, null, ex);
+            }
             subCatDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
             braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
 
@@ -579,316 +674,11 @@ public class AddProducts extends javax.swing.JFrame {
     }//GEN-LAST:event_exSBRadActionPerformed
 
     private void subCatDDBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subCatDDBoxActionPerformed
-        // TODO add your handling code here:
-        if(catDDBox.getSelectedItem().equals("Laptop & Tablet"))
-        {
-            
-            if(subCatDDBox.getSelectedItem().equals("Laptop"))
-            {
-                
-                
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.laptopbrand)); 
-            }
-            else if(subCatDDBox.getSelectedItem().equals("Gaming Laptop"))
-            {
-               
-               
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.gaminglaptopbrand));
-            }
-            else if(subCatDDBox.getSelectedItem().equals("Tablet"))
-            {
-                
-              
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.tabletbrand));
-            }
-            else if(subCatDDBox.getSelectedItem().equals("Laptop Ram"))
-            {
-               
-              
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.lrambrand));
-            }
-            else if(subCatDDBox.getSelectedItem().equals("Laptop Adapter"))
-            {
-                
-               
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.adapterbrand));
-            }
-            else if(subCatDDBox.getSelectedItem().equals("Laptop Battery"))
-            {
-                
-               
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.batterybrand));
-            }
-            else if(subCatDDBox.getSelectedItem().equals("Laptop Cooler"))
-            {
-               
-             
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.coolerbrand));
-            }
-            else
-            {
-                
-                
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
-            }
-        }
-        else if(catDDBox.getSelectedItem().equals("PC Components"))
-        {
-            if(subCatDDBox.getSelectedItem().equals("Casing"))
-            {
-               
-             
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.casingbrand)); 
-            }
-            else if(subCatDDBox.getSelectedItem().equals("Processor"))
-            {
-                
-              
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.cpubrand));
-            }
-            else if(subCatDDBox.getSelectedItem().equals("Motherboard"))
-            {
-                
-              
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.mobobrand));
-            }
-            else if(subCatDDBox.getSelectedItem().equals("Graphics Card"))
-            {
-               
-               
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.gpubrand));
-            }
-            else if(subCatDDBox.getSelectedItem().equals("Desktop Ram"))
-            {
-              
-              
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.drambrand));
-            }
-            else if(subCatDDBox.getSelectedItem().equals("Internal SSD"))
-            {
-                
-               
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.ssdbrand));
-            }
-            else if(subCatDDBox.getSelectedItem().equals("Internal Hard-Disk"))
-            {
-                
-             
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.hddbrand));
-            }
-            else if(subCatDDBox.getSelectedItem().equals("Power Supply"))
-            {
-                
-               
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.psubrand));
-            }
-            else if(subCatDDBox.getSelectedItem().equals("CPU Cooler"))
-            {
-                
-             
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.cpucoolerbrand));
-            }
-            else if(subCatDDBox.getSelectedItem().equals("Casing Fan"))
-            {
-                
-               
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.casingfanbrand));
-            }
-            else if(subCatDDBox.getSelectedItem().equals("UPS"))
-            {
-                
-                
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.upsbrand));
-            }
-            else
-            {
-                
-                
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
-            }
-        }
-        else if(catDDBox.getSelectedItem().equals("Accessories"))
-        {
-            if(subCatDDBox.getSelectedItem().equals("Webcam"))
-            {
-                
-              
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.webcambrand));
-            }
-            else if(subCatDDBox.getSelectedItem().equals("Keyboard"))
-            {
-                
-                
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.keyboardbrand));
-            }
-            else if(subCatDDBox.getSelectedItem().equals("Mouse"))
-            {
-                
-               
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.mousebrand));
-            }
-            else if(subCatDDBox.getSelectedItem().equals("Mousepad"))
-            {
-                
-              
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.mousepadbrand));
-            }
-            else if(subCatDDBox.getSelectedItem().equals("Headphone"))
-            {
-                
-                
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.headphonebrand));
-            }
-            else if(subCatDDBox.getSelectedItem().equals("Earphone"))
-            {
-                
-                
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.earphonebrand));
-            }
-            else if(subCatDDBox.getSelectedItem().equals("Microphone"))
-            {
-               
-                
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.microphonebrand));
-            }
-            else if(subCatDDBox.getSelectedItem().equals("Gamepad"))
-            {
-                
-              
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.gamepadbrand));
-            }
-            else if(subCatDDBox.getSelectedItem().equals("Pendrive"))
-            {
-               
-                
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.pendrivebrand));
-            }
-            else if(subCatDDBox.getSelectedItem().equals("Memory Card"))
-            {
-                
-                
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.memorycardbrand));
-            }
-            else if(subCatDDBox.getSelectedItem().equals("Portable Hard-Disk"))
-            {
-              
-                
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.phddbrand));
-            }
-            else if(subCatDDBox.getSelectedItem().equals("Portable SSD"))
-            {
-                
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.pssdbrand));
-            }
-            else if(subCatDDBox.getSelectedItem().equals("Capture Card"))
-            {
-                
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.ccbrand));
-            }
-            else if(subCatDDBox.getSelectedItem().equals("USB Hub"))
-            {
-               
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.usbhubbrand));
-            }
-            else if(subCatDDBox.getSelectedItem().equals("Power Strip"))
-            {
-                
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.pstripbrand));
-            }
-            else if(subCatDDBox.getSelectedItem().equals("LED Strip"))
-            {
-               
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.lstripbrand));
-            }
-            else if(subCatDDBox.getSelectedItem().equals("Chair"))
-            {
-                
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.chairbrand));
-            }
-            else if(subCatDDBox.getSelectedItem().equals("Table"))
-            {
-                
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.tablebrand));
-            }
-            else
-            {
-               
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
-            }
-        }
-        else if(catDDBox.getSelectedItem().equals("Router & Network"))
-        {
-            if(catDDBox.getSelectedItem().equals("Router & Network"))
-            {
-               
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.routerbrand));
-            }
-            else if(subCatDDBox.getSelectedItem().equals("Network Switch"))
-            {
-               
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.ntwrkswitchbrand));
-            }
-            else if(subCatDDBox.getSelectedItem().equals("Network Extender"))
-            {
-                
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.ntwrkextndrbrand));
-            }
-            else
-            {
-              
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
-            }
-        }
-        else if(catDDBox.getSelectedItem().equals("Monitor"))
-        {
-            if(subCatDDBox.getSelectedItem().equals("UHD(4K)"))
-            {
-                
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.monbrand));
-            }
-            else if(subCatDDBox.getSelectedItem().equals("Ultra Wide"))
-            {
-                
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.monbrand));
-            }
-            else if(subCatDDBox.getSelectedItem().equals("QHD(2K)"))
-            {
-                
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.monbrand));
-            }
-            else if(subCatDDBox.getSelectedItem().equals("FHD(1080p)"))
-            {
-                
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.monbrand));
-            }
-            else
-            {
-                
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
-            }
-        }
-        else if(catDDBox.getSelectedItem().equals("TV & Speaker"))
-        {
-            if(subCatDDBox.getSelectedItem().equals("Television"))
-            {
-                
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.tvbrand));
-            }
-            else if(subCatDDBox.getSelectedItem().equals("Speaker"))
-            {
-                
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.speakerbrand));
-            }
-            else if(subCatDDBox.getSelectedItem().equals("Portable Speaker"))
-            {
-               
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.portablespeakerbrand));
-            }
-            else
-            {
-                
-                braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
-            }
+        try {
+            // TODO add your handling code here:
+            brands();
+        } catch (SQLException ex) {
+            Logger.getLogger(AddProducts.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_subCatDDBoxActionPerformed
 
@@ -910,40 +700,11 @@ public class AddProducts extends javax.swing.JFrame {
     }//GEN-LAST:event_addBTNMouseClicked
 
     private void catDDBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_catDDBoxActionPerformed
-        // TODO add your handling code here:
-        if(catDDBox.getSelectedItem().equals("Laptop & Tablet"))
-        {
-            subCatDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.laptopcat));
-            braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
-        }
-        else if(catDDBox.getSelectedItem().equals("PC Components"))
-        {
-            subCatDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.pccat));
-            braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
-        }
-        else if(catDDBox.getSelectedItem().equals("Accessories"))
-        {
-            subCatDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.acccat));
-            braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
-        }
-        else if(catDDBox.getSelectedItem().equals("Router & Network"))
-        {
-            subCatDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.routcat));
-            braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
-        }
-        else if(catDDBox.getSelectedItem().equals("Monitor"))
-        {
-            subCatDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.moncat));
-            braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
-        }
-        else if(catDDBox.getSelectedItem().equals("TV & Speaker"))
-        {
-            subCatDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.tvcat));
-            braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
-        }
-        else{
-            subCatDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
-            braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
+        try {
+            // TODO add your handling code here:
+            subcategories();
+        } catch (SQLException ex) {
+            Logger.getLogger(AddProducts.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_catDDBoxActionPerformed
 
