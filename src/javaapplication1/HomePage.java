@@ -20,6 +20,10 @@ public class HomePage extends javax.swing.JFrame {
     ModifyProducts mp = new ModifyProducts();
     SellProducts sp = new SellProducts();
     
+    
+    
+    Queries qr = new Queries();
+    
     public HomePage() {
         initComponents();
     }

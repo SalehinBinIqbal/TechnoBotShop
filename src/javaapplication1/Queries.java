@@ -17,6 +17,7 @@ import java.sql.Statement;
  */
 
 public class Queries {
+    
     String UserID;
     String UserPassword;
     
