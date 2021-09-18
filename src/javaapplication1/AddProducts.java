@@ -86,6 +86,9 @@ public class AddProducts extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         catBox = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        exBRad = new javax.swing.JRadioButton();
+        newBRad = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setLocation(new java.awt.Point(150, 100));
@@ -125,7 +128,7 @@ public class AddProducts extends javax.swing.JFrame {
 
         newSBRad.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         newSBRad.setForeground(new java.awt.Color(255, 255, 255));
-        newSBRad.setText("New Sub-Category/Brand");
+        newSBRad.setText("New Sub-Category");
         newSBRad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 newSBRadActionPerformed(evt);
@@ -164,7 +167,7 @@ public class AddProducts extends javax.swing.JFrame {
 
         exSBRad.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         exSBRad.setForeground(new java.awt.Color(255, 255, 255));
-        exSBRad.setText("Existing Sub-Category/Brand");
+        exSBRad.setText("Existing Sub-Category");
         exSBRad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exSBRadActionPerformed(evt);
@@ -323,7 +326,7 @@ public class AddProducts extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Sub-Category/Brand :");
+        jLabel6.setText("Sub-Category            :");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, -1, -1));
 
         jLabel16.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -336,6 +339,31 @@ public class AddProducts extends javax.swing.JFrame {
         catBox.setForeground(new java.awt.Color(0, 0, 0));
         catBox.setPreferredSize(new java.awt.Dimension(340, 45));
         jPanel1.add(catBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 80, -1, -1));
+
+        jLabel17.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel17.setText("Brand                          :");
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 430, -1, -1));
+
+        exBRad.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        exBRad.setForeground(new java.awt.Color(255, 255, 255));
+        exBRad.setText("Existing Brand");
+        exBRad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exBRadActionPerformed(evt);
+            }
+        });
+        jPanel1.add(exBRad, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 430, -1, -1));
+
+        newBRad.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        newBRad.setForeground(new java.awt.Color(255, 255, 255));
+        newBRad.setText("New Brand");
+        newBRad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newBRadActionPerformed(evt);
+            }
+        });
+        jPanel1.add(newBRad, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 430, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -369,6 +397,8 @@ public class AddProducts extends javax.swing.JFrame {
             if(newSBRad.isSelected())
             {
                 exSBRad.setSelected(false);
+                exBRad.setSelected(false);
+                newBRad.setSelected(true);
                 
                 jLabel7.setVisible(true);       
                 jLabel8.setVisible(true);
@@ -389,7 +419,7 @@ public class AddProducts extends javax.swing.JFrame {
             else{
                 jLabel7.setVisible(false);       
                 jLabel8.setVisible(false);
-                
+                newBRad.setSelected(false);
                 
                 subCatBox.setVisible(false);     
                 brandBox.setVisible(false);
@@ -398,12 +428,22 @@ public class AddProducts extends javax.swing.JFrame {
             }
         } 
         else if(newCatRad.isSelected()){
-            newSBRad.setSelected(true);
-            exSBRad.setSelected(false);
-            
+            if(newSBRad.isSelected())
+            {
+                newBRad.setSelected(true);
+                exSBRad.setSelected(false);
+                exBRad.setSelected(false);
+            }
+            else{
+                newSBRad.setSelected(true);
+                newBRad.setSelected(true);
+                exSBRad.setSelected(false);
+                exBRad.setSelected(false);
+            }
         }
         else{
             newSBRad.setSelected(false);
+            newBRad.setSelected(false);
         }
     }//GEN-LAST:event_newSBRadActionPerformed
 
@@ -413,7 +453,9 @@ public class AddProducts extends javax.swing.JFrame {
         {
             exCatRad.setSelected(false);
             exSBRad.setSelected(false);
+            exBRad.setSelected(false);
             newSBRad.setSelected(true);
+            newBRad.setSelected(true);
             
             jLabel16.setVisible(true);
             jLabel7.setVisible(true);       
@@ -437,6 +479,7 @@ public class AddProducts extends javax.swing.JFrame {
         else{
             
             newSBRad.setSelected(false);
+            newBRad.setSelected(false);
             
             jLabel16.setVisible(false);
             jLabel7.setVisible(false);       
@@ -472,6 +515,8 @@ public class AddProducts extends javax.swing.JFrame {
             
             newSBRad.setSelected(false);
             exSBRad.setSelected(false);
+            newBRad.setSelected(false);
+            exBRad.setSelected(false);
             jLabel5.setVisible(false);
             catDDBox.setVisible(false);
             jLabel2.setVisible(false);
@@ -501,32 +546,34 @@ public class AddProducts extends javax.swing.JFrame {
                 newSBRad.setSelected(false);
            
                 jLabel2.setVisible(true);
-                jLabel3.setVisible(true);
                 
-                jLabel7.setVisible(false);       
-                jLabel8.setVisible(false); 
+                jLabel7.setVisible(false);  
                 
                 subCatDDBox.setVisible(true);
-                braDDBox.setVisible(true);
                 
-                subCatBox.setVisible(false);     
-                brandBox.setVisible(false);
-                
-                vr.selectionCase = 3;
+                subCatBox.setVisible(false);
             }
             else{
+               
+                exBRad.setSelected(false);
+                newBRad.setSelected(false);
+               
                 jLabel2.setVisible(false);
                 jLabel3.setVisible(false);
                 
                 subCatDDBox.setVisible(false);
                 braDDBox.setVisible(false);
                 
-                vr.selectionCase = 0;
+                subCatBox.setVisible(false);
+                brandBox.setVisible(false);
+                
+                jLabel8.setVisible(false);
             } 
         }
         else{
             
             exSBRad.setSelected(false);
+            exBRad.setSelected(false);
         }
         
     }//GEN-LAST:event_exSBRadActionPerformed
@@ -900,6 +947,77 @@ public class AddProducts extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_catDDBoxActionPerformed
 
+    private void exBRadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exBRadActionPerformed
+        // TODO add your handling code here:
+        if(exCatRad.isSelected())
+        {
+            if(exSBRad.isSelected())
+            {
+                if(exBRad.isSelected()){
+                    newBRad.setSelected(false);
+                    jLabel3.setVisible(true);      
+                    jLabel8.setVisible(false); 
+                    braDDBox.setVisible(true);   
+                    brandBox.setVisible(false);
+                    
+                    vr.selectionCase = 4;
+                }
+                else{
+                    jLabel3.setVisible(false);  
+                    braDDBox.setVisible(false);
+                    
+                    vr.selectionCase = 0;
+                }
+                
+            }
+            else{
+                exBRad.setSelected(false);
+            }
+        }
+        else{
+            exBRad.setSelected(false);
+        }
+    }//GEN-LAST:event_exBRadActionPerformed
+
+    private void newBRadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newBRadActionPerformed
+        // TODO add your handling code here:
+        if(newCatRad.isSelected()){
+            if(newSBRad.isSelected()){
+                newBRad.setSelected(true);
+                exBRad.setSelected(false);
+            }   
+        }
+        else if(exCatRad.isSelected()){
+            if(exSBRad.isSelected()){
+                if(newBRad.isSelected()){
+                    jLabel8.setVisible(true);  
+                    brandBox.setVisible(true);
+                    
+                    jLabel3.setVisible(false);  
+                    braDDBox.setVisible(false); 
+                    
+                    vr.selectionCase = 3;
+                }
+                else{
+                    jLabel8.setVisible(false);   
+                    brandBox.setVisible(false);
+                    vr.selectionCase = 0;
+                }
+            }
+            else if(newSBRad.isSelected()){
+                newBRad.setSelected(true);
+                exBRad.setSelected(false);
+            }
+            else{
+                newBRad.setSelected(false);
+                exBRad.setSelected(false);
+            }
+        }
+        else{
+            newBRad.setSelected(false);
+        }
+    }//GEN-LAST:event_newBRadActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -919,18 +1037,39 @@ public class AddProducts extends javax.swing.JFrame {
                             vr.checkallinput = false;
                         }
                     }
-                    else if (vr.selectionCase == 2 || vr.selectionCase == 3) {
+                    else if (vr.selectionCase == 2 || vr.selectionCase == 3 || vr.selectionCase == 4) {
                         if (catDDBox.getSelectedItem().equals("...")) {
                             vr.checkallinput = false;
                         } else {
                             if (vr.selectionCase == 2) {
                                 if (subCatBox.getText().length() != 0 && brandBox.getText().length() != 0) {
-                                    vr.checkallinput = true;
+                                    if (quantity.getValue().equals(0) || warranty.getValue().equals(0) || price.getValue().equals(0)) {
+                                            vr.checkallinput = false;
+                                        } else {
+                                            vr.checkallinput = true;
+                                        }
                                 } else {
                                     vr.checkallinput = false;
                                 }
                             }
-                            if (vr.selectionCase == 3) {
+                            if(vr.selectionCase == 3){
+                                if (subCatDDBox.getSelectedItem().equals("...")) {
+                                    vr.checkallinput = false;
+                                }
+                                else{
+                                    if (brandBox.getText().length() != 0) {
+                                        if (quantity.getValue().equals(0) || warranty.getValue().equals(0) || price.getValue().equals(0)) {
+                                            vr.checkallinput = false;
+                                        } else {
+                                            vr.checkallinput = true;
+                                        }
+                                    } else {
+                                        vr.checkallinput = false;
+                                    } 
+                                }
+                                
+                            }
+                            if (vr.selectionCase == 4) {
                                 if (subCatDDBox.getSelectedItem().equals("...")) {
                                     vr.checkallinput = false;
                                 } else {
@@ -972,6 +1111,9 @@ public class AddProducts extends javax.swing.JFrame {
         newCatRad.setSelected(false);
         exSBRad.setSelected(false);
         newSBRad.setSelected(false);
+        exBRad.setSelected(false);
+        newBRad.setSelected(false);
+        
         
         catDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
         subCatDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
@@ -1047,6 +1189,7 @@ public class AddProducts extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> catDDBox;
     private javax.swing.JButton clearBTN;
     private javax.swing.JLabel copyright;
+    private javax.swing.JRadioButton exBRad;
     private javax.swing.JRadioButton exCatRad;
     private javax.swing.JRadioButton exSBRad;
     private javax.swing.JLabel jLabel1;
@@ -1057,6 +1200,7 @@ public class AddProducts extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1067,6 +1211,7 @@ public class AddProducts extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel name;
+    private javax.swing.JRadioButton newBRad;
     private javax.swing.JRadioButton newCatRad;
     private javax.swing.JRadioButton newSBRad;
     private javax.swing.JTextField pIDBox;
