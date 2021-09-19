@@ -41,7 +41,7 @@ public class DeleteProducts extends javax.swing.JFrame {
         copyright = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setLocation(new java.awt.Point(150, 100));
+        setLocation(new java.awt.Point(0, 0));
         setUndecorated(true);
         setResizable(false);
         setSize(new java.awt.Dimension(1280, 720));
@@ -152,6 +152,7 @@ public class DeleteProducts extends javax.swing.JFrame {
     private void backBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backBTNMouseClicked
         // TODO add your handling code here:
         HomePage hp = new HomePage();
+        hp.setLocationRelativeTo(null);
         hp.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backBTNMouseClicked
@@ -214,7 +215,9 @@ public class DeleteProducts extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DeleteProducts().setVisible(true);
+                DeleteProducts dp = new DeleteProducts();
+                dp.setLocationRelativeTo(null);
+                dp.setVisible(true);
             }
         });
     }

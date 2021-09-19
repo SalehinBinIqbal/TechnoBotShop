@@ -147,7 +147,7 @@ public class AllProducts extends javax.swing.JFrame {
         catDDBox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setLocation(new java.awt.Point(150, 100));
+        setLocation(new java.awt.Point(0, 0));
         setUndecorated(true);
         setResizable(false);
         setSize(new java.awt.Dimension(0, 0));
@@ -295,6 +295,7 @@ public class AllProducts extends javax.swing.JFrame {
     private void backBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backBTNMouseClicked
         // TODO add your handling code here:
         HomePage hp = new HomePage();
+        hp.setLocationRelativeTo(null);
         hp.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backBTNMouseClicked
@@ -337,7 +338,7 @@ public class AllProducts extends javax.swing.JFrame {
 
     private void sortBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sortBtnMouseClicked
         // TODO add your handling code here:
-        if(catDDBox.getSelectedItem().equals("..."))
+        if(catDDBox.getSelectedItem().equals(""))
         {
             JOptionPane.showMessageDialog(null, "No catagory was selected\nPlease select one", "Caution", JOptionPane.OK_OPTION);
         }
@@ -384,7 +385,9 @@ public class AllProducts extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AllProducts().setVisible(true);
+                AllProducts alp = new AllProducts();
+                alp.setLocationRelativeTo(null);
+                alp.setVisible(true);
             }
         });
     }

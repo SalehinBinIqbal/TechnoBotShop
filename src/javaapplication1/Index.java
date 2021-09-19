@@ -176,7 +176,7 @@ public class Index extends javax.swing.JFrame {
         img6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setLocation(new java.awt.Point(150, 100));
+        setLocation(new java.awt.Point(0, 0));
         setResizable(false);
         addWindowFocusListener(new java.awt.event.WindowFocusListener() {
             public void windowGainedFocus(java.awt.event.WindowEvent evt) {
@@ -334,6 +334,7 @@ public class Index extends javax.swing.JFrame {
             // TODO add your handling code here:
             qr.login();
             if(userID.getText().equals(qr.UserID) && passWord.getText().equals(qr.UserPassword)){
+                hp.setLocationRelativeTo(null);
                 hp.setVisible(true);
                 this.dispose();
             }
@@ -421,7 +422,9 @@ public class Index extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Index().setVisible(true);
+                Index in = new Index();
+                in.setLocationRelativeTo(null);
+                in.setVisible(true);
             }
         });
     }

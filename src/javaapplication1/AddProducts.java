@@ -182,7 +182,7 @@ public class AddProducts extends javax.swing.JFrame {
         newBRad = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setLocation(new java.awt.Point(150, 100));
+        setLocation(new java.awt.Point(0, 0));
         setUndecorated(true);
         setResizable(false);
 
@@ -477,6 +477,7 @@ public class AddProducts extends javax.swing.JFrame {
     private void backBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backBTNMouseClicked
         // TODO add your handling code here:
         HomePage hp = new HomePage();
+        hp.setLocationRelativeTo(null);
         hp.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backBTNMouseClicked
@@ -690,6 +691,7 @@ public class AddProducts extends javax.swing.JFrame {
     private void addBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addBTNMouseClicked
         // TODO add your handling code here:
         checkinput();
+        //System.out.println(vr.selectionCase);
         if(vr.checkallinput == true)
         {
             
@@ -936,7 +938,9 @@ public class AddProducts extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddProducts().setVisible(true);
+                AddProducts ap = new AddProducts();
+                ap.setLocationRelativeTo(null);
+                ap.setVisible(true);
             }
         });
     }

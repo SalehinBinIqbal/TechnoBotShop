@@ -38,7 +38,7 @@ public class SellHistory extends javax.swing.JFrame {
         SearchBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setLocation(new java.awt.Point(150, 100));
+        setLocation(new java.awt.Point(0, 0));
         setUndecorated(true);
         setResizable(false);
 
@@ -130,6 +130,7 @@ public class SellHistory extends javax.swing.JFrame {
     private void backBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backBTNMouseClicked
         // TODO add your handling code here:
         HomePage hp = new HomePage();
+        hp.setLocationRelativeTo(null);
         hp.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backBTNMouseClicked
@@ -185,7 +186,9 @@ public class SellHistory extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SellHistory().setVisible(true);
+                SellHistory sh = new SellHistory();
+                sh.setLocationRelativeTo(null);
+                sh.setVisible(true);
             }
         });
     }

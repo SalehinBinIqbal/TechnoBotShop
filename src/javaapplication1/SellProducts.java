@@ -32,7 +32,7 @@ public class SellProducts extends javax.swing.JFrame {
         name = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setLocation(new java.awt.Point(150, 100));
+        setLocation(new java.awt.Point(0, 0));
         setUndecorated(true);
         setResizable(false);
         setSize(new java.awt.Dimension(1280, 720));
@@ -77,6 +77,7 @@ public class SellProducts extends javax.swing.JFrame {
     private void backBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backBTNMouseClicked
         // TODO add your handling code here:
         HomePage hp = new HomePage();
+        hp.setLocationRelativeTo(null);
         hp.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backBTNMouseClicked
@@ -111,7 +112,9 @@ public class SellProducts extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SellProducts().setVisible(true);
+                SellProducts sp = new SellProducts();
+                sp.setLocationRelativeTo(null);
+                sp.setVisible(true);
             }
         });
     }

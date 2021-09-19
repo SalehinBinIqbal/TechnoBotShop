@@ -176,6 +176,7 @@ public class UpdateProducts extends javax.swing.JFrame {
     private void backBTNMouseClicked(java.awt.event.MouseEvent evt) {                                     
         // TODO add your handling code here:
         HomePage hp = new HomePage();
+        hp.setLocationRelativeTo(null);
         hp.setVisible(true);
         this.dispose();
     }                                    
@@ -239,7 +240,9 @@ public class UpdateProducts extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new UpdateProducts().setVisible(true);
+                UpdateProducts up = new UpdateProducts();
+                up.setLocationRelativeTo(null);
+                up.setVisible(true);
             }
         });
     }

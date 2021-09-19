@@ -38,9 +38,8 @@ public class ModifyProducts extends javax.swing.JFrame {
         backBTN = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setLocation(new java.awt.Point(470, 280));
+        setLocation(new java.awt.Point(0, 0));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(640, 360));
         setResizable(false);
         setSize(new java.awt.Dimension(640, 360));
 
@@ -117,6 +116,7 @@ public class ModifyProducts extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
+        adp.setLocationRelativeTo(null);
         adp.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1MouseClicked
@@ -124,18 +124,21 @@ public class ModifyProducts extends javax.swing.JFrame {
     private void backBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backBTNMouseClicked
         // TODO add your handling code here:
         HomePage hp = new HomePage();
+        hp.setLocationRelativeTo(null);
         hp.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backBTNMouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         // TODO add your handling code here:
+        up.setLocationRelativeTo(null);
         up.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         // TODO add your handling code here:
+        dp.setLocationRelativeTo(null);
         dp.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton3MouseClicked
@@ -170,7 +173,9 @@ public class ModifyProducts extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ModifyProducts().setVisible(true);
+                ModifyProducts mp = new ModifyProducts();
+                mp.setLocationRelativeTo(null);
+                mp.setVisible(true);
             }
         });
     }

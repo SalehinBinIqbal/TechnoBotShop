@@ -48,7 +48,7 @@ public class HomePage extends javax.swing.JFrame {
         BackgroundImage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setLocation(new java.awt.Point(150, 100));
+        setLocation(new java.awt.Point(0, 0));
         setUndecorated(true);
         setResizable(false);
 
@@ -171,24 +171,28 @@ public class HomePage extends javax.swing.JFrame {
 
     private void AllProductsBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AllProductsBtnMouseClicked
         // TODO add your handling code here:
+        alp.setLocationRelativeTo(null);
         alp.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_AllProductsBtnMouseClicked
 
     private void SellHistoryBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SellHistoryBtnMouseClicked
         // TODO add your handling code here:
+        sh.setLocationRelativeTo(null);
         sh.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_SellHistoryBtnMouseClicked
 
     private void AddProductsBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddProductsBtnMouseClicked
         // TODO add your handling code here:
+        mp.setLocationRelativeTo(null);
         mp.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_AddProductsBtnMouseClicked
 
     private void SellProductsBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SellProductsBtnMouseClicked
         // TODO add your handling code here:
+        sp.setLocationRelativeTo(null);
         sp.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_SellProductsBtnMouseClicked
@@ -201,6 +205,7 @@ public class HomePage extends javax.swing.JFrame {
         if(confirm == JOptionPane.YES_OPTION){
             try{
                 Index in = new Index();
+                in.setLocationRelativeTo(null);
                 in.setVisible(true);
                 this.dispose();    
             }catch(Exception e){
@@ -236,7 +241,9 @@ public class HomePage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HomePage().setVisible(true);
+                HomePage hp = new HomePage();
+                hp.setLocationRelativeTo(null);
+                hp.setVisible(true);
             }
         });
     }
