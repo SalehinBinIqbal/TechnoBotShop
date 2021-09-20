@@ -93,7 +93,7 @@ public class AllProducts extends javax.swing.JFrame {
             
             //String sql = "Select * From SUBCATEGORY Where CAT_NAME = " " Order By SUB_CAT_ID";
             
-            PreparedStatement pst = conn.prepareStatement("Select * From BRAND Where CAT_NAME = ? AND SUB_CAT_NAME = ? Order By ID");
+            PreparedStatement pst = conn.prepareStatement("Select * From BRAND Where CAT_NAME = ? AND SUB_CAT_NAME = ? Order By BRAND_NAME");
             pst.setString(1, cat);
             pst.setString(2, subcat);
             

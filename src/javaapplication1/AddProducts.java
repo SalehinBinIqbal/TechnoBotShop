@@ -91,7 +91,7 @@ public class AddProducts extends javax.swing.JFrame {
             
             //String sql = "Select * From SUBCATEGORY Where CAT_NAME = " " Order By SUB_CAT_ID";
             
-            PreparedStatement pst = conn.prepareStatement("Select * From BRAND Where CAT_NAME = ? AND SUB_CAT_NAME = ? Order By ID");
+            PreparedStatement pst = conn.prepareStatement("Select * From BRAND Where CAT_NAME = ? AND SUB_CAT_NAME = ? Order By BRAND_NAME");
             pst.setString(1, cat);
             pst.setString(2, subcat);
             
@@ -603,8 +603,8 @@ public class AddProducts extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 Logger.getLogger(AddProducts.class.getName()).log(Level.SEVERE, null, ex);
             }
-            subCatDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
-            braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
+            /*subCatDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
+            braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());*/
 
         }
         else{
@@ -753,6 +753,8 @@ public class AddProducts extends javax.swing.JFrame {
         else if(exCatRad.isSelected()){
             if(exSBRad.isSelected()){
                 if(newBRad.isSelected()){
+                    
+                    exBRad.setSelected(false);
                     jLabel8.setVisible(true);  
                     brandBox.setVisible(true);
                     
@@ -784,7 +786,7 @@ public class AddProducts extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public void checkinput(){
+    public void checkinput() {
 
         if (pIDBox.getText().length() != 0) {
             if (pIDBox.getText().length() >= 12 && pIDBox.getText().length() <= 13) {
@@ -799,58 +801,58 @@ public class AddProducts extends javax.swing.JFrame {
                         } else {
                             vr.checkallinput = false;
                         }
-                    }
-                    else if (vr.selectionCase == 2 || vr.selectionCase == 3 || vr.selectionCase == 4) {
-                        if (catDDBox.getSelectedItem().equals("...")) {
+                    } else if (vr.selectionCase == 2 || vr.selectionCase == 3 || vr.selectionCase == 4) {
+                        if (catDDBox.getSelectedItem().equals("")) {
                             vr.checkallinput = false;
                         } else {
                             if (vr.selectionCase == 2) {
                                 if (subCatBox.getText().length() != 0 && brandBox.getText().length() != 0) {
                                     if (quantity.getValue().equals(0) || warranty.getValue().equals(0) || price.getValue().equals(0)) {
-                                            vr.checkallinput = false;
-                                        } else {
-                                            vr.checkallinput = true;
-                                        }
-                                } else {
-                                    vr.checkallinput = false;
-                                }
-                            }
-                            if(vr.selectionCase == 3){
-                                if (subCatDDBox.getSelectedItem().equals("...")) {
-                                    vr.checkallinput = false;
-                                }
-                                else{
-                                    if (brandBox.getText().length() != 0) {
-                                        if (quantity.getValue().equals(0) || warranty.getValue().equals(0) || price.getValue().equals(0)) {
-                                            vr.checkallinput = false;
-                                        } else {
-                                            vr.checkallinput = true;
-                                        }
-                                    } else {
-                                        vr.checkallinput = false;
-                                    } 
-                                }
-                                
-                            }
-                            if (vr.selectionCase == 4) {
-                                if (subCatDDBox.getSelectedItem().equals("...")) {
-                                    vr.checkallinput = false;
-                                } else {
-                                    if (braDDBox.getSelectedItem().equals("...")) {
                                         vr.checkallinput = false;
                                     } else {
-                                        if (quantity.getValue().equals(0) || warranty.getValue().equals(0) || price.getValue().equals(0)) {
-                                            vr.checkallinput = false;
-                                        } else {
-                                            vr.checkallinput = true;
-                                        }
+                                        vr.checkallinput = true;
                                     }
+                                } else {
+                                    vr.checkallinput = false;
                                 }
+                            } else if (vr.selectionCase == 3 || vr.selectionCase == 4) {
+                                if (subCatDDBox.getSelectedItem().equals("")) {
+                                    vr.checkallinput = false;
+                                } else {
+                                    if (vr.selectionCase == 3) {
+                                        if (brandBox.getText().length() != 0) {
+                                            if (quantity.getValue().equals(0) || warranty.getValue().equals(0) || price.getValue().equals(0)) {
+                                                vr.checkallinput = false;
+                                            } else {
+                                                vr.checkallinput = true;
+                                            }
+                                        } else {
+                                            vr.checkallinput = false;
+                                        }
+                                    } else if (vr.selectionCase == 4) {
+                                        if (braDDBox.getSelectedItem().equals("")) {
+                                            vr.checkallinput = false;
+                                        } else {
+                                            if (quantity.getValue().equals(0) || warranty.getValue().equals(0) || price.getValue().equals(0)) {
+                                                vr.checkallinput = false;
+                                            } else {
+                                                vr.checkallinput = true;
+                                            }
+                                        }
+                                    } else {
+                                        System.out.println("ERROR");
+                                        vr.checkallinput = false;
+                                    }
+
+                                }
+
+                            } else {
+                                System.out.println("ERROR");
+                                vr.checkallinput = false;
                             }
 
                         }
-                    }
-                    else{
+                    } else {
                         System.out.println("ERROR");
                         vr.checkallinput = false;
                     }
