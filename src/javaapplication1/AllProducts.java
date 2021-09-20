@@ -15,6 +15,7 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -115,6 +116,11 @@ public class AllProducts extends javax.swing.JFrame {
     public AllProducts(){
         initComponents();
         try {
+            showtable();
+        } catch (SQLException ex) {
+            Logger.getLogger(AllProducts.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
             categories();
         } catch (SQLException ex) {
             Logger.getLogger(AllProducts.class.getName()).log(Level.SEVERE, null, ex);
@@ -184,9 +190,16 @@ public class AllProducts extends javax.swing.JFrame {
                 "Product ID", "Product Name", "Category", "Sub-Category", "Brand", "Type", "Quantity", "Warranty(Years)", "Price(BDT)"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false, false, false
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -319,10 +332,16 @@ public class AllProducts extends javax.swing.JFrame {
 
     private void SearchBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SearchBtnMouseClicked
         // TODO add your handling code here:
-        catDDBox.setModel(new javax.swing.DefaultComboBoxModel<>(vr.cat));
-        subCatDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
-        braDDBox.setModel(new javax.swing.DefaultComboBoxModel<>());
-        
+        if(SearchBox.getText().length()== 0 || SearchBox.getText().equals("Search here...")){
+            JOptionPane.showMessageDialog(null, "Invalid input", "Caution", JOptionPane.OK_OPTION);
+        }
+        else{
+            try {
+                searchtable();
+            } catch (SQLException ex) {
+                Logger.getLogger(AllProducts.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         
         
     }//GEN-LAST:event_SearchBtnMouseClicked
@@ -337,13 +356,11 @@ public class AllProducts extends javax.swing.JFrame {
     }//GEN-LAST:event_subCatDDBoxActionPerformed
 
     private void sortBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sortBtnMouseClicked
-        // TODO add your handling code here:
-        if(catDDBox.getSelectedItem().equals(""))
-        {
-            JOptionPane.showMessageDialog(null, "No catagory was selected\nPlease select one", "Caution", JOptionPane.OK_OPTION);
-        }
-        else{
-
+        try {
+            // TODO add your handling code here:
+            sorttable();
+        } catch (SQLException ex) {
+            Logger.getLogger(AllProducts.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_sortBtnMouseClicked
 
@@ -354,7 +371,138 @@ public class AllProducts extends javax.swing.JFrame {
             Logger.getLogger(AllProducts.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_catDDBoxActionPerformed
-
+    
+    
+    public void showtable()throws SQLException{
+        String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+        String user = "sa";
+        String password = "123456789";
+        try{
+            Connection conn = DriverManager.getConnection(url, user, password);
+            
+            AllProductsTable.setModel(new DefaultTableModel(null, new String [] {"Product ID", "Product Name", "Category", "Sub-Category", "Brand", "Type", "Quantity", "Warranty(Years)", "Price(BDT)"}));
+            
+            String sql = "Select * From PRODUCTS";
+            
+            Statement st = conn.createStatement();
+            
+            ResultSet rs = st.executeQuery(sql);
+            
+            while(rs.next()){
+                String pid = rs.getString("PRODUCT_ID");
+                String pname = rs.getString("PRODUCT_NAME");
+                String cat = rs.getString("CAT_NAME");
+                String subcat = rs.getString("SUB_CAT_NAME");
+                String bra = rs.getString("BRAND_NAME");
+                String ptype = rs.getString("PRODUCT_TYPE");
+                String qt = String.valueOf(rs.getInt("QUANTITY"));
+                String wr = String.valueOf(rs.getInt("WARRANTY"));
+                String prc = String.valueOf(rs.getInt("PRICE"));
+                
+                String tbdata[] = {pid,pname,cat,subcat,bra,ptype,qt,wr,prc};
+                
+                DefaultTableModel apt =  (DefaultTableModel) AllProductsTable.getModel();
+                apt.addRow(tbdata);
+            }
+            conn.close();
+        }catch(SQLException e){
+            System.out.println("ERROR");
+        }
+    }
+    
+    public void searchtable()throws SQLException{
+        String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+        String user = "sa";
+        String password = "123456789";
+        try{
+            Connection conn = DriverManager.getConnection(url, user, password);
+            
+            String srch = "%"+SearchBox.getText()+"%";
+            
+            AllProductsTable.setModel(new DefaultTableModel(null, new String [] {"Product ID", "Product Name", "Category", "Sub-Category", "Brand", "Type", "Quantity", "Warranty(Years)", "Price(BDT)"}));
+            
+            //String sql = "Select * From PRODUCTS";
+            
+            //Statement st = conn.createStatement();
+            PreparedStatement pst = conn.prepareStatement("SELECT * FROM PRODUCTS WHERE PRODUCT_ID LIKE ? OR PRODUCT_NAME LIKE ? OR CAT_NAME LIKE ? OR SUB_CAT_NAME LIKE ? OR BRAND_NAME LIKE ? OR PRODUCT_TYPE LIKE ?");
+            pst.setString(1, srch);
+            pst.setString(2, srch);
+            pst.setString(3, srch);
+            pst.setString(4, srch);
+            pst.setString(5, srch);
+            pst.setString(6, srch);
+            
+            ResultSet rs = pst.executeQuery();
+            
+            while(rs.next()){
+                String pid = rs.getString("PRODUCT_ID");
+                String pname = rs.getString("PRODUCT_NAME");
+                String cat = rs.getString("CAT_NAME");
+                String subcat = rs.getString("SUB_CAT_NAME");
+                String bra = rs.getString("BRAND_NAME");
+                String ptype = rs.getString("PRODUCT_TYPE");
+                String qt = String.valueOf(rs.getInt("QUANTITY"));
+                String wr = String.valueOf(rs.getInt("WARRANTY"));
+                String prc = String.valueOf(rs.getInt("PRICE"));
+                
+                String tbdata[] = {pid,pname,cat,subcat,bra,ptype,qt,wr,prc};
+                
+                DefaultTableModel apt =  (DefaultTableModel) AllProductsTable.getModel();
+                apt.addRow(tbdata);
+            }
+            conn.close();
+        }catch(SQLException e){
+            System.out.println(e);
+            System.out.println("ERROR");
+        }
+    }
+    
+    public void sorttable()throws SQLException{
+        String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+        String user = "sa";
+        String password = "123456789";
+        try{
+            Connection conn = DriverManager.getConnection(url, user, password);
+            
+            String catdd = (String) catDDBox.getSelectedItem();
+            String subcatdd = (String) subCatDDBox.getSelectedItem();
+            String bradd = (String) braDDBox.getSelectedItem();
+            
+            AllProductsTable.setModel(new DefaultTableModel(null, new String [] {"Product ID", "Product Name", "Category", "Sub-Category", "Brand", "Type", "Quantity", "Warranty(Years)", "Price(BDT)"}));
+            
+            //String sql = "Select * From PRODUCTS";
+            
+            //Statement st = conn.createStatement();
+            PreparedStatement pst = conn.prepareStatement("SELECT * FROM PRODUCTS WHERE CAT_NAME = ? AND SUB_CAT_NAME = ? AND BRAND_NAME = ?");
+            pst.setString(1, catdd);
+            pst.setString(2, subcatdd);
+            pst.setString(3, bradd);
+            
+            ResultSet rs = pst.executeQuery();
+            
+            while(rs.next()){
+                String pid = rs.getString("PRODUCT_ID");
+                String pname = rs.getString("PRODUCT_NAME");
+                String cat = rs.getString("CAT_NAME");
+                String subcat = rs.getString("SUB_CAT_NAME");
+                String bra = rs.getString("BRAND_NAME");
+                String ptype = rs.getString("PRODUCT_TYPE");
+                String qt = String.valueOf(rs.getInt("QUANTITY"));
+                String wr = String.valueOf(rs.getInt("WARRANTY"));
+                String prc = String.valueOf(rs.getInt("PRICE"));
+                
+                String tbdata[] = {pid,pname,cat,subcat,bra,ptype,qt,wr,prc};
+                
+                DefaultTableModel apt =  (DefaultTableModel) AllProductsTable.getModel();
+                apt.addRow(tbdata);
+            }
+            conn.close();
+        }catch(SQLException e){
+            System.out.println(e);
+            System.out.println("ERROR");
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */

@@ -183,6 +183,9 @@ public class DeleteProducts extends javax.swing.JFrame {
 
     private void dltBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dltBtnMouseClicked
         // TODO add your handling code here:
+        if(AllProductsTable.getSelectionModel().isSelectionEmpty()){
+            JOptionPane.showMessageDialog(null, "Please Select a row", "Caution", JOptionPane.OK_OPTION);
+        }
     }//GEN-LAST:event_dltBtnMouseClicked
 
     /**

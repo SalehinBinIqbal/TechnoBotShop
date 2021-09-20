@@ -208,6 +208,9 @@ public class UpdateProducts extends javax.swing.JFrame {
 
     private void updtBtnMouseClicked(java.awt.event.MouseEvent evt) {                                     
         // TODO add your handling code here:
+        if(AllProductsTable.getSelectionModel().isSelectionEmpty()){
+            JOptionPane.showMessageDialog(null, "Please Select a row", "Caution", JOptionPane.OK_OPTION);
+        }
     }                                    
 
     /**

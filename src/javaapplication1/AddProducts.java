@@ -694,7 +694,79 @@ public class AddProducts extends javax.swing.JFrame {
         //System.out.println(vr.selectionCase);
         if(vr.checkallinput == true)
         {
-            
+            if(vr.selectionCase == 1)
+            {
+                catinsert();
+                subcatinsert();
+                brandinsert();
+                
+                selection1insert();
+                if(vr.Error == true){
+                    JOptionPane.showMessageDialog(null, "Something went WRONG", "Caution", JOptionPane.OK_OPTION);
+                }
+                else if(vr.selectionerror == true){
+                    JOptionPane.showMessageDialog(null, "Wrong Input in\nCategory/Sub-Category/Brand", "Caution", JOptionPane.OK_OPTION);
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Successfully Added", "Successs", JOptionPane.INFORMATION_MESSAGE);
+                }
+                
+                
+                clear();
+            }
+            else if(vr.selectionCase == 2){
+                excatsubcatinsert();
+                excatnsubbrandinsert();
+                
+                selection2insert();
+                
+                if(vr.Error == true){
+                    JOptionPane.showMessageDialog(null, "Something went WRONG", "Caution", JOptionPane.OK_OPTION);
+                }
+                else if(vr.selectionerror == true){
+                    JOptionPane.showMessageDialog(null, "Wrong Input in\nCategory/Sub-Category/Brand", "Caution", JOptionPane.OK_OPTION);
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Successfully Added", "Successs", JOptionPane.INFORMATION_MESSAGE);
+                }
+                
+                clear();
+            }
+            else if(vr.selectionCase == 3){
+                excatexsubbrandinsert();
+                
+                selection3insert();
+                
+                if(vr.Error == true){
+                    JOptionPane.showMessageDialog(null, "Something went WRONG", "Caution", JOptionPane.OK_OPTION);
+                }
+                else if(vr.selectionerror == true){
+                    JOptionPane.showMessageDialog(null, "Wrong Input in\nCategory/Sub-Category/Brand", "Caution", JOptionPane.OK_OPTION);
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Successfully Added", "Successs", JOptionPane.INFORMATION_MESSAGE);
+                }
+                
+                clear();
+            }
+            else if(vr.selectionCase == 4){
+                selection4insert();
+                
+                if(vr.Error == true){
+                    JOptionPane.showMessageDialog(null, "Something went WRONG", "Caution", JOptionPane.OK_OPTION);
+                }
+                else if(vr.selectionerror == true){
+                    JOptionPane.showMessageDialog(null, "Wrong Input in\nCategory/Sub-Category/Brand", "Caution", JOptionPane.OK_OPTION);
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Successfully Added", "Successs", JOptionPane.INFORMATION_MESSAGE);
+                }
+                
+                clear();
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Something went WRONG", "Caution", JOptionPane.OK_OPTION);
+            }
         }
         else{
             JOptionPane.showMessageDialog(null, "One or more inputs are invalid\nPlease enter proper input", "Caution", JOptionPane.OK_OPTION);
@@ -912,7 +984,350 @@ public class AddProducts extends javax.swing.JFrame {
         catBox.setVisible(false);       
         subCatBox.setVisible(false);     
         brandBox.setVisible(false);
+        
+        vr.selectionCase = 0;
+        vr.Error = false;
+        vr.selectionerror = false;
     }
+    
+    
+    public void catinsert(){
+        String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+        String user = "sa";
+        String password = "123456789";
+        try{
+            Connection conn = DriverManager.getConnection(url, user, password);
+            String cat = catBox.getText();
+            
+            //String sql = "Select * From SUBCATEGORY Where CAT_NAME = " " Order By SUB_CAT_ID";
+            
+            PreparedStatement pst = conn.prepareStatement("INSERT INTO CATEGORY (CAT_NAME) VALUES (?)");
+            pst.setString(1, cat);
+            
+            int rows = pst.executeUpdate();
+
+            if (rows > 0) {
+                System.out.println("Row has been inserted");
+            }
+            
+            conn.close();
+        }catch(SQLException e){
+            vr.selectionerror = true;
+            System.out.println("ERROR");
+        }
+    }
+    public void subcatinsert(){
+        String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+        String user = "sa";
+        String password = "123456789";
+        try{
+            Connection conn = DriverManager.getConnection(url, user, password);
+            
+            String cat = catBox.getText();
+            String subcat = subCatBox.getText();
+            
+            //String sql = "Select * From SUBCATEGORY Where CAT_NAME = " " Order By SUB_CAT_ID";
+            
+            PreparedStatement pst = conn.prepareStatement("INSERT INTO SUBCATEGORY (CAT_NAME,SUB_CAT_NAME) VALUES (?,?)");
+            pst.setString(1, cat);
+            pst.setString(2, subcat);
+            
+            int rows = pst.executeUpdate();
+
+            if (rows > 0) {
+                System.out.println("Row has been inserted");
+            }
+            
+            conn.close();
+        }catch(SQLException e){
+            vr.selectionerror = true;
+            System.out.println("ERROR");
+        }
+    }
+    public void brandinsert(){
+        String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+        String user = "sa";
+        String password = "123456789";
+        try{
+            Connection conn = DriverManager.getConnection(url, user, password);
+            String cat = catBox.getText();
+            String subcat = subCatBox.getText();
+            String bra = brandBox.getText();
+            
+            //String sql = "Select * From SUBCATEGORY Where CAT_NAME = " " Order By SUB_CAT_ID";
+            
+            PreparedStatement pst = conn.prepareStatement("INSERT INTO BRAND (CAT_NAME,SUB_CAT_NAME,BRAND_NAME) VALUES (?,?,?)");
+            pst.setString(1, cat);
+            pst.setString(2, subcat);
+            pst.setString(3, bra);
+            
+            int rows = pst.executeUpdate();
+
+            if (rows > 0) {
+                System.out.println("Row has been inserted");
+            }
+            
+            conn.close();
+        }catch(SQLException e){
+            vr.selectionerror = true;
+            System.out.println("ERROR");
+        }
+    }
+    public void excatsubcatinsert(){
+        String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+        String user = "sa";
+        String password = "123456789";
+        try{
+            Connection conn = DriverManager.getConnection(url, user, password);
+            
+            String cat = (String) catDDBox.getSelectedItem();
+            String subcat = subCatBox.getText();
+            
+            //String sql = "Select * From SUBCATEGORY Where CAT_NAME = " " Order By SUB_CAT_ID";
+            
+            PreparedStatement pst = conn.prepareStatement("INSERT INTO SUBCATEGORY (CAT_NAME,SUB_CAT_NAME) VALUES (?,?)");
+            pst.setString(1, cat);
+            pst.setString(2, subcat);
+            
+            int rows = pst.executeUpdate();
+
+            if (rows > 0) {
+                System.out.println("Row has been inserted");
+            }
+            
+            conn.close();
+        }catch(SQLException e){
+            vr.selectionerror = true;
+            System.out.println("ERROR");
+        }
+    }
+    public void excatnsubbrandinsert(){
+        String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+        String user = "sa";
+        String password = "123456789";
+        try{
+            Connection conn = DriverManager.getConnection(url, user, password);
+            String cat = (String) catDDBox.getSelectedItem();
+            String subcat = subCatBox.getText();
+            String bra = brandBox.getText();
+            
+            //String sql = "Select * From SUBCATEGORY Where CAT_NAME = " " Order By SUB_CAT_ID";
+            
+            PreparedStatement pst = conn.prepareStatement("INSERT INTO BRAND (CAT_NAME,SUB_CAT_NAME,BRAND_NAME) VALUES (?,?,?)");
+            pst.setString(1, cat);
+            pst.setString(2, subcat);
+            pst.setString(3, bra);
+            
+            int rows = pst.executeUpdate();
+
+            if (rows > 0) {
+                System.out.println("Row has been inserted");
+            }
+            
+            conn.close();
+        }catch(SQLException e){
+            vr.selectionerror = true;
+            System.out.println("ERROR");
+        }
+    }
+    public void excatexsubbrandinsert(){
+        String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+        String user = "sa";
+        String password = "123456789";
+        try{
+            Connection conn = DriverManager.getConnection(url, user, password);
+            String cat = (String) catDDBox.getSelectedItem();
+            String subcat = (String) subCatDDBox.getSelectedItem();
+            String bra = brandBox.getText();
+            
+            //String sql = "Select * From SUBCATEGORY Where CAT_NAME = " " Order By SUB_CAT_ID";
+            
+            PreparedStatement pst = conn.prepareStatement("INSERT INTO BRAND (CAT_NAME,SUB_CAT_NAME,BRAND_NAME) VALUES (?,?,?)");
+            pst.setString(1, cat);
+            pst.setString(2, subcat);
+            pst.setString(3, bra);
+            
+            int rows = pst.executeUpdate();
+
+            if (rows > 0) {
+                System.out.println("Row has been inserted");
+            }
+            
+            conn.close();
+        }catch(SQLException e){
+            System.out.println("ERROR");
+        }
+    }
+    
+    public void selection1insert(){
+        String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+        String user = "sa";
+        String password = "123456789";
+        try{
+            Connection conn = DriverManager.getConnection(url, user, password);
+            String pid = pIDBox.getText();
+            String pname = pNameBox.getText();
+            String cat = catBox.getText();
+            String subcat = subCatBox.getText();
+            String bra = brandBox.getText();
+            String type = typeBox.getText();
+            int qt = (Integer) quantity.getValue();
+            int wr = (Integer) warranty.getValue();
+            int prc = (Integer) price.getValue();
+            
+            //String sql = "Select * From SUBCATEGORY Where CAT_NAME = " " Order By SUB_CAT_ID";
+            
+            PreparedStatement pst = conn.prepareStatement("INSERT INTO PRODUCTS (PRODUCT_ID,PRODUCT_NAME,CAT_NAME,SUB_CAT_NAME,BRAND_NAME,PRODUCT_TYPE,QUANTITY,WARRANTY,PRICE) VALUES (?,?,?,?,?,?,?,?,?)");
+            pst.setString(1, pid);
+            pst.setString(2, pname);
+            pst.setString(3, cat);
+            pst.setString(4, subcat);
+            pst.setString(5, bra);
+            pst.setString(6, type);
+            pst.setInt(7, qt);
+            pst.setInt(8, wr);
+            pst.setInt(9, prc);
+            
+            int rows = pst.executeUpdate();
+
+            if (rows > 0) {
+                System.out.println("Row has been inserted");
+            }
+            
+            conn.close();
+        }catch(SQLException e){
+            vr.Error = true;
+            System.out.println("ERROR");
+        }
+    }
+    
+    
+    public void selection2insert(){
+        String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+        String user = "sa";
+        String password = "123456789";
+        try{
+            Connection conn = DriverManager.getConnection(url, user, password);
+            String pid = pIDBox.getText();
+            String pname = pNameBox.getText();
+            String cat = (String) catDDBox.getSelectedItem();
+            String subcat = subCatBox.getText();
+            String bra = brandBox.getText();
+            String type = typeBox.getText();
+            int qt = (Integer) quantity.getValue();
+            int wr = (Integer) warranty.getValue();
+            int prc = (Integer) price.getValue();
+            
+            //String sql = "Select * From SUBCATEGORY Where CAT_NAME = " " Order By SUB_CAT_ID";
+            
+            PreparedStatement pst = conn.prepareStatement("INSERT INTO PRODUCTS (PRODUCT_ID,PRODUCT_NAME,CAT_NAME,SUB_CAT_NAME,BRAND_NAME,PRODUCT_TYPE,QUANTITY,WARRANTY,PRICE) VALUES (?,?,?,?,?,?,?,?,?)");
+            pst.setString(1, pid);
+            pst.setString(2, pname);
+            pst.setString(3, cat);
+            pst.setString(4, subcat);
+            pst.setString(5, bra);
+            pst.setString(6, type);
+            pst.setInt(7, qt);
+            pst.setInt(8, wr);
+            pst.setInt(9, prc);
+            
+            int rows = pst.executeUpdate();
+
+            if (rows > 0) {
+                System.out.println("Row has been inserted");
+            }
+            
+            conn.close();
+        }catch(SQLException e){
+            vr.Error = true;
+            System.out.println("ERROR");
+        }
+    }
+    
+    public void selection3insert(){
+        String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+        String user = "sa";
+        String password = "123456789";
+        try{
+            Connection conn = DriverManager.getConnection(url, user, password);
+            String pid = pIDBox.getText();
+            String pname = pNameBox.getText();
+            String cat = (String) catDDBox.getSelectedItem();
+            String subcat = (String) subCatDDBox.getSelectedItem();
+            String bra = brandBox.getText();
+            String type = typeBox.getText();
+            int qt = (Integer) quantity.getValue();
+            int wr = (Integer) warranty.getValue();
+            int prc = (Integer) price.getValue();
+            
+            //String sql = "Select * From SUBCATEGORY Where CAT_NAME = " " Order By SUB_CAT_ID";
+            
+            PreparedStatement pst = conn.prepareStatement("INSERT INTO PRODUCTS (PRODUCT_ID,PRODUCT_NAME,CAT_NAME,SUB_CAT_NAME,BRAND_NAME,PRODUCT_TYPE,QUANTITY,WARRANTY,PRICE) VALUES (?,?,?,?,?,?,?,?,?)");
+            pst.setString(1, pid);
+            pst.setString(2, pname);
+            pst.setString(3, cat);
+            pst.setString(4, subcat);
+            pst.setString(5, bra);
+            pst.setString(6, type);
+            pst.setInt(7, qt);
+            pst.setInt(8, wr);
+            pst.setInt(9, prc);
+            
+            int rows = pst.executeUpdate();
+
+            if (rows > 0) {
+                System.out.println("Row has been inserted");
+            }
+            
+            conn.close();
+        }catch(SQLException e){
+            vr.Error = true;
+            System.out.println("ERROR");
+        }
+    }
+    
+    public void selection4insert(){
+        String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+        String user = "sa";
+        String password = "123456789";
+        try{
+            Connection conn = DriverManager.getConnection(url, user, password);
+            String pid = pIDBox.getText();
+            String pname = pNameBox.getText();
+            String cat = (String) catDDBox.getSelectedItem();
+            String subcat = (String) subCatDDBox.getSelectedItem();
+            String bra = (String) braDDBox.getSelectedItem();
+            String type = typeBox.getText();
+            int qt = (Integer) quantity.getValue();
+            int wr = (Integer) warranty.getValue();
+            int prc = (Integer) price.getValue();
+            
+            //String sql = "Select * From SUBCATEGORY Where CAT_NAME = " " Order By SUB_CAT_ID";
+            
+            PreparedStatement pst = conn.prepareStatement("INSERT INTO PRODUCTS (PRODUCT_ID,PRODUCT_NAME,CAT_NAME,SUB_CAT_NAME,BRAND_NAME,PRODUCT_TYPE,QUANTITY,WARRANTY,PRICE) VALUES (?,?,?,?,?,?,?,?,?)");
+            pst.setString(1, pid);
+            pst.setString(2, pname);
+            pst.setString(3, cat);
+            pst.setString(4, subcat);
+            pst.setString(5, bra);
+            pst.setString(6, type);
+            pst.setInt(7, qt);
+            pst.setInt(8, wr);
+            pst.setInt(9, prc);
+            
+            int rows = pst.executeUpdate();
+
+            if (rows > 0) {
+                System.out.println("Row has been inserted");
+            }
+            
+            conn.close();
+        }catch(SQLException e){
+            vr.Error = true;
+            System.out.println("ERROR");
+        }
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

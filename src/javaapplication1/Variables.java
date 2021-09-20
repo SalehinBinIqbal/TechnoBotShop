@@ -13,6 +13,8 @@ package javaapplication1;
 
 
 public class Variables {
+    boolean selectionerror = false;
+    boolean Error = false;
     
     String[] cat ={"...","Laptop & Tablet","PC Components","Accessories","Router & Network","Monitor","TV & Speaker"};
     
