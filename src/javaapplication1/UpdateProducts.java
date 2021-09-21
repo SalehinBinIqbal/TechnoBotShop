@@ -249,6 +249,11 @@ public class UpdateProducts extends javax.swing.JFrame {
         String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
         String user = "sa";
         String password = "123456789";
+        
+        //String url ="jdbc:sqlserver://DESKTOP-4I9BNBL\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+        //String user = "sa";
+        //String password = "salsabeel02";
+        
         try{
             Connection conn = DriverManager.getConnection(url, user, password);
             
@@ -286,6 +291,11 @@ public class UpdateProducts extends javax.swing.JFrame {
         String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
         String user = "sa";
         String password = "123456789";
+        
+        //String url ="jdbc:sqlserver://DESKTOP-4I9BNBL\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+        //String user = "sa";
+        //String password = "salsabeel02";
+        
         try{
             Connection conn = DriverManager.getConnection(url, user, password);
             
@@ -385,6 +395,11 @@ public class UpdateProducts extends javax.swing.JFrame {
         String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
         String user = "sa";
         String password = "123456789";
+        
+        //String url ="jdbc:sqlserver://DESKTOP-4I9BNBL\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+        //String user = "sa";
+        //String password = "salsabeel02";
+        
         try{
             Connection conn = DriverManager.getConnection(url, user, password);
             
