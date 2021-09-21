@@ -6,7 +6,16 @@
 package javaapplication1;
 
 import java.awt.Color;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,6 +28,11 @@ public class DeleteProducts extends javax.swing.JFrame {
      */
     public DeleteProducts() {
         initComponents();
+        try {
+            showtable();
+        } catch (SQLException ex) {
+            Logger.getLogger(DeleteProducts.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -179,15 +193,161 @@ public class DeleteProducts extends javax.swing.JFrame {
         if(SearchBox.getText().length()== 0 || SearchBox.getText().equals("Search here...")){
             JOptionPane.showMessageDialog(null, "Invalid input", "Caution", JOptionPane.OK_OPTION);
         }
+        else{
+            try {
+                searchtable();
+            } catch (SQLException ex) {
+                Logger.getLogger(AllProducts.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_SearchBtnMouseClicked
 
     private void dltBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dltBtnMouseClicked
         // TODO add your handling code here:
-        if(AllProductsTable.getSelectionModel().isSelectionEmpty()){
-            JOptionPane.showMessageDialog(null, "Please Select a row", "Caution", JOptionPane.OK_OPTION);
+        if(AllProductsTable.getModel().getRowCount()>1 || AllProductsTable.getModel().getRowCount()<1){
+            JOptionPane.showMessageDialog(null, "Please Search for the Product \n That you want to DELETE", "Caution", JOptionPane.OK_OPTION);
+        }
+        else{
+            confirmDelete();
+            clear();
+            try {
+                showtable();
+            } catch (SQLException ex) {
+                Logger.getLogger(DeleteProducts.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_dltBtnMouseClicked
+    
+    
+    public void showtable()throws SQLException{
+        String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+        String user = "sa";
+        String password = "123456789";
+        try{
+            Connection conn = DriverManager.getConnection(url, user, password);
+            
+            AllProductsTable.setModel(new DefaultTableModel(null, new String [] {"Product ID", "Product Name", "Category", "Sub-Category", "Brand", "Type", "Quantity", "Warranty(Years)", "Price(BDT)"}));
+            
+            String sql = "Select * From PRODUCTS";
+            
+            Statement st = conn.createStatement();
+            
+            ResultSet rs = st.executeQuery(sql);
+            
+            while(rs.next()){
+                String pid = rs.getString("PRODUCT_ID");
+                String pname = rs.getString("PRODUCT_NAME");
+                String cat = rs.getString("CAT_NAME");
+                String subcat = rs.getString("SUB_CAT_NAME");
+                String bra = rs.getString("BRAND_NAME");
+                String ptype = rs.getString("PRODUCT_TYPE");
+                String qt = String.valueOf(rs.getInt("QUANTITY"));
+                String wr = String.valueOf(rs.getInt("WARRANTY"));
+                String prc = String.valueOf(rs.getInt("PRICE"));
+                
+                String tbdata[] = {pid,pname,cat,subcat,bra,ptype,qt,wr,prc};
+                
+                DefaultTableModel apt =  (DefaultTableModel) AllProductsTable.getModel();
+                apt.addRow(tbdata);
+            }
+            conn.close();
+        }catch(SQLException e){
+            System.out.println("ERROR");
+        }
+    }
+    
+    public void searchtable()throws SQLException{
+        String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+        String user = "sa";
+        String password = "123456789";
+        try{
+            Connection conn = DriverManager.getConnection(url, user, password);
+            
+            String srch = SearchBox.getText();
+            
+            AllProductsTable.setModel(new DefaultTableModel(null, new String [] {"Product ID", "Product Name", "Category", "Sub-Category", "Brand", "Type", "Quantity", "Warranty(Years)", "Price(BDT)"}));
+            
+            //String sql = "Select * From PRODUCTS";
+            
+            //Statement st = conn.createStatement();
+            PreparedStatement pst = conn.prepareStatement("SELECT * FROM PRODUCTS WHERE PRODUCT_ID = ?");
+            pst.setString(1, srch);
+            
+            ResultSet rs = pst.executeQuery();
+            
+            while(rs.next()){
+                String pid = rs.getString("PRODUCT_ID");
+                String pname = rs.getString("PRODUCT_NAME");
+                String cat = rs.getString("CAT_NAME");
+                String subcat = rs.getString("SUB_CAT_NAME");
+                String bra = rs.getString("BRAND_NAME");
+                String ptype = rs.getString("PRODUCT_TYPE");
+                String qt = String.valueOf(rs.getInt("QUANTITY"));
+                String wr = String.valueOf(rs.getInt("WARRANTY"));
+                String prc = String.valueOf(rs.getInt("PRICE"));
+                
+                
+                String tbdata[] = {pid,pname,cat,subcat,bra,ptype,qt,wr,prc};
+                
+                DefaultTableModel apt =  (DefaultTableModel) AllProductsTable.getModel();
+                apt.addRow(tbdata);
+                
+            }
+            conn.close();
+        }catch(SQLException e){
+            System.out.println(e);
+            System.out.println("ERROR");
+        }
+    }
+    
+    
+    public void deleteproduct(){
+        String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+        String user = "sa";
+        String password = "123456789";
+        try{
+            Connection conn = DriverManager.getConnection(url, user, password);
+            
+            String srch = SearchBox.getText();
+            //String sql = "Select * From SUBCATEGORY Where CAT_NAME = " " Order By SUB_CAT_ID";
+            
+            PreparedStatement pst = conn.prepareStatement("Delete From PRODUCTS WHERE PRODUCT_ID = ?");
+            pst.setString(1, srch);
+            
+            //Statement st = conn.createStatement();
+            
+            //ResultSet rs = pst.executeQuery();
+            
+            int rows = pst.executeUpdate();
 
+            if (rows > 0) {
+                System.out.println("Product deleted");
+            }
+            
+            conn.close();
+        }catch(SQLException e){
+            System.out.println("ERROR");
+        }
+    }
+    
+    public void confirmDelete(){
+        int confirm = JOptionPane.showConfirmDialog(null,"Sure? You want to Delete the Product?", "Caution",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
+        if(confirm == JOptionPane.YES_OPTION){
+            try{
+                deleteproduct();
+                JOptionPane.showMessageDialog(null, "Successfully Deleted", "Successs", JOptionPane.INFORMATION_MESSAGE);
+                    
+            }catch(Exception e){
+                System.out.println("ERROR");
+            }   
+        }
+    }
+    
+    public void clear(){
+        SearchBox.setText("Search here...");
+        SearchBox.setForeground(new Color(102,102,102));
+    }
+    
     /**
      * @param args the command line arguments
      */

@@ -6,7 +6,16 @@
 package javaapplication1;
 
 import java.awt.Color;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,6 +28,12 @@ public class UpdateProducts extends javax.swing.JFrame {
      */
     public UpdateProducts() {
         initComponents();
+        try {
+            showtable();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(UpdateProducts.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -203,16 +218,209 @@ public class UpdateProducts extends javax.swing.JFrame {
         if(SearchBox.getText().length()== 0 || SearchBox.getText().equals("Search here...")){
             JOptionPane.showMessageDialog(null, "Invalid input", "Caution", JOptionPane.OK_OPTION);
         }
+        else{
+            try {
+                searchtable();
+            } catch (SQLException ex) {
+                Logger.getLogger(AllProducts.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
 
     }                                      
 
     private void updtBtnMouseClicked(java.awt.event.MouseEvent evt) {                                     
         // TODO add your handling code here:
-        if(AllProductsTable.getSelectionModel().isSelectionEmpty()){
-            JOptionPane.showMessageDialog(null, "Please Select a row", "Caution", JOptionPane.OK_OPTION);
+        if(AllProductsTable.getModel().getRowCount()>1 || AllProductsTable.getModel().getRowCount()<1){
+            JOptionPane.showMessageDialog(null, "Please Search for the Product \n That you want to UPDATE", "Caution", JOptionPane.OK_OPTION);
+        }
+        else{
+            checkupdate();
+            clear();
+            try {
+                showtable();
+            } catch (SQLException ex) {
+                Logger.getLogger(UpdateProducts.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }                                    
+    
+    
+    public void showtable()throws SQLException{
+        String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+        String user = "sa";
+        String password = "123456789";
+        try{
+            Connection conn = DriverManager.getConnection(url, user, password);
+            
+            AllProductsTable.setModel(new DefaultTableModel(null, new String [] {"Product ID", "Product Name", "Category", "Sub-Category", "Brand", "Type", "Quantity", "Warranty(Years)", "Price(BDT)"}));
+            
+            String sql = "Select * From PRODUCTS";
+            
+            Statement st = conn.createStatement();
+            
+            ResultSet rs = st.executeQuery(sql);
+            
+            while(rs.next()){
+                String pid = rs.getString("PRODUCT_ID");
+                String pname = rs.getString("PRODUCT_NAME");
+                String cat = rs.getString("CAT_NAME");
+                String subcat = rs.getString("SUB_CAT_NAME");
+                String bra = rs.getString("BRAND_NAME");
+                String ptype = rs.getString("PRODUCT_TYPE");
+                String qt = String.valueOf(rs.getInt("QUANTITY"));
+                String wr = String.valueOf(rs.getInt("WARRANTY"));
+                String prc = String.valueOf(rs.getInt("PRICE"));
+                
+                String tbdata[] = {pid,pname,cat,subcat,bra,ptype,qt,wr,prc};
+                
+                DefaultTableModel apt =  (DefaultTableModel) AllProductsTable.getModel();
+                apt.addRow(tbdata);
+            }
+            conn.close();
+        }catch(SQLException e){
+            System.out.println("ERROR");
+        }
+    }
+    
+    public void searchtable()throws SQLException{
+        String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+        String user = "sa";
+        String password = "123456789";
+        try{
+            Connection conn = DriverManager.getConnection(url, user, password);
+            
+            String srch = SearchBox.getText();
+            
+            AllProductsTable.setModel(new DefaultTableModel(null, new String [] {"Product ID", "Product Name", "Category", "Sub-Category", "Brand", "Type", "Quantity", "Warranty(Years)", "Price(BDT)"}));
+            
+            //String sql = "Select * From PRODUCTS";
+            
+            //Statement st = conn.createStatement();
+            PreparedStatement pst = conn.prepareStatement("SELECT * FROM PRODUCTS WHERE PRODUCT_ID = ?");
+            pst.setString(1, srch);
+            
+            ResultSet rs = pst.executeQuery();
+            
+            while(rs.next()){
+                String pid = rs.getString("PRODUCT_ID");
+                String pname = rs.getString("PRODUCT_NAME");
+                String cat = rs.getString("CAT_NAME");
+                String subcat = rs.getString("SUB_CAT_NAME");
+                String bra = rs.getString("BRAND_NAME");
+                String ptype = rs.getString("PRODUCT_TYPE");
+                String qt = String.valueOf(rs.getInt("QUANTITY"));
+                int qnt = rs.getInt("QUANTITY");
+                String wr = String.valueOf(rs.getInt("WARRANTY"));
+                String prc = String.valueOf(rs.getInt("PRICE"));
+                int pr = rs.getInt("PRICE");
+                
+                
+                String tbdata[] = {pid,pname,cat,subcat,bra,ptype,qt,wr,prc};
+                
+                DefaultTableModel apt =  (DefaultTableModel) AllProductsTable.getModel();
+                apt.addRow(tbdata);
+                
+                quantity.setValue(qnt);
+                price.setValue(pr);
+            }
+            conn.close();
+        }catch(SQLException e){
+            System.out.println(e);
+            System.out.println("ERROR");
+        }
+    }
+    
+    public void checkupdate(){
+        if(quantity.getValue().equals(0) && price.getValue().equals(0)){
+            confirmUpdate1();
+        }
+        else if(quantity.getValue().equals(0)){
+            confirmUpdate2();
+        }
+        else if(price.getValue().equals(0)){
+            confirmUpdate3();
+        }
+        else{
+            updateproduct();
+            JOptionPane.showMessageDialog(null, "Successfully Updated", "Successs", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+    
+    public void confirmUpdate1(){
+        int confirm = JOptionPane.showConfirmDialog(null,"Sure? You want to Update both values to 0?", "Caution",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
+        if(confirm == JOptionPane.YES_OPTION){
+            try{
+                updateproduct();
+                JOptionPane.showMessageDialog(null, "Successfully Updated", "Successs", JOptionPane.INFORMATION_MESSAGE);
+                    
+            }catch(Exception e){
+                System.out.println("ERROR");
+            }   
+        }
+    }
+    public void confirmUpdate2(){
+        int confirm = JOptionPane.showConfirmDialog(null,"Sure? You want to Update Quantity to 0?", "Caution",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
+        if(confirm == JOptionPane.YES_OPTION){
+            try{
+                updateproduct();
+                JOptionPane.showMessageDialog(null, "Successfully Updated", "Successs", JOptionPane.INFORMATION_MESSAGE);
+            }catch(Exception e){
+                System.out.println("ERROR");
+            }   
+        }
+    }
+    public void confirmUpdate3(){
+        int confirm = JOptionPane.showConfirmDialog(null,"Sure? You want to Update Price to 0?", "Caution",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
+        if(confirm == JOptionPane.YES_OPTION){
+            try{
+                updateproduct();
+                JOptionPane.showMessageDialog(null, "Successfully Updated", "Successs", JOptionPane.INFORMATION_MESSAGE);
+            }catch(Exception e){
+                System.out.println("ERROR");
+            }   
+        }
+    }
+    
+    public void updateproduct(){
+        String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+        String user = "sa";
+        String password = "123456789";
+        try{
+            Connection conn = DriverManager.getConnection(url, user, password);
+            
+            int qt = (Integer) quantity.getValue();
+            int prc = (Integer) price.getValue();
+            String srch = SearchBox.getText();
+            //String sql = "Select * From SUBCATEGORY Where CAT_NAME = " " Order By SUB_CAT_ID";
+            
+            PreparedStatement pst = conn.prepareStatement("Update PRODUCTS Set QUANTITY = ? , PRICE = ? WHERE PRODUCT_ID = ?");
+            pst.setInt(1, qt);
+            pst.setInt(2, prc);
+            pst.setString(3, srch);
+            
+            //Statement st = conn.createStatement();
+            
+            //ResultSet rs = pst.executeQuery();
+            
+            int rows = pst.executeUpdate();
 
+            if (rows > 0) {
+                System.out.println("Product updated");
+            }
+            
+            conn.close();
+        }catch(SQLException e){
+            System.out.println("ERROR");
+        }
+    }
+    
+    public void clear(){
+        SearchBox.setText("Search here...");
+        SearchBox.setForeground(new Color(102,102,102));
+        quantity.setValue(0);
+        price.setValue(0);
+    }
+    
     /**
      * @param args the command line arguments
      */
