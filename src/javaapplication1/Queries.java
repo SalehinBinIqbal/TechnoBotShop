@@ -18,19 +18,21 @@ import java.sql.Statement;
 
 public class Queries {
     
+    Variables vr = new Variables();
+    
     String UserID;
     String UserPassword;
     
     public void login()throws SQLException{
-        String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
-        String user = "sa";
-        String password = "123456789";
+        //String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+        //String user = "sa";
+        //String password = "123456789";
         
         //String url ="jdbc:sqlserver://DESKTOP-4I9BNBL\SQLEXPRESS:1433;databaseName=TECHNOBOT";
         //String user = "sa";
         //String password = "salsabeel02";
         try{
-            Connection conn = DriverManager.getConnection(url, user, password);
+            Connection conn = DriverManager.getConnection(vr.url, vr.user, vr.password);
             
             String sql = "Select * From USERS";
             

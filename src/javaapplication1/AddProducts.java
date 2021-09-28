@@ -29,16 +29,16 @@ public class AddProducts extends javax.swing.JFrame {
     
     
     public void categories()throws SQLException{
-        String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
-        String user = "sa";
-        String password = "123456789";
+        //String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+        //String user = "sa";
+        //String password = "123456789";
         
         //String url ="jdbc:sqlserver://DESKTOP-4I9BNBL\SQLEXPRESS:1433;databaseName=TECHNOBOT";
         //String user = "sa";
         //String password = "salsabeel02";
         
         try{
-            Connection conn = DriverManager.getConnection(url, user, password);
+            Connection conn = DriverManager.getConnection(vr.url, vr.user, vr.password);
             
             String sql = "Select * From CATEGORY Order By CAT_ID";
             
@@ -57,16 +57,16 @@ public class AddProducts extends javax.swing.JFrame {
     }
     
     public void subcategories()throws SQLException{
-        String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
-        String user = "sa";
-        String password = "123456789";
+        //String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+        //String user = "sa";
+        //String password = "123456789";
         
         //String url ="jdbc:sqlserver://DESKTOP-4I9BNBL\SQLEXPRESS:1433;databaseName=TECHNOBOT";
         //String user = "sa";
         //String password = "salsabeel02";
         
         try{
-            Connection conn = DriverManager.getConnection(url, user, password);
+            Connection conn = DriverManager.getConnection(vr.url, vr.user, vr.password);
             
             String cat = (String) catDDBox.getSelectedItem();
             
@@ -90,16 +90,16 @@ public class AddProducts extends javax.swing.JFrame {
     }
     
     public void brands()throws SQLException{
-        String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
-        String user = "sa";
-        String password = "123456789";
+        //String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+        //String user = "sa";
+        //String password = "123456789";
         
         //String url ="jdbc:sqlserver://DESKTOP-4I9BNBL\SQLEXPRESS:1433;databaseName=TECHNOBOT";
         //String user = "sa";
         //String password = "salsabeel02";
         
         try{
-            Connection conn = DriverManager.getConnection(url, user, password);
+            Connection conn = DriverManager.getConnection(vr.url, vr.user, vr.password);
             
             String cat = (String) catDDBox.getSelectedItem();
             String subcat = (String) subCatDDBox.getSelectedItem();
@@ -1007,16 +1007,16 @@ public class AddProducts extends javax.swing.JFrame {
     
     
     public void catinsert(){
-        String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
-        String user = "sa";
-        String password = "123456789";
+        //String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+        //String user = "sa";
+        //String password = "123456789";
         
         //String url ="jdbc:sqlserver://DESKTOP-4I9BNBL\SQLEXPRESS:1433;databaseName=TECHNOBOT";
         //String user = "sa";
         //String password = "salsabeel02";
         
         try{
-            Connection conn = DriverManager.getConnection(url, user, password);
+            Connection conn = DriverManager.getConnection(vr.url, vr.user, vr.password);
             String cat = catBox.getText();
             
             //String sql = "Select * From SUBCATEGORY Where CAT_NAME = " " Order By SUB_CAT_ID";
@@ -1037,16 +1037,16 @@ public class AddProducts extends javax.swing.JFrame {
         }
     }
     public void subcatinsert(){
-        String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
-        String user = "sa";
-        String password = "123456789";
+        //String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+        //String user = "sa";
+        //String password = "123456789";
         
         //String url ="jdbc:sqlserver://DESKTOP-4I9BNBL\SQLEXPRESS:1433;databaseName=TECHNOBOT";
         //String user = "sa";
         //String password = "salsabeel02";
         
         try{
-            Connection conn = DriverManager.getConnection(url, user, password);
+            Connection conn = DriverManager.getConnection(vr.url, vr.user, vr.password);
             
             String cat = catBox.getText();
             String subcat = subCatBox.getText();
@@ -1070,16 +1070,16 @@ public class AddProducts extends javax.swing.JFrame {
         }
     }
     public void brandinsert(){
-        String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
-        String user = "sa";
-        String password = "123456789";
+        //String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+        //String user = "sa";
+        //String password = "123456789";
         
         //String url ="jdbc:sqlserver://DESKTOP-4I9BNBL\SQLEXPRESS:1433;databaseName=TECHNOBOT";
         //String user = "sa";
         //String password = "salsabeel02";
         
         try{
-            Connection conn = DriverManager.getConnection(url, user, password);
+            Connection conn = DriverManager.getConnection(vr.url, vr.user, vr.password);
             String cat = catBox.getText();
             String subcat = subCatBox.getText();
             String bra = brandBox.getText();
@@ -1104,16 +1104,16 @@ public class AddProducts extends javax.swing.JFrame {
         }
     }
     public void excatsubcatinsert(){
-        String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
-        String user = "sa";
-        String password = "123456789";
+        //String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+        //String user = "sa";
+        //String password = "123456789";
         
         //String url ="jdbc:sqlserver://DESKTOP-4I9BNBL\SQLEXPRESS:1433;databaseName=TECHNOBOT";
         //String user = "sa";
         //String password = "salsabeel02";
         
         try{
-            Connection conn = DriverManager.getConnection(url, user, password);
+            Connection conn = DriverManager.getConnection(vr.url, vr.user, vr.password);
             
             String cat = (String) catDDBox.getSelectedItem();
             String subcat = subCatBox.getText();
@@ -1137,16 +1137,16 @@ public class AddProducts extends javax.swing.JFrame {
         }
     }
     public void excatnsubbrandinsert(){
-        String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
-        String user = "sa";
-        String password = "123456789";
+        //String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+        //String user = "sa";
+        //String password = "123456789";
         
         //String url ="jdbc:sqlserver://DESKTOP-4I9BNBL\SQLEXPRESS:1433;databaseName=TECHNOBOT";
         //String user = "sa";
         //String password = "salsabeel02";
         
         try{
-            Connection conn = DriverManager.getConnection(url, user, password);
+            Connection conn = DriverManager.getConnection(vr.url, vr.user, vr.password);
             String cat = (String) catDDBox.getSelectedItem();
             String subcat = subCatBox.getText();
             String bra = brandBox.getText();
@@ -1171,16 +1171,16 @@ public class AddProducts extends javax.swing.JFrame {
         }
     }
     public void excatexsubbrandinsert(){
-        String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
-        String user = "sa";
-        String password = "123456789";
+        //String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+        //String user = "sa";
+        //String password = "123456789";
         
         //String url ="jdbc:sqlserver://DESKTOP-4I9BNBL\SQLEXPRESS:1433;databaseName=TECHNOBOT";
         //String user = "sa";
         //String password = "salsabeel02";
         
         try{
-            Connection conn = DriverManager.getConnection(url, user, password);
+            Connection conn = DriverManager.getConnection(vr.url, vr.user, vr.password);
             String cat = (String) catDDBox.getSelectedItem();
             String subcat = (String) subCatDDBox.getSelectedItem();
             String bra = brandBox.getText();
@@ -1205,16 +1205,16 @@ public class AddProducts extends javax.swing.JFrame {
     }
     
     public void selection1insert(){
-        String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
-        String user = "sa";
-        String password = "123456789";
+        //String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+        //String user = "sa";
+        //String password = "123456789";
         
         //String url ="jdbc:sqlserver://DESKTOP-4I9BNBL\SQLEXPRESS:1433;databaseName=TECHNOBOT";
         //String user = "sa";
         //String password = "salsabeel02";
         
         try{
-            Connection conn = DriverManager.getConnection(url, user, password);
+            Connection conn = DriverManager.getConnection(vr.url, vr.user, vr.password);
             String pid = pIDBox.getText();
             String pname = pNameBox.getText();
             String cat = catBox.getText();
@@ -1253,16 +1253,16 @@ public class AddProducts extends javax.swing.JFrame {
     
     
     public void selection2insert(){
-        String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
-        String user = "sa";
-        String password = "123456789";
+        //String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+        //String user = "sa";
+        //String password = "123456789";
         
         //String url ="jdbc:sqlserver://DESKTOP-4I9BNBL\SQLEXPRESS:1433;databaseName=TECHNOBOT";
         //String user = "sa";
         //String password = "salsabeel02";
         
         try{
-            Connection conn = DriverManager.getConnection(url, user, password);
+            Connection conn = DriverManager.getConnection(vr.url, vr.user, vr.password);
             String pid = pIDBox.getText();
             String pname = pNameBox.getText();
             String cat = (String) catDDBox.getSelectedItem();
@@ -1300,16 +1300,16 @@ public class AddProducts extends javax.swing.JFrame {
     }
     
     public void selection3insert(){
-        String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
-        String user = "sa";
-        String password = "123456789";
+        //String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+        //String user = "sa";
+        //String password = "123456789";
         
         //String url ="jdbc:sqlserver://DESKTOP-4I9BNBL\SQLEXPRESS:1433;databaseName=TECHNOBOT";
         //String user = "sa";
         //String password = "salsabeel02";
         
         try{
-            Connection conn = DriverManager.getConnection(url, user, password);
+            Connection conn = DriverManager.getConnection(vr.url, vr.user, vr.password);
             String pid = pIDBox.getText();
             String pname = pNameBox.getText();
             String cat = (String) catDDBox.getSelectedItem();
@@ -1347,16 +1347,16 @@ public class AddProducts extends javax.swing.JFrame {
     }
     
     public void selection4insert(){
-        String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
-        String user = "sa";
-        String password = "123456789";
+        //String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+        //String user = "sa";
+        //String password = "123456789";
         
         //String url ="jdbc:sqlserver://DESKTOP-4I9BNBL\SQLEXPRESS:1433;databaseName=TECHNOBOT";
         //String user = "sa";
         //String password = "salsabeel02";
         
         try{
-            Connection conn = DriverManager.getConnection(url, user, password);
+            Connection conn = DriverManager.getConnection(vr.url, vr.user, vr.password);
             String pid = pIDBox.getText();
             String pname = pNameBox.getText();
             String cat = (String) catDDBox.getSelectedItem();

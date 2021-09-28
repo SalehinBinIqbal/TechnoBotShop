@@ -26,6 +26,9 @@ public class UpdateProducts extends javax.swing.JFrame {
     /**
      * Creates new form UpdateProducts
      */
+    
+    Variables vr = new Variables();
+    
     public UpdateProducts() {
         initComponents();
         try {
@@ -246,16 +249,16 @@ public class UpdateProducts extends javax.swing.JFrame {
     
     
     public void showtable()throws SQLException{
-        String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
-        String user = "sa";
-        String password = "123456789";
+        //String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+        //String user = "sa";
+        //String password = "123456789";
         
         //String url ="jdbc:sqlserver://DESKTOP-4I9BNBL\SQLEXPRESS:1433;databaseName=TECHNOBOT";
         //String user = "sa";
         //String password = "salsabeel02";
         
         try{
-            Connection conn = DriverManager.getConnection(url, user, password);
+            Connection conn = DriverManager.getConnection(vr.url, vr.user, vr.password);
             
             AllProductsTable.setModel(new DefaultTableModel(null, new String [] {"Product ID", "Product Name", "Category", "Sub-Category", "Brand", "Type", "Quantity", "Warranty(Years)", "Price(BDT)"}));
             
@@ -288,16 +291,16 @@ public class UpdateProducts extends javax.swing.JFrame {
     }
     
     public void searchtable()throws SQLException{
-        String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
-        String user = "sa";
-        String password = "123456789";
+        //String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+        //String user = "sa";
+        //String password = "123456789";
         
         //String url ="jdbc:sqlserver://DESKTOP-4I9BNBL\SQLEXPRESS:1433;databaseName=TECHNOBOT";
         //String user = "sa";
         //String password = "salsabeel02";
         
         try{
-            Connection conn = DriverManager.getConnection(url, user, password);
+            Connection conn = DriverManager.getConnection(vr.url, vr.user, vr.password);
             
             String srch = SearchBox.getText();
             
@@ -392,16 +395,16 @@ public class UpdateProducts extends javax.swing.JFrame {
     }
     
     public void updateproduct(){
-        String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
-        String user = "sa";
-        String password = "123456789";
+        //String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+        //String user = "sa";
+        //String password = "123456789";
         
         //String url ="jdbc:sqlserver://DESKTOP-4I9BNBL\SQLEXPRESS:1433;databaseName=TECHNOBOT";
         //String user = "sa";
         //String password = "salsabeel02";
         
         try{
-            Connection conn = DriverManager.getConnection(url, user, password);
+            Connection conn = DriverManager.getConnection(vr.url, vr.user, vr.password);
             
             int qt = (Integer) quantity.getValue();
             int prc = (Integer) price.getValue();

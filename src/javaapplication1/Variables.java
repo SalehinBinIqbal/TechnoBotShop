@@ -16,6 +16,16 @@ public class Variables {
     boolean selectionerror = false;
     boolean Error = false;
     
+    
+    String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+    String user = "sa";
+    String password = "123456789";
+        
+    //String url ="jdbc:sqlserver://DESKTOP-4I9BNBL\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+    //String user = "sa";
+    //String password = "salsabeel02";
+    
+    
     String[] cat ={"...","Laptop & Tablet","PC Components","Accessories","Router & Network","Monitor","TV & Speaker"};
     
     String[] laptopcat ={"...","Laptop","Gaming Laptop","Tablet","Laptop Ram","Laptop Adapter","Laptop Battery","Laptop Cooler"};
