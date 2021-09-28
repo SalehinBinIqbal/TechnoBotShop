@@ -5,6 +5,14 @@
  */
 package javaapplication1;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author saleh
@@ -14,8 +22,15 @@ public class SellProducts extends javax.swing.JFrame {
     /**
      * Creates new form SellProducts
      */
+    
+    Variables vr = new Variables();
+    
     public SellProducts() {
         initComponents();
+        jPanel2.hide();
+        jButton3.hide();
+        showCID();
+        showSellID();
     }
 
     /**
@@ -30,6 +45,24 @@ public class SellProducts extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         backBTN = new javax.swing.JButton();
         name = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        pIDBox = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        quantity = new javax.swing.JSpinner();
+        jButton1 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        sellID = new javax.swing.JTextField();
+        sellName = new javax.swing.JTextField();
+        cusID = new javax.swing.JTextField();
+        cusName = new javax.swing.JTextField();
+        cusMob = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setLocation(new java.awt.Point(0, 0));
@@ -55,6 +88,126 @@ public class SellProducts extends javax.swing.JFrame {
         name.setForeground(new java.awt.Color(255, 255, 255));
         name.setText("Sell Products");
         jPanel1.add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(536, 10, -1, -1));
+
+        jPanel2.setBackground(new java.awt.Color(29, 31, 47));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        pIDBox.setBackground(new java.awt.Color(255, 255, 255));
+        pIDBox.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        pIDBox.setForeground(new java.awt.Color(0, 0, 0));
+        pIDBox.setPreferredSize(new java.awt.Dimension(300, 45));
+        jPanel2.add(pIDBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Enter Product ID       :");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, -1, -1));
+
+        jLabel11.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("Quantity:");
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 100, -1, -1));
+
+        quantity.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        quantity.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        quantity.setMinimumSize(new java.awt.Dimension(26, 24));
+        quantity.setPreferredSize(new java.awt.Dimension(96, 24));
+        jPanel2.add(quantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 100, -1, -1));
+
+        jButton1.setBackground(new java.awt.Color(29, 31, 47));
+        jButton1.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/plus.png"))); // NOI18N
+        jButton1.setText(" Add");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 90, -1, -1));
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 1260, 240));
+
+        jLabel5.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Sell ID           :");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 90, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Customer ID       :");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
+
+        sellID.setEditable(false);
+        sellID.setBackground(new java.awt.Color(255, 255, 255));
+        sellID.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
+        sellID.setForeground(new java.awt.Color(0, 0, 0));
+        sellID.setPreferredSize(new java.awt.Dimension(300, 45));
+        jPanel1.add(sellID, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 80, -1, -1));
+
+        sellName.setBackground(new java.awt.Color(255, 255, 255));
+        sellName.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        sellName.setForeground(new java.awt.Color(0, 0, 0));
+        sellName.setPreferredSize(new java.awt.Dimension(300, 45));
+        jPanel1.add(sellName, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 180, -1, -1));
+
+        cusID.setEditable(false);
+        cusID.setBackground(new java.awt.Color(255, 255, 255));
+        cusID.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
+        cusID.setForeground(new java.awt.Color(0, 0, 0));
+        cusID.setPreferredSize(new java.awt.Dimension(300, 45));
+        jPanel1.add(cusID, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, -1, -1));
+
+        cusName.setBackground(new java.awt.Color(255, 255, 255));
+        cusName.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        cusName.setForeground(new java.awt.Color(0, 0, 0));
+        cusName.setPreferredSize(new java.awt.Dimension(300, 45));
+        jPanel1.add(cusName, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, -1, -1));
+
+        cusMob.setBackground(new java.awt.Color(255, 255, 255));
+        cusMob.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        cusMob.setForeground(new java.awt.Color(0, 0, 0));
+        cusMob.setPreferredSize(new java.awt.Dimension(300, 45));
+        jPanel1.add(cusMob, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 280, -1, -1));
+
+        jLabel7.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Phone                  :");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, -1, -1));
+
+        jLabel8.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Seller Name :");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 190, -1, -1));
+
+        jLabel9.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("Customer Name :");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
+
+        jButton2.setBackground(new java.awt.Color(29, 31, 47));
+        jButton2.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/right-arrow.png"))); // NOI18N
+        jButton2.setText(" Advance");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 280, -1, -1));
+
+        jButton3.setBackground(new java.awt.Color(29, 31, 47));
+        jButton3.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/maps-and-flags.png"))); // NOI18N
+        jButton3.setText(" Done");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 650, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -82,9 +235,322 @@ public class SellProducts extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_backBTNMouseClicked
 
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+        if(cusID.getText().length()!=0 && sellID.getText().length()!=0 && cusName.getText().length()!=0 && cusMob.getText().length()!=0 && sellName.getText().length()!=0){
+            
+            addCus();
+            addSells();
+            backBTN.hide();
+            jButton2.hide();
+            jPanel2.show();
+            jButton3.show();
+            
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "One or more inputs are invalid\nPlease enter proper input", "Caution", JOptionPane.OK_OPTION);
+        }
+        
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        if(pIDBox.getText().length()!=0){
+            if(quantity.getValue().equals(0)){
+                JOptionPane.showMessageDialog(null, "One or more inputs are invalid\nPlease enter proper input", "Caution", JOptionPane.OK_OPTION);
+            }
+            else{
+                amountcalc();
+                addSellItem();
+                getquantity();
+                updateQt();
+                JOptionPane.showMessageDialog(null, "Successfully Added", "Successs", JOptionPane.INFORMATION_MESSAGE);
+                clear();
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "One or more inputs are invalid\nPlease enter proper input", "Caution", JOptionPane.OK_OPTION);
+        }
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        // TODO add your handling code here:
+        
+        JOptionPane.showMessageDialog(null, "Purchase Complete\nPrinting receipt", "Successs", JOptionPane.INFORMATION_MESSAGE);
+        
+        totalamount();
+        SellAmount();
+        
+        HomePage hp = new HomePage();
+        hp.setLocationRelativeTo(null);
+        hp.setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_jButton3MouseClicked
+
     /**
      * @param args the command line arguments
      */
+    
+    
+   public void showCID(){
+       try{
+            Connection conn = DriverManager.getConnection(vr.url, vr.user, vr.password);
+            
+            String sql = "Select Top 1 ID From CUSTOMERS Order by ID desc";
+            
+            Statement st = conn.createStatement();
+            
+            ResultSet rs = st.executeQuery(sql);
+            
+            while(rs.next()){
+                int temp = rs.getInt("ID");
+                int id = temp+1;
+                cusID.setText("C"+id);  
+            }
+            conn.close();
+        }catch(SQLException e){
+            System.out.println("ERROR");
+        }
+   }
+   
+   public void showSellID(){
+       try{
+            Connection conn = DriverManager.getConnection(vr.url, vr.user, vr.password);
+            
+            String sql = "Select Top 1 ID From SELLS Order by ID desc";
+            
+            Statement st = conn.createStatement();
+            
+            ResultSet rs = st.executeQuery(sql);
+            
+            while(rs.next()){
+                int temp = rs.getInt("ID");
+                int id = temp+1;
+                sellID.setText("TBBS"+id);  
+            }
+            conn.close();
+        }catch(SQLException e){
+            System.out.println("ERROR");
+        }
+   }
+   
+   public void addCus(){
+       try{
+            Connection conn = DriverManager.getConnection(vr.url, vr.user, vr.password);
+            String custName = cusName.getText();
+            String custMob = cusMob.getText();
+            
+            //String sql = "Select * From SUBCATEGORY Where CAT_NAME = " " Order By SUB_CAT_ID";
+            
+            PreparedStatement pst = conn.prepareStatement("INSERT INTO CUSTOMERS (CUSTOMER_NAME,CUSTOMER_PHONE) VALUES (?,?)");
+            pst.setString(1, custName);
+            pst.setString(2, custMob);
+            
+            int rows = pst.executeUpdate();
+
+            if (rows > 0) {
+                System.out.println("Row has been inserted");
+            }
+            
+            conn.close();
+        }catch(SQLException e){
+            System.out.println("ERROR");
+        }
+   }
+   
+   
+   public void addSells(){
+       try{
+            Connection conn = DriverManager.getConnection(vr.url, vr.user, vr.password);
+            String custID = cusID.getText();
+            String sellName = cusName.getText();
+            
+            //String sql = "Select * From SUBCATEGORY Where CAT_NAME = " " Order By SUB_CAT_ID";
+            
+            PreparedStatement pst = conn.prepareStatement("INSERT INTO SELLS (CUSTOMER_ID,SELLER_NAME,SELL_DATE) VALUES (?,?,SYSDATETIME ())");
+            pst.setString(1, custID);
+            pst.setString(2, sellName);
+            
+            int rows = pst.executeUpdate();
+
+            if (rows > 0) {
+                System.out.println("Row has been inserted");
+            }
+            
+            conn.close();
+        }catch(SQLException e){
+            System.out.println("ERROR");
+        }
+   }
+   public void amountcalc(){
+       
+       try{
+            Connection conn = DriverManager.getConnection(vr.url, vr.user, vr.password);
+            
+            String pID = pIDBox.getText();
+            
+            //String sql = "Select * From SUBCATEGORY Where CAT_NAME = " " Order By SUB_CAT_ID";
+            
+            PreparedStatement pst = conn.prepareStatement("Select PRICE From PRODUCTS WHERE PRODUCT_ID = ?");
+            pst.setString(1, pID);
+            
+            //Statement st = conn.createStatement();
+            
+            ResultSet rs = pst.executeQuery();
+            
+            while(rs.next()){
+                vr.productPrice = rs.getInt("PRICE"); 
+            }
+            conn.close();
+        }catch(SQLException e){
+            System.out.println("ERROR");
+        }
+   }
+   public void addSellItem(){
+       try{
+            Connection conn = DriverManager.getConnection(vr.url, vr.user, vr.password);
+            String sID = sellID.getText();
+            String pID = pIDBox.getText();
+            int qt = (Integer) quantity.getValue();
+            int amount = vr.productPrice*qt;
+            
+            //String sql = "Select * From SUBCATEGORY Where CAT_NAME = " " Order By SUB_CAT_ID";
+            
+            PreparedStatement pst = conn.prepareStatement("INSERT INTO SELL_ITEM (SELL_ID,PRODUCT_ID,QUANTITY,AMOUNT) VALUES (?,?,?,?)");
+            pst.setString(1, sID);
+            pst.setString(2, pID);
+            pst.setInt(3, qt);
+            pst.setInt(4, amount);
+            
+            int rows = pst.executeUpdate();
+
+            if (rows > 0) {
+                System.out.println("Row has been inserted");
+            }
+            
+            conn.close();
+        }catch(SQLException e){
+            System.out.println("ERROR");
+        }
+   }
+   public void getquantity(){
+       try{
+            Connection conn = DriverManager.getConnection(vr.url, vr.user, vr.password);
+            
+            String pID = pIDBox.getText();
+            
+            //String sql = "Select * From SUBCATEGORY Where CAT_NAME = " " Order By SUB_CAT_ID";
+            
+            PreparedStatement pst = conn.prepareStatement("Select QUANTITY From PRODUCTS WHERE PRODUCT_ID = ?");
+            pst.setString(1, pID);
+            
+            //Statement st = conn.createStatement();
+            
+            ResultSet rs = pst.executeQuery();
+            
+            while(rs.next()){
+                vr.productQt = rs.getInt("QUANTITY"); 
+            }
+            conn.close();
+        }catch(SQLException e){
+            System.out.println("ERROR");
+        }
+   }
+   public void updateQt(){
+        //String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+        //String user = "sa";
+        //String password = "123456789";
+        
+        //String url ="jdbc:sqlserver://DESKTOP-4I9BNBL\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+        //String user = "sa";
+        //String password = "salsabeel02";
+        
+        try{
+            Connection conn = DriverManager.getConnection(vr.url, vr.user, vr.password);
+            
+            int qt = (Integer) quantity.getValue();
+            int updtQt = vr.productQt - qt;
+            if(updtQt<0)
+            {
+                updtQt = 0;
+            }
+            String pID = pIDBox.getText();
+            //String sql = "Select * From SUBCATEGORY Where CAT_NAME = " " Order By SUB_CAT_ID";
+            
+            PreparedStatement pst = conn.prepareStatement("Update PRODUCTS Set QUANTITY = ? WHERE PRODUCT_ID = ?");
+            pst.setInt(1, updtQt);
+            pst.setString(2, pID);
+            
+            //Statement st = conn.createStatement();
+            
+            //ResultSet rs = pst.executeQuery();
+            
+            int rows = pst.executeUpdate();
+
+            if (rows > 0) {
+                System.out.println("Product updated");
+            }
+            
+            conn.close();
+        }catch(SQLException e){
+            System.out.println("ERROR");
+        }
+    }
+   public void clear(){
+       pIDBox.setText("");
+       quantity.setValue(0);
+   }
+   
+   public void totalamount(){
+       try{
+            Connection conn = DriverManager.getConnection(vr.url, vr.user, vr.password);
+            
+            String sID = sellID.getText();
+            
+            //String sql = "Select * From SUBCATEGORY Where CAT_NAME = " " Order By SUB_CAT_ID";
+            
+            PreparedStatement pst = conn.prepareStatement("SELECT SUM(AMOUNT) AS TotalAmount FROM SELL_ITEM WHERE SELL_ID = ?");
+            pst.setString(1, sID);
+            
+            //Statement st = conn.createStatement();
+            
+            ResultSet rs = pst.executeQuery();
+            
+            while(rs.next()){
+                vr.totalamount = rs.getInt("TotalAmount"); 
+            }
+            conn.close();
+        }catch(SQLException e){
+            System.out.println("ERROR");
+        }
+   }
+   
+   public void SellAmount(){
+       try{
+            Connection conn = DriverManager.getConnection(vr.url, vr.user, vr.password);
+            String sID = sellID.getText();
+            
+            int amount = vr.totalamount;
+            
+            //String sql = "Select * From SUBCATEGORY Where CAT_NAME = " " Order By SUB_CAT_ID";
+            
+            PreparedStatement pst = conn.prepareStatement("INSERT INTO SELL_AMOUNT (SELL_ID,TOTAL_PRICE) VALUES (?,?)");
+            pst.setString(1, sID);
+            pst.setInt(2, amount);
+            
+            int rows = pst.executeUpdate();
+
+            if (rows > 0) {
+                System.out.println("Row has been inserted");
+            }
+            
+            conn.close();
+        }catch(SQLException e){
+            System.out.println("ERROR");
+        }
+   }
+   
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -121,7 +587,25 @@ public class SellProducts extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBTN;
+    private javax.swing.JTextField cusID;
+    private javax.swing.JTextField cusMob;
+    private javax.swing.JTextField cusName;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel name;
+    private javax.swing.JTextField pIDBox;
+    private javax.swing.JSpinner quantity;
+    private javax.swing.JTextField sellID;
+    private javax.swing.JTextField sellName;
     // End of variables declaration//GEN-END:variables
 }

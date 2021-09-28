@@ -16,6 +16,9 @@ public class Variables {
     boolean selectionerror = false;
     boolean Error = false;
     
+    int productPrice;
+    int productQt;
+    int totalamount;
     
     String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
     String user = "sa";
