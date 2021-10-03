@@ -36,6 +36,15 @@ public class SellHistory extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         SearchBox = new javax.swing.JTextField();
         SearchBtn = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jLabel7 = new javax.swing.JLabel();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setLocation(new java.awt.Point(0, 0));
@@ -59,7 +68,7 @@ public class SellHistory extends javax.swing.JFrame {
         name.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         name.setForeground(new java.awt.Color(255, 255, 255));
         name.setText("Sell History");
-        jPanel1.add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(574, 10, -1, -1));
+        jPanel1.add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, -1, -1));
 
         jScrollPane2.setPreferredSize(new java.awt.Dimension(1260, 540));
 
@@ -68,7 +77,7 @@ public class SellHistory extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "SL.", "Product ID", "Quantity", "Amount"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -82,7 +91,7 @@ public class SellHistory extends javax.swing.JFrame {
         jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, -1));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 530, 860, 180));
 
         SearchBox.setBackground(new java.awt.Color(255, 255, 255));
         SearchBox.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
@@ -97,7 +106,7 @@ public class SellHistory extends javax.swing.JFrame {
                 SearchBoxFocusLost(evt);
             }
         });
-        jPanel1.add(SearchBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 100, -1, -1));
+        jPanel1.add(SearchBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 330, -1));
 
         SearchBtn.setBackground(new java.awt.Color(29, 31, 47));
         SearchBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/magnifying-glass.png"))); // NOI18N
@@ -107,7 +116,65 @@ public class SellHistory extends javax.swing.JFrame {
                 SearchBtnMouseClicked(evt);
             }
         });
-        jPanel1.add(SearchBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 100, -1, -1));
+        jPanel1.add(SearchBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 90, 60, -1));
+
+        jScrollPane3.setPreferredSize(new java.awt.Dimension(1260, 540));
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Customer ID", "Customer Name", "Customer Phone", "Sold By", "Date", "Time", "Total Amount"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable2.getTableHeader().setReorderingAllowed(false);
+        jScrollPane3.setViewportView(jTable2);
+
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 860, 480));
+
+        jLabel7.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Items");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 500, -1, -1));
+
+        jDateChooser1.setPreferredSize(new java.awt.Dimension(100, 25));
+        jPanel1.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 320, 150, 40));
+
+        jLabel6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("To                                       :");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, -1, -1));
+
+        jLabel8.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("From                                  :");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, -1, -1));
+
+        jDateChooser2.setPreferredSize(new java.awt.Dimension(100, 25));
+        jPanel1.add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 210, 150, 40));
+
+        jButton1.setBackground(new java.awt.Color(29, 31, 47));
+        jButton1.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/right-arrow.png"))); // NOI18N
+        jButton1.setText(" Go");
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 420, -1, -1));
+
+        jButton2.setBackground(new java.awt.Color(29, 31, 47));
+        jButton2.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/detail.png"))); // NOI18N
+        jButton2.setText(" Show Details");
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 600, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -197,9 +264,18 @@ public class SellHistory extends javax.swing.JFrame {
     private javax.swing.JTextField SearchBox;
     private javax.swing.JButton SearchBtn;
     private javax.swing.JButton backBTN;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     private javax.swing.JLabel name;
     // End of variables declaration//GEN-END:variables
 }

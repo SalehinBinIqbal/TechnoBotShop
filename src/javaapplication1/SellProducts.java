@@ -364,13 +364,13 @@ public class SellProducts extends javax.swing.JFrame {
        try{
             Connection conn = DriverManager.getConnection(vr.url, vr.user, vr.password);
             String custID = cusID.getText();
-            String sellName = cusName.getText();
+            String sellerName = sellName.getText();
             
             //String sql = "Select * From SUBCATEGORY Where CAT_NAME = " " Order By SUB_CAT_ID";
             
-            PreparedStatement pst = conn.prepareStatement("INSERT INTO SELLS (CUSTOMER_ID,SELLER_NAME,SELL_DATE) VALUES (?,?,SYSDATETIME ())");
+            PreparedStatement pst = conn.prepareStatement("INSERT INTO SELLS (CUSTOMER_ID,SELLER_NAME,SELL_DATE,SELL_TIME) VALUES (?,?,convert(varchar, getdate(), 107),convert(varchar, getdate(), 8))");
             pst.setString(1, custID);
-            pst.setString(2, sellName);
+            pst.setString(2, sellerName);
             
             int rows = pst.executeUpdate();
 
