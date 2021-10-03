@@ -63,6 +63,7 @@ public class SellProducts extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        copyright = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setLocation(new java.awt.Point(0, 0));
@@ -208,6 +209,10 @@ public class SellProducts extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 650, -1, -1));
+
+        copyright.setForeground(new java.awt.Color(255, 255, 255));
+        copyright.setText("Copyright © 2021, TechnoBot BD");
+        jPanel1.add(copyright, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 700, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -587,6 +592,7 @@ public class SellProducts extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBTN;
+    private javax.swing.JLabel copyright;
     private javax.swing.JTextField cusID;
     private javax.swing.JTextField cusMob;
     private javax.swing.JTextField cusName;

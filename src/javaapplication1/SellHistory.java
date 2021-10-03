@@ -45,6 +45,7 @@ public class SellHistory extends javax.swing.JFrame {
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        copyright = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setLocation(new java.awt.Point(0, 0));
@@ -176,6 +177,10 @@ public class SellHistory extends javax.swing.JFrame {
         jButton2.setText(" Show Details");
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 600, -1, -1));
 
+        copyright.setForeground(new java.awt.Color(255, 255, 255));
+        copyright.setText("Copyright © 2021, TechnoBot BD");
+        jPanel1.add(copyright, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 700, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -264,6 +269,7 @@ public class SellHistory extends javax.swing.JFrame {
     private javax.swing.JTextField SearchBox;
     private javax.swing.JButton SearchBtn;
     private javax.swing.JButton backBTN;
+    private javax.swing.JLabel copyright;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private com.toedter.calendar.JDateChooser jDateChooser1;
