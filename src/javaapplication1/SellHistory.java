@@ -6,6 +6,20 @@
 package javaapplication1;
 
 import java.awt.Color;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -16,8 +30,18 @@ public class SellHistory extends javax.swing.JFrame {
     /**
      * Creates new form SellHistory
      */
+    
+    Variables vr = new Variables();
+    //int tabindex = -1;
+    
     public SellHistory() {
         initComponents();
+        jTable2.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        try {
+            showselltable();
+        } catch (SQLException ex) {
+            Logger.getLogger(SellHistory.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -43,8 +67,8 @@ public class SellHistory extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        srchbydate = new javax.swing.JButton();
+        details = new javax.swing.JButton();
         copyright = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -107,7 +131,7 @@ public class SellHistory extends javax.swing.JFrame {
                 SearchBoxFocusLost(evt);
             }
         });
-        jPanel1.add(SearchBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 330, -1));
+        jPanel1.add(SearchBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 320, -1));
 
         SearchBtn.setBackground(new java.awt.Color(29, 31, 47));
         SearchBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/magnifying-glass.png"))); // NOI18N
@@ -126,7 +150,7 @@ public class SellHistory extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Customer ID", "Customer Name", "Customer Phone", "Sold By", "Date", "Time", "Total Amount"
+                "Sell ID", "Customer ID", "Customer Name", "Customer Phone", "Sold By", "Date", "Time", "Total Amount"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -147,6 +171,7 @@ public class SellHistory extends javax.swing.JFrame {
         jLabel7.setText("Items");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 500, -1, -1));
 
+        jDateChooser1.setDateFormatString("MMM dd, y");
         jDateChooser1.setPreferredSize(new java.awt.Dimension(100, 25));
         jPanel1.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 320, 150, 40));
 
@@ -160,22 +185,33 @@ public class SellHistory extends javax.swing.JFrame {
         jLabel8.setText("From                                  :");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, -1, -1));
 
+        jDateChooser2.setDateFormatString("MMM dd, y");
         jDateChooser2.setPreferredSize(new java.awt.Dimension(100, 25));
         jPanel1.add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 210, 150, 40));
 
-        jButton1.setBackground(new java.awt.Color(29, 31, 47));
-        jButton1.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/right-arrow.png"))); // NOI18N
-        jButton1.setText(" Go");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 420, -1, -1));
+        srchbydate.setBackground(new java.awt.Color(29, 31, 47));
+        srchbydate.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        srchbydate.setForeground(new java.awt.Color(255, 255, 255));
+        srchbydate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/schedule.png"))); // NOI18N
+        srchbydate.setText(" Search");
+        srchbydate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                srchbydateMouseClicked(evt);
+            }
+        });
+        jPanel1.add(srchbydate, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 410, -1, -1));
 
-        jButton2.setBackground(new java.awt.Color(29, 31, 47));
-        jButton2.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/detail.png"))); // NOI18N
-        jButton2.setText(" Show Details");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 600, -1, -1));
+        details.setBackground(new java.awt.Color(29, 31, 47));
+        details.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        details.setForeground(new java.awt.Color(255, 255, 255));
+        details.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/detail.png"))); // NOI18N
+        details.setText(" Show Details");
+        details.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                detailsMouseClicked(evt);
+            }
+        });
+        jPanel1.add(details, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 600, -1, -1));
 
         copyright.setForeground(new java.awt.Color(255, 255, 255));
         copyright.setText("Copyright © 2021, TechnoBot BD");
@@ -226,11 +262,234 @@ public class SellHistory extends javax.swing.JFrame {
 
     private void SearchBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SearchBtnMouseClicked
         // TODO add your handling code here:
+        if(SearchBox.getText().length()== 0 || SearchBox.getText().equals("Search here...")){
+            JOptionPane.showMessageDialog(null, "Invalid input", "Caution", JOptionPane.OK_OPTION);
+        }
+        else{
+            try {
+                searchselltable();
+            } catch (SQLException ex) {
+                Logger.getLogger(SellHistory.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_SearchBtnMouseClicked
+
+    private void srchbydateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_srchbydateMouseClicked
+        // TODO add your handling code here:
+        if(jDateChooser1.getDate() == null || jDateChooser2.getDate() == null){
+            JOptionPane.showMessageDialog(null, "Date input invalid", "Caution", JOptionPane.OK_OPTION);
+        }
+        else{
+            try {
+                searchselltablebydate();
+            } catch (SQLException ex) {
+                Logger.getLogger(SellHistory.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_srchbydateMouseClicked
+
+    private void detailsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_detailsMouseClicked
+        // TODO add your handling code here:
+        if(jTable2.getSelectionModel().isSelectionEmpty()){
+            JOptionPane.showMessageDialog(null, "Please, Select one row to see details", "Caution", JOptionPane.OK_OPTION);
+        }
+        else{
+            //System.out.println("Reached here");
+            int index = jTable2.getSelectedRow();
+            TableModel tm =  jTable2.getModel();
+            String id = tm.getValueAt(index, 0).toString();
+            System.out.println(id);
+            try {
+                selldetails(id);
+            } catch (SQLException ex) {
+                Logger.getLogger(SellHistory.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_detailsMouseClicked
 
     /**
      * @param args the command line arguments
      */
+    
+    public void showselltable()throws SQLException{
+        //String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+        //String user = "sa";
+        //String password = "123456789";
+        
+        //String url ="jdbc:sqlserver://DESKTOP-4I9BNBL\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+        //String user = "sa";
+        //String password = "salsabeel02";
+        
+        try{
+            Connection conn = DriverManager.getConnection(vr.url, vr.user, vr.password);
+            
+            jTable2.setModel(new DefaultTableModel(null, new String [] {"Sell ID", "Customer ID", "Customer Name", "Customer Phone", "Sold By", "Date", "Time", "Total Amount"}));
+            
+            String sql = "SELECT  S.SELL_ID,C.CUSTOMER_ID,C.CUSTOMER_NAME,C.CUSTOMER_PHONE,S.SELLER_NAME,S.SELL_DATE,S.SELL_TIME,SA.TOTAL_PRICE FROM CUSTOMERS C,SELLS S,SELL_AMOUNT SA WHERE C.CUSTOMER_ID=S.CUSTOMER_ID AND S.SELL_ID = SA.SELL_ID order by S.SELL_ID desc";
+            
+            Statement st = conn.createStatement();
+            
+            ResultSet rs = st.executeQuery(sql);
+            
+            while(rs.next()){
+                String sid = rs.getString("SELL_ID");
+                String cid = rs.getString("CUSTOMER_ID");
+                String cname = rs.getString("CUSTOMER_NAME");
+                String cphone = rs.getString("CUSTOMER_PHONE");
+                String sname = rs.getString("SELLER_NAME");
+                String sdate = rs.getString("SELL_DATE");
+                String stime = rs.getString("SELL_TIME");
+                String prc = rs.getString("TOTAL_PRICE");
+                
+                String tbdata[] = {sid,cid,cname,cphone,sname,sdate,stime,prc};
+                
+                DefaultTableModel apt =  (DefaultTableModel) jTable2.getModel();
+                apt.addRow(tbdata);
+            }
+            conn.close();
+        }catch(SQLException e){
+            System.out.println("ERROR");
+        }
+    }
+    
+    public void searchselltable()throws SQLException{
+        //String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+        //String user = "sa";
+        //String password = "123456789";
+        
+        //String url ="jdbc:sqlserver://DESKTOP-4I9BNBL\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+        //String user = "sa";
+        //String password = "salsabeel02";
+        
+        try{
+            Connection conn = DriverManager.getConnection(vr.url, vr.user, vr.password);
+            
+            String srch = "%"+SearchBox.getText()+"%";
+            
+            jTable2.setModel(new DefaultTableModel(null, new String [] {"Sell ID", "Customer ID", "Customer Name", "Customer Phone", "Sold By", "Date", "Time", "Total Amount"}));
+            
+            //String sql = "Select * From PRODUCTS";
+            
+            //Statement st = conn.createStatement();
+            PreparedStatement pst = conn.prepareStatement("SELECT  S.SELL_ID,C.CUSTOMER_ID,C.CUSTOMER_NAME,C.CUSTOMER_PHONE,S.SELLER_NAME,S.SELL_DATE,S.SELL_TIME,SA.TOTAL_PRICE FROM CUSTOMERS C,SELLS S,SELL_AMOUNT SA WHERE C.CUSTOMER_ID=S.CUSTOMER_ID AND S.SELL_ID = SA.SELL_ID AND (S.SELL_ID LIKE ? OR C.CUSTOMER_ID LIKE ? OR C.CUSTOMER_NAME LIKE ? OR C.CUSTOMER_PHONE LIKE ? OR S.SELLER_NAME LIKE ?) order by S.SELL_ID desc");
+            pst.setString(1, srch);
+            pst.setString(2, srch);
+            pst.setString(3, srch);
+            pst.setString(4, srch);
+            pst.setString(5, srch);
+            
+            ResultSet rs = pst.executeQuery();
+            
+            while(rs.next()){
+                String sid = rs.getString("SELL_ID");
+                String cid = rs.getString("CUSTOMER_ID");
+                String cname = rs.getString("CUSTOMER_NAME");
+                String cphone = rs.getString("CUSTOMER_PHONE");
+                String sname = rs.getString("SELLER_NAME");
+                String sdate = rs.getString("SELL_DATE");
+                String stime = rs.getString("SELL_TIME");
+                String prc = rs.getString("TOTAL_PRICE");
+                
+                String tbdata[] = {sid,cid,cname,cphone,sname,sdate,stime,prc};
+                
+                DefaultTableModel apt =  (DefaultTableModel) jTable2.getModel();
+                apt.addRow(tbdata);
+            }
+            conn.close();
+        }catch(SQLException e){
+            System.out.println(e);
+            System.out.println("ERROR");
+        }
+    }
+    
+    public void searchselltablebydate()throws SQLException{
+        //String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+        //String user = "sa";
+        //String password = "123456789";
+        
+        //String url ="jdbc:sqlserver://DESKTOP-4I9BNBL\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+        //String user = "sa";
+        //String password = "salsabeel02";
+        
+        try{
+            Connection conn = DriverManager.getConnection(vr.url, vr.user, vr.password);
+            
+            DateFormat df = new SimpleDateFormat("MMM dd, y");
+            String from = df.format(jDateChooser2.getDate());
+            String to = df.format(jDateChooser1.getDate());
+            
+            jTable2.setModel(new DefaultTableModel(null, new String [] {"Sell ID", "Customer ID", "Customer Name", "Customer Phone", "Sold By", "Date", "Time", "Total Amount"}));
+            
+            //String sql = "Select * From PRODUCTS";
+            
+            //Statement st = conn.createStatement();
+            PreparedStatement pst = conn.prepareStatement("SELECT  S.SELL_ID,C.CUSTOMER_ID,C.CUSTOMER_NAME,C.CUSTOMER_PHONE,S.SELLER_NAME,S.SELL_DATE,S.SELL_TIME,SA.TOTAL_PRICE FROM CUSTOMERS C,SELLS S,SELL_AMOUNT SA WHERE C.CUSTOMER_ID=S.CUSTOMER_ID AND S.SELL_ID = SA.SELL_ID AND S.SELL_DATE Between ? And ? order by S.SELL_ID desc");
+            pst.setString(1, from);
+            pst.setString(2, to);
+            
+            ResultSet rs = pst.executeQuery();
+            
+            while(rs.next()){
+                String sid = rs.getString("SELL_ID");
+                String cid = rs.getString("CUSTOMER_ID");
+                String cname = rs.getString("CUSTOMER_NAME");
+                String cphone = rs.getString("CUSTOMER_PHONE");
+                String sname = rs.getString("SELLER_NAME");
+                String sdate = rs.getString("SELL_DATE");
+                String stime = rs.getString("SELL_TIME");
+                String prc = rs.getString("TOTAL_PRICE");
+                
+                String tbdata[] = {sid,cid,cname,cphone,sname,sdate,stime,prc};
+                
+                DefaultTableModel apt =  (DefaultTableModel) jTable2.getModel();
+                apt.addRow(tbdata);
+            }
+            conn.close();
+        }catch(SQLException e){
+            System.out.println(e);
+            System.out.println("ERROR");
+        }
+    }
+    
+    
+    public void selldetails(String id)throws SQLException{
+        //String url ="jdbc:sqlserver://KAMI\\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+        //String user = "sa";
+        //String password = "123456789";
+        
+        //String url ="jdbc:sqlserver://DESKTOP-4I9BNBL\SQLEXPRESS:1433;databaseName=TECHNOBOT";
+        //String user = "sa";
+        //String password = "salsabeel02";
+        
+        try{
+            Connection conn = DriverManager.getConnection(vr.url, vr.user, vr.password);
+            
+            jTable1.setModel(new DefaultTableModel(null, new String [] {"SL.", "Product ID", "Quantity", "Amount(BDT)"}));
+            
+            PreparedStatement pst = conn.prepareStatement("SELECT * FROM SELL_ITEM Where SELL_ID = ?");
+            pst.setString(1, id);
+            
+            ResultSet rs = pst.executeQuery();
+            int sl = 0;
+            while(rs.next()){
+                sl++;
+                String serial = Integer.toString(sl);
+                String pid = rs.getString("PRODUCT_ID");
+                String qt = String.valueOf(rs.getInt("QUANTITY"));
+                String amnt = rs.getString("AMOUNT");
+                
+                String tbdata[] = {serial,pid,qt,amnt};
+                
+                DefaultTableModel apt =  (DefaultTableModel) jTable1.getModel();
+                apt.addRow(tbdata);
+                
+            }
+            conn.close();
+        }catch(SQLException e){
+            System.out.println("ERROR");
+        }
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -270,8 +529,7 @@ public class SellHistory extends javax.swing.JFrame {
     private javax.swing.JButton SearchBtn;
     private javax.swing.JButton backBTN;
     private javax.swing.JLabel copyright;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton details;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel6;
@@ -283,5 +541,6 @@ public class SellHistory extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JLabel name;
+    private javax.swing.JButton srchbydate;
     // End of variables declaration//GEN-END:variables
 }
