@@ -391,7 +391,7 @@ public class SellHistory extends javax.swing.JFrame {
             
             jTable2.setModel(new DefaultTableModel(null, new String [] {"Sell ID", "Customer ID", "Customer Name", "Customer Phone", "Sold By", "Date", "Time", "Total Amount"}));
             
-            String sql = "SELECT  S.SELL_ID,C.CUSTOMER_ID,C.CUSTOMER_NAME,C.CUSTOMER_PHONE,S.SELLER_NAME,S.SELL_DATE,S.SELL_TIME,SA.TOTAL_PRICE FROM CUSTOMERS C,SELLS S,SELL_AMOUNT SA WHERE C.CUSTOMER_ID=S.CUSTOMER_ID AND S.SELL_ID = SA.SELL_ID order by S.SELL_ID desc";
+            String sql = "SELECT  S.SELL_ID,C.CUSTOMER_ID,C.CUSTOMER_NAME,C.CUSTOMER_PHONE,S.SELLER_NAME,S.SELL_DATE,S.SELL_TIME,SA.TOTAL_PRICE FROM CUSTOMERS C,SELLS S,SELL_AMOUNT SA WHERE C.CUSTOMER_ID=S.CUSTOMER_ID AND S.SELL_ID = SA.SELL_ID order by S.ID desc";
             
             Statement st = conn.createStatement();
             
@@ -437,7 +437,7 @@ public class SellHistory extends javax.swing.JFrame {
             //String sql = "Select * From PRODUCTS";
             
             //Statement st = conn.createStatement();
-            PreparedStatement pst = conn.prepareStatement("SELECT  S.SELL_ID,C.CUSTOMER_ID,C.CUSTOMER_NAME,C.CUSTOMER_PHONE,S.SELLER_NAME,S.SELL_DATE,S.SELL_TIME,SA.TOTAL_PRICE FROM CUSTOMERS C,SELLS S,SELL_AMOUNT SA WHERE C.CUSTOMER_ID=S.CUSTOMER_ID AND S.SELL_ID = SA.SELL_ID AND (S.SELL_ID LIKE ? OR C.CUSTOMER_ID LIKE ? OR C.CUSTOMER_NAME LIKE ? OR C.CUSTOMER_PHONE LIKE ? OR S.SELLER_NAME LIKE ?) order by S.SELL_ID desc");
+            PreparedStatement pst = conn.prepareStatement("SELECT  S.SELL_ID,C.CUSTOMER_ID,C.CUSTOMER_NAME,C.CUSTOMER_PHONE,S.SELLER_NAME,S.SELL_DATE,S.SELL_TIME,SA.TOTAL_PRICE FROM CUSTOMERS C,SELLS S,SELL_AMOUNT SA WHERE C.CUSTOMER_ID=S.CUSTOMER_ID AND S.SELL_ID = SA.SELL_ID AND (S.SELL_ID LIKE ? OR C.CUSTOMER_ID LIKE ? OR C.CUSTOMER_NAME LIKE ? OR C.CUSTOMER_PHONE LIKE ? OR S.SELLER_NAME LIKE ?) order by S.ID desc");
             pst.setString(1, srch);
             pst.setString(2, srch);
             pst.setString(3, srch);
@@ -489,7 +489,7 @@ public class SellHistory extends javax.swing.JFrame {
             //String sql = "Select * From PRODUCTS";
             
             //Statement st = conn.createStatement();
-            PreparedStatement pst = conn.prepareStatement("SELECT  S.SELL_ID,C.CUSTOMER_ID,C.CUSTOMER_NAME,C.CUSTOMER_PHONE,S.SELLER_NAME,S.SELL_DATE,S.SELL_TIME,SA.TOTAL_PRICE FROM CUSTOMERS C,SELLS S,SELL_AMOUNT SA WHERE C.CUSTOMER_ID=S.CUSTOMER_ID AND S.SELL_ID = SA.SELL_ID AND S.SELL_DATE Between ? And ? order by S.SELL_ID desc");
+            PreparedStatement pst = conn.prepareStatement("SELECT  S.SELL_ID,C.CUSTOMER_ID,C.CUSTOMER_NAME,C.CUSTOMER_PHONE,S.SELLER_NAME,S.SELL_DATE,S.SELL_TIME,SA.TOTAL_PRICE FROM CUSTOMERS C,SELLS S,SELL_AMOUNT SA WHERE C.CUSTOMER_ID=S.CUSTOMER_ID AND S.SELL_ID = SA.SELL_ID AND S.SELL_DATE Between ? And ? order by S.ID desc");
             pst.setString(1, from);
             pst.setString(2, to);
             
@@ -613,7 +613,7 @@ public class SellHistory extends javax.swing.JFrame {
             
             jTable2.setModel(new DefaultTableModel(null, new String [] {"Sell ID", "Customer ID", "Customer Name", "Customer Phone", "Sold By", "Date", "Time", "Total Amount"}));
             
-            String sql = "SELECT  S.SELL_ID,C.CUSTOMER_ID,C.CUSTOMER_NAME,C.CUSTOMER_PHONE,S.SELLER_NAME,S.SELL_DATE,S.SELL_TIME, SA.TOTAL_PRICE FROM CUSTOMERS C,SELLS S,SELL_AMOUNT SA WHERE C.CUSTOMER_ID=S.CUSTOMER_ID AND S.SELL_ID = SA.SELL_ID AND S.SELL_DATE = (SELECT TOP 1 SELL_DATE FROM CUSTOMERS C,SELLS S,SELL_AMOUNT SA WHERE C.CUSTOMER_ID=S.CUSTOMER_ID AND S.SELL_ID = SA.SELL_ID Group By SELL_DATE order by COUNT(SELL_DATE) desc) Order by SELL_ID desc";
+            String sql = "SELECT  S.SELL_ID,C.CUSTOMER_ID,C.CUSTOMER_NAME,C.CUSTOMER_PHONE,S.SELLER_NAME,S.SELL_DATE,S.SELL_TIME, SA.TOTAL_PRICE FROM CUSTOMERS C,SELLS S,SELL_AMOUNT SA WHERE C.CUSTOMER_ID=S.CUSTOMER_ID AND S.SELL_ID = SA.SELL_ID AND S.SELL_DATE = (SELECT TOP 1 SELL_DATE FROM CUSTOMERS C,SELLS S,SELL_AMOUNT SA WHERE C.CUSTOMER_ID=S.CUSTOMER_ID AND S.SELL_ID = SA.SELL_ID Group By SELL_DATE order by COUNT(SELL_DATE) desc) Order by S.ID desc";
             
             Statement st = conn.createStatement();
             
